@@ -1,0 +1,12 @@
+bisc305-lecture*-slides.pdf
+bisc305-lecture*-print.pdf
+*.aux
+*.log
+*.out
+*.toc
+*.nav
+*.snm
+*.vrb
+texput.*
+.*.swp
+.*.swo
