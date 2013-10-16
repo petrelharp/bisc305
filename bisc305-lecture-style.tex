@@ -142,20 +142,19 @@ University of Southern California
 \def\makechapter{
   \newpage
   \null
-  \vskip 2em%
+  % \vskip 2em%
   {%
     \parindent=0pt
     \raggedright
     \sffamily
     \vskip8pt
-    {\fontsize{36pt}{36pt}\selectfont Chapter \insertshortlecture \par\vskip2pt}
+    {\fontsize{24pt}{28pt}\selectfont Lecture \insertshortlecture \par\vskip2pt}
     {\fontsize{24pt}{28pt}\selectfont \color{blue!50!black} \insertlecture\par\vskip4pt}
     {\Large\selectfont \color{blue!50!black} \insertsubtitle\par}
     \vskip10pt
 
-    \normalsize\selectfont Druckfassung der
-    Vorlesung \emph{\lecturename} vom \@date\par\vskip1.5em
-    \hfill Till Tantau, Institut für Theoretische Informatik, Universität zu Lübeck
+    \normalsize\selectfont Slides for \emph{\lecturename}, \@date\par\vskip0.5em
+    Peter Ralph, Molecular \& Computational Biology, University of Southern California
   }
   \par
   \vskip 1.5em%
