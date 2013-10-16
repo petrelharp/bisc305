@@ -11,9 +11,13 @@
   \maketitle
 \end{frame}
 
-\begin{frame}{Overview}
+\begin{frame}{So far we know\ldots}
 
-where we're at so far
+    \begin{itemize}
+        \item How to estimate the mean value of a population from a sample ($\bar y$)
+        \item How to quantify uncertainty in estimated mean values ($\SE_{\bar Y}$)
+        \item How to compare estimated mean values in two independent samples ($t$-test)
+    \end{itemize}
 
 \end{frame}
 
@@ -48,36 +52,87 @@ where we're at so far
 
 \end{frame}
 
-\begin{frame}{Male \& Female observations}
+\begin{frame}{Example: hematocrit}
 
-\begin{block}{Example 1}
+    \alert{Hematocrit} measures concentration of red blood cells in blood.
 
-\end{block}
+    \vspace{2em}
+
+    \only<1>{
+    \begin{block}{Males \& Females}
+        From sample of 489 males and 469 females:
+
+        \vspace{1em}
+
+        \centering
+        \begin{tabular}{l|rr}
+            & Males & Females \\
+            \hline
+            Mean & 45.8 & 40.6 \\
+            SD & 2.8 & 2.9 \\
+        \end{tabular}
+    \end{block}
+    }
+
+    \only<2>{
+    \begin{block}{High \& low hormone levels}
+        From sample of 489 ``low'' and 469 ``high'' 
+        levels of androstenedione:
+
+        \vspace{1em}
+
+        \centering
+        \begin{tabular}{l|rr}
+            & Low & High \\
+            \hline
+            Mean & 45.8 & 40.6 \\
+            SD & 2.8 & 2.9 \\
+        \end{tabular}
+
+        \tiny (fake data)
+    \end{block}
+    }
+
+    \only<3>{
+    \begin{block}{Controlled hormone levels}
+        From sample of 489 males and 469 females,
+        random set of half of each had
+        artificially induced levels of androstenedione:
+
+        \vspace{1em}
+
+        \centering
+        \begin{tabular}{l|rr}
+            & Low & High \\
+            \hline
+            Mean & 45.8 & 40.6 \\
+            SD & 2.8 & 2.9 \\
+        \end{tabular}
+
+        \tiny (fake data)
+    \end{block}
+    }
+
+
+    \vspace{2em}
+
+    What do we conclude?
 
 \end{frame}
-
-\begin{frame}{Pargyline \& Sucrose}
-
-  \begin{block}{Example 2}
-
-  \end{block}
-
-\end{frame}
-
 
 %%%%%
 \subsection{Experimental vs.\ Observational studies}
 
 \begin{frame}{There's more to an experiment than observation.}
 
-  \begin{block}{Observational studies}
-    We \alert{observe} (measure) some stuff.
+  \begin{block}{How to do an observational study}
+    \alert{Observe} (measure) some stuff.
   \end{block}
 
   \vspace{2em}
 
-  \begin{block}{Experimental studies}
-    We observe (measure) some stuff, 
+  \begin{block}{How to do an experimental study}
+    Observe (measure) some stuff, 
     in samples from populations that are identical,
     except for the explanatory variable(s).
   \end{block}
@@ -107,11 +162,6 @@ where we're at so far
 \end{frame}
 
 %
-\begin{frame}{In-class example}
-
-
-
-\end{frame}
 
 
 %
@@ -127,9 +177,12 @@ where we're at so far
 
   \vspace{2em}
 
-  \begin{block}{Simple example:}
-
-  \end{block}
+  \structure{Example:}
+  \begin{description}
+      \item[Study 1:] Children of smokers have lower birth weight.
+      \item[Study 2:] We got a randomly chosen half of our sample to start smoking,
+          and their children had lower birth weight.
+  \end{description}
 
 \end{frame}
 
@@ -145,6 +198,10 @@ where we're at so far
 
   \figcaption{``Correlation doesn't imply causation, but it does waggle its eyebrows suggestively and gesture furtively while mouthing `look over there'.''}
   \end{center}
+
+  \vspace{2em}
+
+  \alert{Why not?}
 
 \end{frame}
 
@@ -170,9 +227,20 @@ then the association is \alert{spurious}.
 
 \alert{Solution:} control for $Z$.  (can be difficult)
 
+\vspace{2em}
+
+\structure{Study 2':} We got 159 pairs of women,
+    each matching in many ways, except one of the pair quit smoking before the second pregnancy.
+    Those who quit had heavier children.
+
 \end{frame}
 
-%%%
+\begin{frame}{Exercise}
+
+\end{frame}
+
+
+%%%%
 \section{One--sided $t$-tests}
 
 \subsection{One versus two sides}
@@ -225,18 +293,23 @@ then the association is \alert{spurious}.
 \begin{frame}{How to do a one-sided test}
 
   \begin{center}
-  \includegraphicscopyright[width=6cm]{one-tailed-tests}{Samuels, Whitmer, \& Schaffner}
+  \includegraphicscopyright[width=.8\textwidth]{one-tailed-tests}{Samuels, Whitmer, \& Schaffner}
   \end{center}
 
-  \vspace{2em}
+  \vspace{-1em}
 
   \begin{enumerate}
     \item Check if the difference in means is in the right direction. (if not, $P>0.5$).
 
     \item Compute the $t$ statistic:
       \[
-      t_s = \frac{ \bar y_1 - \bar y_2 }{ \SE_{(\bar Y_1 - \bar Y_2)} }
+          t_s = \frac{ (\bar y_1 - \bar y_2) - 0}{ \SE_{(\bar Y_1 - \bar Y_2)} }
       \]
+
+    \item Compute the degrees of freedom:
+        \[
+            df = \frac{ (\SE_1^2 + \SE_2^2)^2 }{ \SE_1^4 / (n_1-1) + \SE_2^4 / (n_2 - 1) }
+        \]
 
     \item Look up the $P$-value. (or, check for significance in Table 4)
 
@@ -287,6 +360,11 @@ then the association is \alert{spurious}.
     \item thanks in part to \alert{confounding factors}.
     \item \alert{Experimental studies} try to eliminate these,
     \item and so can provide much stronger evidence for direct causation.
+  \end{itemize}
+  \structure{and}
+  \begin{itemize}
+      \item Use a one-sided $t$-test if the hypothesis clearly predicts a difference in a \alert{particular direction}.
+      \item The $P$-value is \alert{just one tail} of the $t$-distribution, not both.
   \end{itemize}
 \end{frame}
 
