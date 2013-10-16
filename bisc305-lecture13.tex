@@ -24,66 +24,292 @@ where we're at so far
 
 
 \section{Association and Causation}
-\begin{frame}{General experimental set-up}
 
-We observe, in a sample:
+\begin{frame}{What happens in a study}
+
+    \alert{Question:} Does $X$ affect $Y$?
+
+    \vspace{2em}
+
+    To find out, we get a bunch of samples, recording:
+      \begin{enumerate}
+          \item explanatory variable(s) ($X$)
+          \item response variable(s) ($Y$)
+      \end{enumerate}
+    and the typical value of $Y$ seems to depend on $X$.
+
+    \vspace{2em}
+
+    \ldots but then, what do we conclude?
+
+    \vspace{2em}
+
+    \alert{It depends} on how we ``get'' those samples.
+
+\end{frame}
+
+\begin{frame}{Male \& Female observations}
+
+\begin{block}{Example 1}
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Pargyline \& Sucrose}
+
+  \begin{block}{Example 2}
+
+  \end{block}
+
+\end{frame}
+
+
+%%%%%
+\subsection{Experimental vs.\ Observational studies}
+
+\begin{frame}{There's more to an experiment than observation.}
+
+  \begin{block}{Observational studies}
+    We \alert{observe} (measure) some stuff.
+  \end{block}
+
+  \vspace{2em}
+
+  \begin{block}{Experimental studies}
+    We observe (measure) some stuff, 
+    in samples from populations that are identical,
+    except for the explanatory variable(s).
+  \end{block}
+
+  \vspace{2em}
+
+  \alert{Easy way to get experimental:}
+  Randomly assign to treatment and control groups.
+
+\end{frame}
+
+%
+\begin{frame}{Observation versus experiment}
+
+  Is it an observational study or an experimental study?
   \begin{enumerate}
-  \item explanatory variable(s)
-  \item response variable(s)
+
+    \item How was the sample obtained?
+
+    \item Who is in the treatment and the control groups? \\
+      \alert{or} Does the researcher assign the explanatory variables?
+
+    \item Who is being studied?
+
   \end{enumerate}
 
 \end{frame}
 
+%
+\begin{frame}{In-class example}
 
-\subsection{Experimental vs.\ Observational studies}
-
-\begin{frame}{Experiment $\neq$ Observation}
-
-  \begin{block}{Observational studies}
-    We \alert{observe} (measure) some things.
-  \end{block}
-
-  \begin{block}{Experimental studies}
-    We observe (measure) some stuff in populations that are identical,
-    except for the explanatory variable(s).
-  \end{block}
 
 
 \end{frame}
 
 
-\begin{frame}{Observational studies}
-%  \includegraphicscopyright[width=6cm]{beamerexample-lecture-pic3.jpg}
+%
+\begin{frame}{The difference}
 
-  \begin{block}{Beobachtungen}
+  In \alert{both} observational and experimental studies,
+  the conclusion is generally ``$X$ is associated with $Y$'' (or not).
+
+  \vspace{2em}
+
+  \ldots but in an \alert{experiment},
+  there are a lot fewer ways to explain the association.
+
+  \vspace{2em}
+
+  \begin{block}{Simple example:}
+
+  \end{block}
+
+\end{frame}
+
+
+%%%
+\subsection{Correlation is not causation}
+
+%
+\begin{frame}{Correlation is not Causation}
+
+  \begin{center}
+  \includegraphicscopyright[width=6cm]{xkcd-correlation}{xkcd.com/552}
+
+  \figcaption{``Correlation doesn't imply causation, but it does waggle its eyebrows suggestively and gesture furtively while mouthing `look over there'.''}
+  \end{center}
+
+\end{frame}
+
+%%%
+\subsection{Confounding factors}
+
+%
+\begin{frame}{Confounding factors}
+
+If we are looking for the effect of $X$ on $Y$,
+the factor $Z$ is \alert{confounding} if $Z$ is known to have an effect on $Y$,
+and $X$ might be associated with $Z$.
+
+\vspace{2em}
+
+If association between $X$ and $Y$ only happens because of $Z$:
+\[
+  X \sim Z \longrightarrow Y
+\]
+then the association is \alert{spurious}.
+
+\vspace{2em}
+
+\alert{Solution:} control for $Z$.  (can be difficult)
+
+\end{frame}
+
+%%%
+\section{One--sided $t$-tests}
+
+\subsection{One versus two sides}
+
+%
+\begin{frame}{One or two sides?}
+
+  \begin{description}
+
+    \item[one-sided test:] ``Could the two groups look \alert{this different} if they were actually the same?''
+
+    \item[two-sided test:] ``Could this group look \alert{this much larger} than the other group if they were actually the same?''
+
+  \end{description}
+
+  \vspace{2em}
+
+  \only<1>{
+  \structure{More precisely,}
+  \begin{description}
+
+    \item[one-sided test:] ``What's the chance that the difference in sample means was at least this large, if the control and treatment populations actually have the same mean?''
+
+    \item[two-sided test:] ``What's the chance that the treatment sample mean is at least this much larger than the control group sample mean,
+      if the control and treatment populations actually have the same mean?''
+
+  \end{description}
+  }
+
+  \only<2>{
+  \structure{More concisely,} with $H_0: \; \mu_1 = \mu_2$:
+  \begin{description}
+
+    \item[one-sided test:] $H_A: \; \mu_1 \neq \mu_2$
+
+    \item[two-sided test:] $H_A: \; \mu_1 > \mu_2$
+
+  \end{description}
+
+  \vspace{2em}
+
+  \structure{Note:} can do the test in either direction, replacing "larger" with "smaller".
+  }
+
+\end{frame}
+
+%%%
+\subsection{Finding a one-sided $P$-value}
+
+\begin{frame}{How to do a one-sided test}
+
+  \begin{center}
+  \includegraphicscopyright[width=6cm]{one-tailed-tests}{Samuels, Whitmer, \& Schaffner}
+  \end{center}
+
+  \vspace{2em}
+
+  \begin{enumerate}
+    \item Check if the difference in means is in the right direction. (if not, $P>0.5$).
+
+    \item Compute the $t$ statistic:
+      \[
+      t_s = \frac{ \bar y_1 - \bar y_2 }{ \SE_{(\bar Y_1 - \bar Y_2)} }
+      \]
+
+    \item Look up the $P$-value. (or, check for significance in Table 4)
+
+  \end{enumerate}
+
+
+\end{frame}
+
+%%
+\subsection{What to watch out for}
+
+%
+\begin{frame}{How to cheat}
+
+  \begin{enumerate}
+    \item Check which mean is larger.
+    \item Do a one-sided test, in that direction.
+  \end{enumerate}
+
+  \vspace{2em}
+
+  \structure{Solution:} Have a clear hypothesis, that determines the direction beforehand.
+
+  \vspace{2em}
+
+  \begin{block}{Music \& Marigolds}
+    If 100 studies look for an effect that isn't real, 
+    how many will ``find'' the effect, with
     \begin{itemize}
-    \item Wir haben keine Ahnung, was der Text bedeutet.
-    \item Es gibt aber \alert{Regeln}, die offenbar eingehalten wurden,
-      wie »Hieroglyphen stehen in Zeilen«.
-    \item Solche Regeln sind \alert{syntaktische Regeln} -- man kann sie
-      überprüfen, ohne den Inhalt zu verstehen.
+      \item[\bf (a)] two-tailed tests
+      \item[\bf (b)] one-tailed tests, and a clear prior hypothesis
+      \item[\bf (c)] one-tailed tests, cheating
     \end{itemize}
   \end{block}
 
 \end{frame}
 
 
-% . . . 
+%%%%%
+\section<article>{Summary}
+\section<presentation>*{Summary}
 
-\section<article>{Zusammenfassung}
-\section<presentation>*{Zusammenfassung}
-
-\begin{frame}{Zusammenfassung}
-  \begin{enumerate}
-  \item Ein \alert{Wort} ist eine Folge von Symbolen aus einem
-    \alert{Alphabet}. 
-  \item Eine \alert{Syntax} besteht aus Regeln, nach denen
-    Worte (Texte) gebaut werden dürfen.
-  \item Eine \alert{Semantik} legt fest, was Worte \alert{bedeuten}.
-  \item Eine \alert{formale Sprache} ist eine Menge von Worten
-    über einem Alphabet.
-  \end{enumerate}
+\begin{frame}{Summary}
+  \begin{itemize}
+    \item An \alert{observational study} simply observes an existing situation,
+    \item and finds correlations.
+    \item But, \alert{correlation is not causation},
+    \item thanks in part to \alert{confounding factors}.
+    \item \alert{Experimental studies} try to eliminate these,
+    \item and so can provide much stronger evidence for direct causation.
+  \end{itemize}
 \end{frame}
+
+% homework
+\begin{frame}{Homework}
+
+  \begin{center}
+
+  7.4.2
+
+  \vspace{2em}
+
+  7.4.8
+
+  \vspace{2em}
+
+  7.5.1
+
+  \end{center}
+
+\end{frame}
+
+
 
 \end{document}
 

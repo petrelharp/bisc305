@@ -30,7 +30,7 @@
 
 % Common settings for all lectures in this course
 
-\def\lecturename{Introductrion to Statistics for Biologists}
+\def\lecturename{Introduction to Statistics for Biologists}
 
 \title{\insertlecture}
 
@@ -214,9 +214,9 @@ University of Southern California
 \newdimen\mytempdimen
 
 \newcommand\includegraphicscopyright[3][]{%
-  \leavevmode\vbox{\vskip3pt\raggedright\setbox\mytempbox=\hbox{\includegraphics[#1]{#2}}%
+  \leavevmode\vbox{\vskip3pt\raggedleft\setbox\mytempbox=\hbox{\includegraphics[#1]{#2}}%
     \mytempdimen=\wd\mytempbox\box\mytempbox\par\vskip1pt%
-    \fontsize{3}{3.5}\selectfont{\color{black!25}{\vbox{\hsize=\mytempdimen#3}}}\vskip3pt%
+    \tiny{\color{black!50}{\vbox{\hsize=\mytempdimen#3}}}\vskip3pt%
 }}
 
 \newenvironment{colortabular}[1]{\medskip\rowcolors[]{1}{blue!20}{blue!10}\tabular{#1}\rowcolor{blue!40}}{\endtabular\medskip}
@@ -228,5 +228,8 @@ University of Southern California
   \tabular{#1}\rowcolor{green!50!black!40}}%
 {\endtabular\medskip}
 
+% PLR added:
 
+\newcommand{\figcaption}[1]{ { \parbox[c]{.8\textwidth}{\footnotesize  \textit{#1}} } }
 
+\newcommand{\SE}{\mathop{\mbox{SE}}}
