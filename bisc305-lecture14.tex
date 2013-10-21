@@ -1,0 +1,361 @@
+% Copyright 2007 by Till Tantau
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+
+\lecture[1]{Syntax versus Semantik}{lecture-text}
+
+\subtitle{Text und seine Bedeutung}
+
+\date{22 October 2013}
+
+
+\begin{document}
+
+\begin{frame}
+  \maketitle
+\end{frame}
+
+
+\section*{Ziele und Inhalt}
+
+\begin{frame}{Die Lernziele der heutigen Vorlesung und der Übungen.} 
+  \begin{enumerate}
+  \item Die Begriffe Syntax und Semantik erklären können
+  \item Syntaktische und semantische Elemente natürlicher Sprachen und
+    von Programmiersprachen benennen können
+  \item Die Begriffe Alphabet und Wort kennen
+  \item Objekte als Worte kodieren können
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}\frametitle<presentation>{Gliederung}
+  \tableofcontents
+\end{frame}
+
+
+%%%%%% %%%%%%
+\section{Statistical, and real--world, ``signficance''}
+
+%%%%%%
+\begin{frame}{Statistical signficance}
+
+    \begin{blockquote}
+        the difference was \only<2->{\alert{statistically}} significant \only<2->{\alert{(with $P<.05$)}}
+    \end{blockquote}
+
+    \uncover<3->
+    means
+    \begin{blockquote}
+        we found good evidence that the difference in sample means was not caused by chance variation alone
+    \end{blockquote}
+
+    \uncover<4->
+    or more precisely
+    \begin{blockquote}
+        if the null hypothesis was true, we'd expect to see at least this large a difference no more than 5\% of the time
+    \end{blockquote}
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Statistical insignficance}
+
+    \begin{blockquote}
+        the difference was \alert{not} significant (with $P>0.5$)
+    \end{blockquote}
+
+    \uncover<3->
+    means
+    \begin{blockquote}
+        there was not sufficient evidence that the observed difference was due to anything other than chance variation
+    \end{blockquote}
+
+    \uncover<4->
+    or more precisely
+    \begin{blockquote}
+        if the null hypothesis was true, we'd expect to see at least this large a difference \alert{at least} 5\% of the time
+    \end{blockquote}
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{Interpret:}
+
+\end{frame}
+
+
+
+%%%%%% %%%%%% %%%%%% %%%%%%
+\section{Measuring real--world significance}
+
+
+%%%%%%
+\begin{frame}{It's significant, but is it important?}
+
+
+    \begin{block}{the difference in means}
+        We've observed a difference between two populations:
+        \[  \bar y_1 - \bar y_2 \]
+    \end{block}
+
+    \ldots and got a small $P$-value.  But, do we care?
+
+    \vspace{2em}
+
+    \structure{Ask yourself:} What do we want to know?
+
+\end{frame}
+
+
+%%%%%% %%%%%%
+\subsection{The effect size}
+
+%%%%%%
+\begin{frame}{Effect size}
+
+    \begin{block}<2->{the $t$-statistic}
+        \begin{align}
+            t_s = \frac{\bar y_1 - \bar y_2}{ \SE_{\bar Y_1 - \bar Y_2} } 
+            = \frac{ \text{(actual difference)} }{ \text{(magnitude of sampling noise)} }
+        \end{align}
+        is big if the observed difference is large compared to the estimated size of the \alert{estimation error}.
+    \end{block}
+
+    \begin{block}<3->{the effect size}
+        If both populations have the same SD, $\sigma$,
+        \begin{align}
+            \text{(Effect size)} = \frac{\bar y_1 - \bar y_2}{ \sigma }
+            = \frac{ \text{(actual difference)} }{ \text{(magnitude of within-population variation)} }
+        \end{align}
+        is big if the observed difference is large compared to \alert{within-population variation}.
+    \end{block}
+
+\end{frame}
+
+
+%%%%%% %%%%%%
+\subsection{Using confidence intervals}
+
+%%%%%%
+\begin{frame}{Significantly unimportant?}
+
+    The \alert{confidence interval} describes where we are pretty confident the true value lies.
+
+    \vspace{2em}
+
+    So if we think an effect smaller than $x$ is \alert{unimportant}
+    and $x$ is outside the confidence interval,
+
+    \vspace{2em}
+
+    then we have good evidence the true effect is unimportant.
+    (inconsequential, insignificant, \ldots?)
+
+
+    \vspace{2em}
+
+    Example:
+
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{Not significant, but important?}
+
+    Recall that ``not signficant'' means
+    \begin{blockquote}
+        there was not sufficient evidence that the observed difference was due to anything other than chance variation.
+    \end{blockquote}
+
+
+    \vspace{2em}
+
+    This does \alert{not} mean that there is no real difference!
+
+    \vspace{2em}
+
+    If the confidence interval includes zero, but also some big (important) values,
+    then we don't have the \alert{power} to tell.  
+    Here ``not significant'' reflects our uncertainty.
+
+
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{Tomato yield}
+
+    Comparing the yield of two tomato varieties,
+    a mean difference of 1 pound per plant is ``important''.
+
+    \begin{tabular}{c|cc}
+        95\% CI & significant? & important? \\
+        \hline
+        0.2 -- 0.3 & & \\
+        1.2 -- 1.3 & & \\
+        0.2 -- 1.3 & & \\
+        -0.2 -- 0.3 & & \\
+        -1.2 -- 0.3 & & \\
+        \hline
+    \end{tabular}
+
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}<presentation>{Tomato yield}
+
+    Comparing the yield of two tomato varieties,
+    a mean difference of 1 pound per plant is ``important''.
+
+    \begin{tabular}{c|cc}
+        95\% CI & significant? & important? \\
+        \hline
+        0.2 -- 0.3 & yes & no \\
+        1.2 -- 1.3 & yes & yes \\
+        0.2 -- 1.3 & yes & don't know \\
+        -0.2 -- 0.3 & no & no \\
+        -1.2 -- 0.3 & no & don't know \\
+        \hline
+    \end{tabular}
+
+
+\end{frame}
+
+
+
+
+
+
+\section<article>{Summary}
+\section<presentation>*{Summary}
+
+\begin{frame}{Summary}
+    When doing statistics:
+      \begin{enumerate}
+          \item Always think about what you are trying to learn,
+          \item what you have learned about, 
+          \item and what is still uncertain.
+          \item Always say what you mean.
+      \end{enumerate}
+      (Sometimes you have to do this for others' results as well.)
+
+
+    \vspace{2em}
+
+    \begin{enumerate}
+        \item Statistical signficance \alert{does not imply} real--world significance.
+        \item Lack of statistical signficance \alert{does not imply} real--world insignificance.
+        \item \alert{Never} call the result of a statistical test ``insignificant''.
+        \item The effect size is a good way to measure the real-world impact of a difference in means.
+        \item Confidence intervals are a good way to assess both statistical signficance and real--world importance.
+    \end{enumerate}
+
+\end{frame}
+
+% homework
+\begin{frame}{Homework}
+  \begin{center}
+
+  \vspace{2em}
+
+  7.6.1
+
+  \vspace{2em}
+
+  % 7.5.1
+
+  \vspace{2em}
+
+  \end{center}
+\end{frame}
+
+
+
+
+
+
+\end{document}
+
+
+\begin{frame}{Die zwei Hauptbegriffe der heutigen Vorlesung.}
+  \begin{block}{Grobe Definition (Syntax)}
+    Unter einer \alert{Syntax} verstehen wir \alert{Regeln}, nach denen
+    Texte \alert{strukturiert} werden dürfen. 
+  \end{block}
+  \begin{block}{Grobe Definition (Semantik)}
+    Unter einer \alert{Semantik} verstehen wir die Zuordnung von
+    \alert{Bedeutung} zu Text.
+  \end{block}
+\end{frame}
+
+
+\subsection[Syntax \protect\\ natürlicher Sprachen]{Syntax natürlicher Sprachen}
+
+\begin{frame}{Beobachtungen zu einem ägyptischen Text.}
+  \includegraphicscopyright[width=6cm]{beamerexample-lecture-pic3.jpg}
+  {Copyright by Guillaume Blanchard, GNU Free Documentation License, Low Resultion}
+
+  \begin{block}{Beobachtungen}
+    \begin{itemize}
+    \item Wir haben keine Ahnung, was der Text bedeutet.
+    \item Es gibt aber \alert{Regeln}, die offenbar eingehalten wurden,
+      wie »Hieroglyphen stehen in Zeilen«.
+    \item Solche Regeln sind \alert{syntaktische Regeln} -- man kann sie
+      überprüfen, ohne den Inhalt zu verstehen.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+% . . . 
+
+\section<article>{Summary}
+\section<presentation>*{Summary}
+
+\begin{frame}{Summary}
+  \begin{enumerate}
+  \item Ein \alert{Wort} ist eine Folge von Symbolen aus einem
+    \alert{Alphabet}. 
+  \item Eine \alert{Syntax} besteht aus Regeln, nach denen
+    Worte (Texte) gebaut werden dürfen.
+  \item Eine \alert{Semantik} legt fest, was Worte \alert{bedeuten}.
+  \item Eine \alert{formale Sprache} ist eine Menge von Worten
+    über einem Alphabet.
+  \end{enumerate}
+\end{frame}
+
+% homework
+\begin{frame}{Homework}
+  \begin{center}
+
+  % 7.4.2
+
+  \vspace{2em}
+
+  % 7.4.8
+
+  \vspace{2em}
+
+  % 7.5.1
+
+  \end{center}
+\end{frame}
+
+
+\end{document}
+
+
+
+
+
