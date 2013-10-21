@@ -14,3 +14,6 @@
 
 clean : 
 	-rm -f *.aux *.log *.out *.toc *.nav *.snm *.vrb texput.*
+
+%.html : %.md
+	pandoc -c github-markdown.css -f markdown_github -o $@ $<
