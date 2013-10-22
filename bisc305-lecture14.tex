@@ -13,62 +13,117 @@
 \end{frame}
 
 
+\section*{Introduction}
 
-
-\begin{frame}{From last time} 
+\begin{frame}{Last time} 
   \begin{enumerate}
-  \item Correlation is not causation
+    \item Experimental vs observational studies
+    \item Correlation is not causation
+    \item Confounding factors
+    \item the One-sided $t$-test
   \end{enumerate}
 \end{frame}
 
-\section*{Introduction}
+
 \begin{frame}\frametitle<presentation>{Outline}
+  \begin{quote}
+    ``The statistical analysis should aid the researcher by helping to clarify whatever
+    message is contained in the data.''
+  \end{quote}
   \tableofcontents
 \end{frame}
 
 
 %%%%%% %%%%%%
-\section{Statistical, and real--world, ``signficance''}
+\section{Significant or important?}
+
+\subsection{Unpacking the terminology}
 
 %%%%%%
-\begin{frame}{Statistical signficance}
+\begin{frame}{Statistical significance}
 
     \begin{quote}
-        the difference was \only<2->{\alert{statistically}} significant \only<2->{\alert{(with $P<.05$)}}
+        the difference was \only<2->{\alert{statistically} }significant \\
+        \only<2->{\alert{(with $P<.05$)}}
     \end{quote}
 
-    \uncover<3->
-    means
+    \uncover<3->{
+    \structure{means}
     \begin{quote}
         we found good evidence that the difference in sample means was not caused by chance variation alone
     \end{quote}
+    }
 
-    \uncover<4->
-    or more precisely
+    \uncover<4->{
+    \structure{or more precisely}
     \begin{quote}
         if the null hypothesis was true, we'd expect to see at least this large a difference no more than 5\% of the time
     \end{quote}
+    }
 
 \end{frame}
 
 %%%%%%
-\begin{frame}{Statistical insignficance}
+\begin{frame}{Lack of statistical signficance}
 
     \begin{quote}
         the difference was \alert{not} significant (with $P>0.5$)
     \end{quote}
 
-    \uncover<3->
-    means
+    \uncover<2->{
+    \structure{means}
     \begin{quote}
         there was not sufficient evidence that the observed difference was due to anything other than chance variation
     \end{quote}
+    }
 
-    \uncover<4->
-    or more precisely
+    \uncover<3->{
+    \structure{or more precisely}
     \begin{quote}
         if the null hypothesis was true, we'd expect to see at least this large a difference \alert{at least} 5\% of the time
     \end{quote}
+    }
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Example}
+
+  Lactate dehydrogenase levels:
+  \begin{center}
+    \begin{tabular}{crr}
+       & Males & Females \\
+       \hline
+       $n$ & 270 & 264 \\
+       $\bar y$ & 60 & 57 \\
+       $s$ & 11 & 10
+     \end{tabular}
+
+   \vspace{2em}
+
+   \uncover<2->{$t_s=3.3$ and $P=0.001$}
+   \end{center}
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{Example}
+
+  Body weight:
+  \begin{center}
+    \begin{tabular}{crr}
+       & Males & Females \\
+       \hline
+       $n$ & 2 & 2 \\
+       $\bar y$ & 175 & 143 \\
+       $s$ & 35 & 34
+     \end{tabular}
+
+   \vspace{2em}
+
+   \uncover<2->{$t_s=0.93$ and $P=0.45$}
+   \end{center}
 
 \end{frame}
 
@@ -76,12 +131,16 @@
 %%%%%%
 \begin{frame}{Interpret:}
 
+  \begin{quote}
+    ``Among 9 independent species pairs for which both pelvic bones and rib bones could be analyzed, pelvic bone shape difference was positively correlated with mating ecology ($t_s=2.7$, $P=0.008$), a pattern not observed for ribs ($t_s=0.2$, $P=0.40$).''
+  \end{quote}
+
 \end{frame}
 
 
 
 %%%%%% %%%%%% %%%%%% %%%%%%
-\section{Measuring real--world significance}
+\section{Describing real-world importance}
 
 
 %%%%%%
@@ -93,7 +152,7 @@
         \[  \bar y_1 - \bar y_2 \]
     \end{block}
 
-    \ldots and got a small $P$-value.  But, do we care?
+    \ldots and got a small $P$-value.  So what?
 
     \vspace{2em}
 
@@ -108,22 +167,37 @@
 %%%%%%
 \begin{frame}{Effect size}
 
-    \begin{block}<2->{the $t$-statistic}
-        \begin{align}
+    \begin{block}<1->{the $t$-statistic}
+        \begin{align*}
             t_s = \frac{\bar y_1 - \bar y_2}{ \SE_{\bar Y_1 - \bar Y_2} } 
             = \frac{ \text{(actual difference)} }{ \text{(magnitude of sampling noise)} }
-        \end{align}
+        \end{align*}
         is big if the observed difference is large compared to the estimated size of the \alert{estimation error}.
     \end{block}
 
-    \begin{block}<3->{the effect size}
+    \begin{block}<2->{the effect size}
         If both populations have the same SD, $\sigma$,
-        \begin{align}
+        \begin{align*}
             \text{(Effect size)} = \frac{\bar y_1 - \bar y_2}{ \sigma }
             = \frac{ \text{(actual difference)} }{ \text{(magnitude of within-population variation)} }
-        \end{align}
+        \end{align*}
         is big if the observed difference is large compared to \alert{within-population variation}.
     \end{block}
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Examples}
+
+  The \alert{effect size} is a good descriptive statistic.
+
+  \vspace{2em}
+
+  Examples:
+  \begin{itemize}
+    \item Lactate dehydrogenase levels:
+    \item Body weight:
+  \end{itemize}
 
 \end{frame}
 
@@ -136,24 +210,36 @@
 
     The \alert{confidence interval} describes where we are pretty confident the true value lies.
 
+    \begin{itemize}
+
+    \item So if we think an effect smaller than $x$ is \alert{unimportant}
+      and $x$ is outside the confidence interval,
+
+    \item then we have good evidence the true effect is unimportant.
+      (inconsequential, insignificant, \ldots?)
+
+    \end{itemize}
+
     \vspace{2em}
 
-    So if we think an effect smaller than $x$ is \alert{unimportant}
-    and $x$ is outside the confidence interval,
+    Examples:
+    \begin{itemize}
+      \item Lactate dehydrogenase levels:
+      \item Body weight:
+    \end{itemize}
 
-    \vspace{2em}
+\end{frame}
 
-    then we have good evidence the true effect is unimportant.
-    (inconsequential, insignificant, \ldots?)
+%%%%%%
+\begin{frame}{Interpret:}
 
+  \begin{quote}
+    ``Our data also suggest a positive association of cigarette smoking and new HPV detection (OR, 3.4; 95\% CI, 0.4--26.3); {however, because 87\% of study participants were smokers, we had limited power to detect significant effects.}''
+  \end{quote}
 
-    \vspace{2em}
+  \vspace{2em}
 
-    Example:
-    % http://www.businessreport.com/article/20130625/BUSINESSREPORT0112/130629891
-    % http://credo.stanford.edu/research-reports.html
-    % http://nepc.colorado.edu/newsletter/2013/07/review-credo-2013
-
+  OR = ``odds ratio'' = increased odds of contracting HPV
 
 \end{frame}
 
@@ -188,6 +274,9 @@
     Comparing the yield of two tomato varieties,
     a mean difference of 1 pound per plant is ``important''.
 
+    \vspace{2em}
+
+    \begin{center}
     \begin{tabular}{c|cc}
         95\% CI & significant? & important? \\
         \hline
@@ -198,17 +287,22 @@
         -1.2 -- 0.3 & & \\
         \hline
     \end{tabular}
+    \end{center}
 
 
 \end{frame}
 
 
 %%%%%%
-\begin{frame}<presentation>{Tomato yield}
+\mode<presentation>{
+\begin{frame}{Tomato yield}
 
     Comparing the yield of two tomato varieties,
     a mean difference of 1 pound per plant is ``important''.
 
+    \vspace{2em}
+
+    \begin{center}
     \begin{tabular}{c|cc}
         95\% CI & significant? & important? \\
         \hline
@@ -219,36 +313,35 @@
         -1.2 -- 0.3 & no & don't know \\
         \hline
     \end{tabular}
+    \end{center}
 
 
 \end{frame}
-
-
-
-
+}
 
 
 \section<article>{Summary}
 \section<presentation>*{Summary}
 
 \begin{frame}{Summary}
-    When doing statistics:
+
+    When communicating numerical results using statistics:
       \begin{enumerate}
           \item Always think about what you are trying to learn,
           \item what you have learned about, 
           \item and what is still uncertain.
-          \item Always say what you mean.
       \end{enumerate}
       (Sometimes you have to do this for others' results as well.)
 
 
-    \vspace{2em}
+    \vspace{1em}
 
     \begin{enumerate}
         \item Statistical signficance \alert{does not imply} real--world significance.
         \item Lack of statistical signficance \alert{does not imply} real--world insignificance.
-        \item \alert{Never} call the result of a statistical test ``insignificant''.
-        \item The effect size is a good way to measure the real-world impact of a difference in means.
+        \item Sample size acts like a magnifying glass, making smaller differences visible.
+        \item The \alert{effect size} is the difference in means as a proportion of the within-population variability, and is
+          a good way to describe the scale of the difference.
         \item Confidence intervals are a good way to assess both statistical signficance and real--world importance.
     \end{enumerate}
 
