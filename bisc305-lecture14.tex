@@ -1,16 +1,7 @@
-% Copyright 2007 by Till Tantau
-%
-% This file may be distributed and/or modified
-%
-% 1. under the LaTeX Project Public License and/or
-% 2. under the GNU Public License.
-%
-% See the file doc/licenses/LICENSE for more details.
 
+\lecture[14]{Statistical significance}{lecture-text}
 
-\lecture[1]{Syntax versus Semantik}{lecture-text}
-
-\subtitle{Text und seine Bedeutung}
+\subtitle{and hypothesis testing principles}
 
 \date{22 October 2013}
 
@@ -22,19 +13,16 @@
 \end{frame}
 
 
-\section*{Ziele und Inhalt}
 
-\begin{frame}{Die Lernziele der heutigen Vorlesung und der Übungen.} 
+
+\begin{frame}{From last time} 
   \begin{enumerate}
-  \item Die Begriffe Syntax und Semantik erklären können
-  \item Syntaktische und semantische Elemente natürlicher Sprachen und
-    von Programmiersprachen benennen können
-  \item Die Begriffe Alphabet und Wort kennen
-  \item Objekte als Worte kodieren können
+  \item Correlation is not causation
   \end{enumerate}
 \end{frame}
 
-\begin{frame}\frametitle<presentation>{Gliederung}
+\section*{Introduction}
+\begin{frame}\frametitle<presentation>{Outline}
   \tableofcontents
 \end{frame}
 
@@ -45,42 +33,42 @@
 %%%%%%
 \begin{frame}{Statistical signficance}
 
-    \begin{blockquote}
+    \begin{quote}
         the difference was \only<2->{\alert{statistically}} significant \only<2->{\alert{(with $P<.05$)}}
-    \end{blockquote}
+    \end{quote}
 
     \uncover<3->
     means
-    \begin{blockquote}
+    \begin{quote}
         we found good evidence that the difference in sample means was not caused by chance variation alone
-    \end{blockquote}
+    \end{quote}
 
     \uncover<4->
     or more precisely
-    \begin{blockquote}
+    \begin{quote}
         if the null hypothesis was true, we'd expect to see at least this large a difference no more than 5\% of the time
-    \end{blockquote}
+    \end{quote}
 
 \end{frame}
 
 %%%%%%
 \begin{frame}{Statistical insignficance}
 
-    \begin{blockquote}
+    \begin{quote}
         the difference was \alert{not} significant (with $P>0.5$)
-    \end{blockquote}
+    \end{quote}
 
     \uncover<3->
     means
-    \begin{blockquote}
+    \begin{quote}
         there was not sufficient evidence that the observed difference was due to anything other than chance variation
-    \end{blockquote}
+    \end{quote}
 
     \uncover<4->
     or more precisely
-    \begin{blockquote}
+    \begin{quote}
         if the null hypothesis was true, we'd expect to see at least this large a difference \alert{at least} 5\% of the time
-    \end{blockquote}
+    \end{quote}
 
 \end{frame}
 
@@ -174,9 +162,9 @@
 \begin{frame}{Not significant, but important?}
 
     Recall that ``not signficant'' means
-    \begin{blockquote}
+    \begin{quote}
         there was not sufficient evidence that the observed difference was due to anything other than chance variation.
-    \end{blockquote}
+    \end{quote}
 
 
     \vspace{2em}
@@ -286,74 +274,6 @@
 
 
 
-
-
-\end{document}
-
-
-\begin{frame}{Die zwei Hauptbegriffe der heutigen Vorlesung.}
-  \begin{block}{Grobe Definition (Syntax)}
-    Unter einer \alert{Syntax} verstehen wir \alert{Regeln}, nach denen
-    Texte \alert{strukturiert} werden dürfen. 
-  \end{block}
-  \begin{block}{Grobe Definition (Semantik)}
-    Unter einer \alert{Semantik} verstehen wir die Zuordnung von
-    \alert{Bedeutung} zu Text.
-  \end{block}
-\end{frame}
-
-
-\subsection[Syntax \protect\\ natürlicher Sprachen]{Syntax natürlicher Sprachen}
-
-\begin{frame}{Beobachtungen zu einem ägyptischen Text.}
-  \includegraphicscopyright[width=6cm]{beamerexample-lecture-pic3.jpg}
-  {Copyright by Guillaume Blanchard, GNU Free Documentation License, Low Resultion}
-
-  \begin{block}{Beobachtungen}
-    \begin{itemize}
-    \item Wir haben keine Ahnung, was der Text bedeutet.
-    \item Es gibt aber \alert{Regeln}, die offenbar eingehalten wurden,
-      wie »Hieroglyphen stehen in Zeilen«.
-    \item Solche Regeln sind \alert{syntaktische Regeln} -- man kann sie
-      überprüfen, ohne den Inhalt zu verstehen.
-    \end{itemize}
-  \end{block}
-\end{frame}
-
-
-% . . . 
-
-\section<article>{Summary}
-\section<presentation>*{Summary}
-
-\begin{frame}{Summary}
-  \begin{enumerate}
-  \item Ein \alert{Wort} ist eine Folge von Symbolen aus einem
-    \alert{Alphabet}. 
-  \item Eine \alert{Syntax} besteht aus Regeln, nach denen
-    Worte (Texte) gebaut werden dürfen.
-  \item Eine \alert{Semantik} legt fest, was Worte \alert{bedeuten}.
-  \item Eine \alert{formale Sprache} ist eine Menge von Worten
-    über einem Alphabet.
-  \end{enumerate}
-\end{frame}
-
-% homework
-\begin{frame}{Homework}
-  \begin{center}
-
-  % 7.4.2
-
-  \vspace{2em}
-
-  % 7.4.8
-
-  \vspace{2em}
-
-  % 7.5.1
-
-  \end{center}
-\end{frame}
 
 
 \end{document}
