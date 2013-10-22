@@ -3,7 +3,7 @@ lectures = $(patsubst bisc305-lecture%.tex,lecture%,$(wildcard bisc305-lecture*.
 .PHONY : clean $(lectures)
 
 lecture.% : bisc305-lecture%-slides.pdf bisc305-lecture%-print.pdf
-	echo $@ $<
+	echo "making " $@
 
 %-slides.pdf : %.tex bisc305-lecture-style.tex
 	rm -f texput.*
