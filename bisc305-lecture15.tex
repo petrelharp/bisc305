@@ -1,0 +1,166 @@
+
+\lecture[15]{More on hypothesis testing}{lecture-text}
+
+\subtitle{checking conditions}
+
+\date{24 October 2013}
+
+
+\begin{document}
+
+\begin{frame}
+  \maketitle
+\end{frame}
+
+
+\begin{frame}{Last time}
+  What is, and isn't, implied by ``statistically significant'' (or not).
+  \begin{enumerate}
+    \item Statistical significance means an observed effect probably wasn't the result of chance in sampling,
+    \item   \ldots and lack of statistical significance means that it could have been.
+    \item The $P$-value says nothing about how big the effect actually is,
+    \item   since the sample size ``acts like a magnifying glass''.
+    \item The \alert{effect size} is one way to think about how important an effect is.
+    \item Confidence intervals can communicate both statistical significance,
+      and bounds on the absolute size of an effect.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}\frametitle<presentation>{Outline}
+  \tableofcontents
+\end{frame}
+
+
+\section{Conditions for (best) use of a $t$-test}
+
+\begin{frame}{What are ``conditions''?}
+
+  Statistical tests let you find the probability that 
+  \begin{itemize}
+    \item something happens,
+    \item under a certain generative model.
+  \end{itemize}
+
+  \vspace{2em}
+
+  \structure{Example:} The $P$-value for the $t$-test is the probability that 
+  \begin{itemize}
+    \item the difference in sample means between indpendent samples from two populations is at least as big as the observed value ($\bar y_1 - \bar y_2$), 
+    \item if the two populations have the same mean ($\mu_1 = mu_2$), and the sampling distribution of the sample mean is Normal.
+  \end{itemize}
+
+  \vspace{2em}
+  
+  \alert{Conditions}, a.k.a.\ ``assumptions'', come from the second point.  
+  If they are not true, we might
+  \begin{itemize}
+    \item have \alert{wrong} $P$-values (i.e.\ misreport the probability of type I error)
+    \item \structure{and/or} have lower power than a better test (i.e.\ misestimate the probability of type II error)
+  \end{itemize}
+
+\end{frame}
+
+\subsection{The $t$-test}
+
+%%%%%%
+\begin{frame}{Conditions for the $t$-test}
+
+  \begin{block}{Conditions}
+    \begin{enumerate}
+      \item The sampling procedure provides:
+        \begin{enumerate}
+          \item random, independent samples from large populations,
+          \item with the two samples independent of each other.
+        \end{enumerate}
+      \item The sampling distributions of $\bar Y_1$ and $\bar Y_w$ are
+        \begin{enumerate}
+          \item close enough to Normal.
+      \end{enumerate}
+    \end{enumerate}
+  \end{block}
+
+  \vspace{2em}
+
+  Sampling distributions of sample means are close to Normal if the sample sizes are large enough.\\
+  \alert{Large enough} is at least 20, but is larger, 
+  the further the \alert{population distributions} are from Normal.
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Simple example}
+
+  \structure{Last time} we saw:
+
+  \vspace{2em}
+
+
+  Body weight:
+  \begin{center}
+    \begin{tabular}{crr}
+       & Males & Females \\
+       \hline
+       $n$ & 2 & 2 \\
+       $\bar y$ & 175 & 143 \\
+       $s$ & 35 & 34
+     \end{tabular}
+
+   \vspace{2em}
+
+   {$t_s=0.93$ and $P=0.45$}\\
+   CI for $\bar \mu_1 - \bar \mu_2$: $(-117,181)$
+   \end{center}
+
+   \vspace{2em}
+  
+   \alert{Are there any red flags here?}
+   
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{ }
+
+\end{frame}
+
+% . . . 
+
+\section<article>{Summary}
+\section<presentation>*{Summary}
+
+\begin{frame}{Summary}
+  \begin{enumerate}
+  \item Ein \alert{Wort} ist eine Folge von Symbolen aus einem
+    \alert{Alphabet}. 
+  \item Eine \alert{Syntax} besteht aus Regeln, nach denen
+    Worte (Texte) gebaut werden dürfen.
+  \item Eine \alert{Semantik} legt fest, was Worte \alert{bedeuten}.
+  \item Eine \alert{formale Sprache} ist eine Menge von Worten
+    über einem Alphabet.
+  \end{enumerate}
+\end{frame}
+
+% homework
+\begin{frame}{Homework}
+  \begin{center}
+
+  % 7.4.2
+
+  \vspace{2em}
+
+  % 7.4.8
+
+  \vspace{2em}
+
+  % 7.5.1
+
+  \end{center}
+\end{frame}
+
+
+\end{document}
+
+
+
+
+
