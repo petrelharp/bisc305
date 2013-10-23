@@ -1,6 +1,8 @@
 lectures = $(patsubst bisc305-lecture%.tex,lecture%,$(wildcard bisc305-lecture*.tex))
 
-.PHONY : clean $(lectures)
+.PHONY : clean
+
+.SECONDARY : 
 
 lecture.% : bisc305-lecture%-slides.pdf bisc305-lecture%-print.pdf
 	echo "making " $@

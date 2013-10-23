@@ -35,7 +35,7 @@
 
 \begin{frame}{What are ``conditions''?}
 
-  Statistical tests let you find the probability that 
+  Statistical tests usually work by finding the probability that 
   \begin{itemize}
     \item something happens,
     \item under a certain generative model.
@@ -46,7 +46,7 @@
   \structure{Example:} The $P$-value for the $t$-test is the probability that 
   \begin{itemize}
     \item the difference in sample means between indpendent samples from two populations is at least as big as the observed value ($\bar y_1 - \bar y_2$), 
-    \item if the two populations have the same mean ($\mu_1 = mu_2$), and the sampling distribution of the sample mean is Normal.
+    \item if the two populations have the same mean ($\mu_1 = \mu_2$), and the sampling distribution of the sample mean is Normal.
   \end{itemize}
 
   \vspace{2em}
@@ -82,7 +82,10 @@
   \vspace{2em}
 
   Sampling distributions of sample means are close to Normal if the sample sizes are large enough.\\
-  \alert{Large enough} is at least 20, but is larger, 
+
+  \vspace{2em}
+
+  ``\alert{Large enough}'' is at least 20, but is larger, 
   the further the \alert{population distributions} are from Normal.
 
 \end{frame}
@@ -118,10 +121,158 @@
 \end{frame}
 
 
+%%%%%%%%%%%
+\subsection{Transforming the data}
+
 %%%%%%
-\begin{frame}{ }
+\begin{frame}{Transformations}
+
+    \begin{block}{Transforming the data}
+        means applying a function to the data before doing statistics,\\
+        for example
+        \[  Y = \text{growth rate} \longrightarrow Y = \log( \text{growth rate} ) ). \]
+    \end{block}
+
+    \vspace{2em}
+
+    \structure{Goal:} make the sampling distribution of $\bar Y$ closer to Normal,\\
+    by making the population distribution of $Y$ closer to Normal.
+
+    \vspace{2em}
+
+    \structure{This is a good idea if}
+    \begin{enumerate}
+        \item The original data do not look Normally distributed,
+        \item the transformed data look closer to Normal,
+        \item and the statistics you are using require something to be Normal.
+    \end{enumerate}
+
+    \vspace{2em}
+
+    \structure{Remember:} informally, ``Normal'' means ``bell-shaped''.
 
 \end{frame}
+
+
+\subsection{Simulation: live example}
+
+%%%%%%
+\begin{frame}{Real fake data:}
+    
+    XXX population distributions are exponential (parallel dotplots)
+
+    XXX sampling distribution of mean becomes normal with sample size
+
+    XXX log-transform improves things
+
+\end{frame}
+
+
+
+%%%%%% %%%%%%
+\section{More about hypothesis testing}
+
+\subsection{How to pick the hypotheses?}
+
+%%%%%%
+\begin{frame}{Hypotheses}
+
+    Hypothesis testing requires 
+    \begin{itemize}
+        \item[$H_0$:] null hypothesis
+        \item[$H_A$:] alternative hypothesis
+    \end{itemize}
+
+    \vspace{2em}
+
+    \structure{Functional difference:} the null hypothesis is what you evaluate the $P$-value with.
+
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{A dialog}
+    \begin{itemizew}{1em}
+        \item[You:] It looks like $A$s are better than $B$s.  They tend to have more $X$.
+        \item[Skeptic:] But what if they're the same, on average, you just happened to see more $X$ in your sample of $A$s?
+        \item[You:] Ok, fine.  Suppose, for the sake of argument, that there \alert{isn't} a difference.
+            Then let's see what the chance of seeing this much more $X$ is\ldots
+    \end{itemizew}
+
+    \vspace{2em}
+
+    \structure{Note:}
+    Often (like in this example), 
+        \[ H_0: \mu_1 = \mu_2 , \]
+    but not always.
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{Example:}
+
+\end{frame}
+
+
+
+\subsection{Interpreting $P$-values}
+
+
+%%%%%%
+\begin{frame}{$P$-values}
+
+    \begin{block}{}
+        The \alert<1>{$P$-value} of a \alert<2>{result} is the probability of seeing a result \alert<3>{so extreme}, if $H_0$ is true.
+    \end{block}
+
+    \vspace{2em}
+
+    \begin{itemizew}{4em}
+        \item[``result'':] the test statistic (ex: $\bar y_1 - \bar y_2$)
+        \item[``so extreme'':] defined by $H_A$ (ex: $\bar y_1 - \bar y_2 > C$)
+        \item[``if $H_0$ is true'':] how to compute the probability.
+    \end{itemizew}
+
+\end{frame}
+
+
+\subsection{Medical testing example}
+
+%%%%%%
+\begin{frame}{Example:}
+
+    A medical test for an illness:
+    \begin{itemize}
+        \item 1\% of population has the illness,
+        \item 80\% chance of (true) detection if patient has the illness, and
+        \item 5\% chance of (false) detection if patient does not have the illness.
+    \end{itemize}
+
+    \vspace{2em}
+
+    With $H_0$: patient has the disease, what is the $\alpha$-level of this test?\\
+    If we test 1,000 patients, how many do we expect of:
+    \begin{enumerate}
+        \item falsely rejected null hypotheses? (type I errors)
+        \item falsely accepted null hypotheses? (type II errors)
+    \end{enumerate}
+
+    \vspace{2em}
+
+    \structure{True or false:} 
+    We have found significant evidence for $H_A$ at the 5\% level,
+    so the probability that $H_0$ is true is 5\%.
+
+    \vspace{2em}
+
+    What is a true statement similar to the above?
+
+
+\end{frame}
+
+
 
 % . . . 
 
