@@ -1,7 +1,7 @@
 
 \lecture[15]{More on hypothesis testing}{lecture-text}
 
-\subtitle{checking conditions}
+\subtitle{and checking conditions}
 
 \date{24 October 2013}
 
@@ -16,13 +16,13 @@
 \begin{frame}{Last time}
   What is, and isn't, implied by ``statistically significant'' (or not).
   \begin{enumerate}
-    \item Statistical significance means an observed effect probably wasn't the result of chance in sampling,
+    \item Statistical significance means an observed effect probably wasn't purely the result of chance in sampling,
     \item   \ldots and lack of statistical significance means that it could have been.
-    \item The $P$-value says nothing about how big the effect actually is,
+    \item The $P$-value says nothing about the size of the effect,
     \item   since the sample size ``acts like a magnifying glass''.
     \item The \alert{effect size} is one way to think about how important an effect is.
-    \item Confidence intervals can communicate both statistical significance,
-      and bounds on the absolute size of an effect.
+    \item Confidence intervals communicate statistical significance,
+      as well as information about the absolute size of an effect.
   \end{enumerate}
 \end{frame}
 
@@ -45,17 +45,17 @@
 
   \structure{Example:} The $P$-value for the $t$-test is the probability that 
   \begin{itemize}
-    \item the difference in sample means between indpendent samples from two populations is at least as big as the observed value ($\bar y_1 - \bar y_2$), 
+    \item the difference in sample means between independent samples from two populations is at least as big as the observed value ($\bar y_1 - \bar y_2$), 
     \item if the two populations have the same mean ($\mu_1 = \mu_2$), and the sampling distribution of the sample mean is Normal.
   \end{itemize}
 
   \vspace{2em}
   
-  \alert{Conditions}, a.k.a.\ ``assumptions'', come from the second point.  
+  \alert{Conditions}, a.k.a.\ ``assumptions'', come from the generative model.
   If they are not true, we might
   \begin{itemize}
     \item have \alert{wrong} $P$-values (i.e.\ misreport the probability of type I error)
-    \item \structure{and/or} have lower power than a better test (i.e.\ misestimate the probability of type II error)
+    \item \structure{and/or} have lower power than a better test (i.e.\ have more type II errors)
   \end{itemize}
 
 \end{frame}
@@ -72,7 +72,7 @@
           \item random, independent samples from large populations,
           \item with the two samples independent of each other.
         \end{enumerate}
-      \item The sampling distributions of $\bar Y_1$ and $\bar Y_w$ are
+      \item The sampling distributions of $\bar Y_1$ and $\bar Y_2$ are
         \begin{enumerate}
           \item close enough to Normal.
       \end{enumerate}
@@ -130,7 +130,7 @@
     \begin{block}{Transforming the data}
         means applying a function to the data before doing statistics,\\
         for example
-        \[  Y = \text{growth rate} \longrightarrow Y = \log( \text{growth rate} ) ). \]
+        \[  Y = \text{growth rate} \longrightarrow Y = \log( \text{growth rate} ). \]
     \end{block}
 
     \vspace{2em}
@@ -144,7 +144,7 @@
     \begin{enumerate}
         \item The original data do not look Normally distributed,
         \item the transformed data look closer to Normal,
-        \item and the statistics you are using require something to be Normal.
+        \item and the statistics you are using require the sampling distribution of $\bar Y$ to be Normal.
     \end{enumerate}
 
     \vspace{2em}
@@ -154,16 +154,14 @@
 \end{frame}
 
 
-\subsection{Simulation: live example}
+\subsection{Example by simulation}
 
 %%%%%%
 \begin{frame}{Real fake data:}
     
-    XXX population distributions are exponential (parallel dotplots)
-
-    XXX sampling distribution of mean becomes normal with sample size
-
-    XXX log-transform improves things
+  \begin{center}
+    (live simulation)
+  \end{center}
 
 \end{frame}
 
@@ -211,7 +209,23 @@
 
 
 %%%%%%
-\begin{frame}{Example:}
+\begin{frame}{What are the hypotheses?}
+
+  To study the effect of latitude on body size in urban mammals, 
+  we took two samples of mice, from Seattle and Los Angeles,
+  and compared their mean body mass.
+
+    \vspace{2em}
+
+  The El Ni\~no--Southern Oscillation (ENSO) effect produces increased rainfall along the entire Pacific coast about every four years.
+  We collect rainfall data from many ENSO years, and compare the Seattle--Los Angeles difference to the usual level,
+  knowing that Seattle gets on average 23 inches of rain per year more than Los Angeles.
+
+
+    \vspace{2em}
+
+  We have genetic data from 500,000 genetic variants in 1,000 healthy people and 1,000 people with a disease,
+  and would like to find out which genetic variants might affect the chances of getting the disease.
 
 \end{frame}
 
@@ -246,14 +260,14 @@
     A medical test for an illness:
     \begin{itemize}
         \item 1\% of population has the illness,
-        \item 80\% chance of (true) detection if patient has the illness, and
-        \item 5\% chance of (false) detection if patient does not have the illness.
+        \item 80\% chance of (true) detection if patient has the illness, 
+        \item 5\% chance of (false) detection if patient does not.
     \end{itemize}
 
     \vspace{2em}
 
-    With $H_0$: patient has the disease, what is the $\alpha$-level of this test?\\
-    If we test 1,000 patients, how many do we expect of:
+    With $H_0$: patient is healthy,
+    if we test 1,000 patients, how many do we expect of:
     \begin{enumerate}
         \item falsely rejected null hypotheses? (type I errors)
         \item falsely accepted null hypotheses? (type II errors)
@@ -262,7 +276,7 @@
     \vspace{2em}
 
     \structure{True or false:} 
-    We have found significant evidence for $H_A$ at the 5\% level,
+    We have found significant evidence for $H_A$ with $P<5\%$,
     so the probability that $H_0$ is true is 5\%.
 
     \vspace{2em}
@@ -274,20 +288,18 @@
 
 
 
-% . . . 
 
 \section<article>{Summary}
 \section<presentation>*{Summary}
 
 \begin{frame}{Summary}
   \begin{enumerate}
-  \item Ein \alert{Wort} ist eine Folge von Symbolen aus einem
-    \alert{Alphabet}. 
-  \item Eine \alert{Syntax} besteht aus Regeln, nach denen
-    Worte (Texte) gebaut werden dürfen.
-  \item Eine \alert{Semantik} legt fest, was Worte \alert{bedeuten}.
-  \item Eine \alert{formale Sprache} ist eine Menge von Worten
-    über einem Alphabet.
+  \item The null hypothesis determines the conditions you use to calculate the $P$-value.
+  \item If the conditions do not hold, the $P$-value may be wrong,
+  \item or you might just be better off using a different test.
+  \item The $t$-test depends on the sampling distribution of the sample mean being Normal;
+  \item for this purpose, the closer the data are to Normal the better;
+  \item sometimes, transforming the data helps.
   \end{enumerate}
 \end{frame}
 
@@ -295,15 +307,12 @@
 \begin{frame}{Homework}
   \begin{center}
 
-  % 7.4.2
+  7.8.2
 
   \vspace{2em}
 
-  % 7.4.8
+  7.9.1
 
-  \vspace{2em}
-
-  % 7.5.1
 
   \end{center}
 \end{frame}
