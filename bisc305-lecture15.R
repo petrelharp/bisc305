@@ -8,14 +8,6 @@ dchart <- function(x, ..., gcex=2.5, gcol='red', gbg=adjustcolor("red",.5), gpch
 #######
 # look at CLT and approach to normality of sampling distribution
 
-n <- 10
-rdata <- rnorm  
-rmean <- 0
-rsd <- 1
-
-xlims <- c(-6,6)
-hbreaks <- seq(xlims[1],xlims[2],length.out=20)
-
 # plot one example
 f <- function (...,plotit=TRUE) {
     x <- rdata(n)
@@ -39,6 +31,15 @@ fmat <- function(nreps=20,...) {
     layout(1)
     invisible(colMeans(xx))
 }
+
+#
+n <- 10
+rdata <- rnorm  
+rmean <- 0
+rsd <- 1
+
+xlims <- c(-6,6)
+hbreaks <- seq(xlims[1],xlims[2],length.out=20)
 
 # do each of these a few times
 f()
