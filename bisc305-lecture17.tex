@@ -68,12 +68,21 @@
 
   \structure{Often,} these are measurements on the same individual, before and after some treatment.
 
-    \vspace{2em}
+    \vspace{1em}
 
-    \structure{Example:}
-    \begin{quote}
-The human circadian pacemaker controls the timing of the release of the pineal hormone melatonin, which promotes sleep, decreases body temperature, and diminishes cognitive performance. Abnormal melatonin secretion has been observed in psychiatric and circadian disorders. Although melatonin secretion is directly suppressed by exposure to light in a nonlinear intensity-dependent fashion, little research has focused on the effect of prior photic history on this response. We examined eight subjects in controlled laboratory conditions using a within-subjects design. Baseline melatonin secretion was monitored under constant routine conditions and compared with two additional constant routines with a fixed light stimulus for 6.5 h of 200 lux (50 ¿W/cm2) after approximately 3 d of photic exposure during the subjective day of either about 200 lux (50 ¿W/cm2) or about 0.5 lux (0.15 ¿W/cm2). We found a significant increase in melatonin suppression during the stimulus after a prior photic history of approximately 0.5 lux compared with approximately 200 lux, revealing that humans exhibit adaptation of circadian photoreception. Such adaptation indicates that translation of a photic stimulus into drive on the human circadian pacemaker involves more complex temporal dynamics than previously recognized. Further elucidation of these properties could prove useful in potentiating light therapies for circadian and affective disorders. 
-\end{quote}
+    \structure{Example:} Blood flow, measured before and after caffeine consumption.
+
+    \vspace{1em}
+    
+    \structure{Or,} comparisons between matched pairs.
+
+    \vspace{1em}
+    
+    \structure{Example:} twin studies.
+
+    \vspace{1em}
+    
+    \structure{Example:} birth weight for women, matched for first birth weight and other variables, one of whom quit smoking.
 
 \end{frame}
 
@@ -101,7 +110,33 @@ The human circadian pacemaker controls the timing of the release of the pineal h
 
     \vspace{2em}
 
-    \structure{With paired samples,} we analyze the mean of the diffences.
+    \structure{With paired samples,} we analyze the mean of the differences.
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Example from the wild}
+
+  \structure{What was the experimental design?}
+    \begin{quote} \small
+      The human circadian pacemaker controls the timing of the release of the pineal
+      hormone melatonin, which promotes sleep, decreases body temperature, and
+      diminishes cognitive performance. Although melatonin secretion
+      is directly suppressed by exposure to light in a nonlinear intensity-dependent
+      fashion, little research has focused on the effect of prior photic history on
+      this response. We examined eight subjects in controlled laboratory conditions
+      using a within-subjects design. Baseline melatonin secretion was monitored
+      %under constant routine conditions and compared with two additional constant routines  with
+      [during]
+      a fixed light stimulus for 6.5 h of 200 lux after
+      approximately 3 d of photic exposure during the subjective day of either about
+      200 lux or about 0.5 lux. We found a
+      significant increase in melatonin suppression during the stimulus after a prior
+      photic history of approximately 0.5 lux compared with approximately 200 lux,
+      revealing that humans exhibit adaptation of circadian photoreception. 
+      % Such adaptation indicates that translation of a photic stimulus into drive on the human circadian pacemaker involves more complex temporal dynamics than previously recognized. Further elucidation of these properties could prove useful in potentiating light therapies for circadian and affective disorders.
+    \end{quote}
+
 
 \end{frame}
 
@@ -113,12 +148,12 @@ The human circadian pacemaker controls the timing of the release of the pineal h
 \begin{frame}{Notation}
 
   Similar to before,
-  \begin{itemize}
+  \begin{itemizew}{.5em}
     \item[$Y_1$] is the generalized idea of a sample from population 1,
     \item[$Y_2$] is the \alert{corresponding paired} sample from population 2,
     \item[$D=Y_1-Y_2$] is their difference.
     \item[$\mu_D$] is the population mean of the differences
-  \end{itemize}
+  \end{itemizew}
   and
   \begin{itemize}
     \item[$\bar d$] is the sample mean of the difference 
@@ -129,13 +164,25 @@ The human circadian pacemaker controls the timing of the release of the pineal h
 
     \vspace{2em}
 
-    The differences are independent observations, and so:
-    \[
-    \SE_{\bar D} = \frac{s_D}{n_D} .
-    \]
+\end{frame}
 
+%%%%%%
+\begin{frame}{Back to single-sample statistics}
+
+    The differences are independent observations, and so:
+    \begin{align*}
+      \SE_{\bar D} = \frac{s_D}{\sqrt{n_D}} .
+    \end{align*}
+
+    \vspace{2em}
+
+    Often, the null hypothesis is:
+    \[ H_0: \; \mu_D = 0 .\]
 
 \end{frame}
+
+%%%%% %%%%%
+\subsection{Confidence intervals}
 
 %%%%%%
 \begin{frame}{Confidence intervals}
@@ -190,23 +237,42 @@ The human circadian pacemaker controls the timing of the release of the pineal h
 
     \structure{Example:} hunger rating with and without mCPP.
     \begin{center}
-\begin{tabular}{lrrr}
-  \hline
-  subject & mCPP & placebo & difference \\ 
-  \hline
-  1 & 79 & 78 & 1 \\ 
-  2 & 48 & 54 & -6 \\ 
-  3 & 52 & 142 & -90 \\ 
-  4 & 15 & 25 & -10 \\ 
-  5 & 61 & 101 & -40 \\ 
-  6 & 107 & 99 & 8 \\ 
-  7 & 77 & 94 & -17 \\ 
-  8 & 54 & 107 & -53 \\ 
-  9 & 5 & 64 & -59 \\ 
-   Mean & 55 & 85 & -30 \\ 
-   SD & 32 & 34 & 33 \\ 
-   \hline
-\end{tabular}
+      \begin{tabular}{lrrr}
+        \hline
+        subject & mCPP & placebo & difference \\ 
+        \hline
+        1 & 79 & 78 & 1 \\ 
+        2 & 48 & 54 & -6 \\ 
+        3 & 52 & 142 & -90 \\ 
+        4 & 15 & 25 & -10 \\ 
+        5 & 61 & 101 & -40 \\ 
+        6 & 107 & 99 & 8 \\ 
+        7 & 77 & 94 & -17 \\ 
+        8 & 54 & 107 & -53 \\ 
+        9 & 5 & 64 & -59 \\ 
+        \hline
+         Mean & 55 & 85 & -30 \\ 
+         SD & 32 & 34 & 33 \\ 
+         \hline
+      \end{tabular}
+    \end{center}
+\end{frame}
+
+%%%%%%
+\begin{frame}{Pairs are good}
+
+    \structure{Example:} hunger rating with and without mCPP.
+    \begin{center}
+      \begin{tabular}{lrrr}
+        \hline
+        subject & mCPP & placebo & difference \\ 
+        \hline
+        \vdots & \vdots & \vdots & \vdots \\
+        \hline
+         Mean & 55 & 85 & -30 \\ 
+         SD & 32 & 34 & 33 \\ 
+         \hline
+      \end{tabular}
     \end{center}
 
     \begin{columns}
@@ -215,10 +281,12 @@ The human circadian pacemaker controls the timing of the release of the pineal h
       \begin{align*} 
         \SE_{(\bar Y_1 - \bar Y_2)} &= \sqrt{\frac{32^2}{9} + \sqrt{34^2}{9}} \\ 
         &= 15.6 
-      \end{align*}
-      and so \alert{(wrongly)}
-      \[ t_s = \frac{55-85}{15.6} = -1.92 \]
-      and $P=0.075$.
+        \end{align*}
+        and so
+        \begin{align*}
+      t_s &= \frac{55-85}{15.6} = -1.92  \\
+      \text{\alert{wrongly,}} \; P&=0.075
+    \end{align*}
 
       \end{column}
       \begin{column}{.5\textwidth}
