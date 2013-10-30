@@ -1,0 +1,274 @@
+% Copyright 2007 by Till Tantau
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+
+\lecture[17]{the Paired sample $t$}{lecture-text}
+
+\subtitle{and confidence intervals}
+
+\date{31 October 2013}
+
+
+% pp 299-309
+
+
+\begin{document}
+
+\begin{frame}
+  \maketitle
+\end{frame}
+
+
+\begin{frame}{So far we can}
+  \begin{enumerate}
+  \item Estimate the mean value in a population from a sample, and
+  \item estimate the difference in population means based on samples from each,
+  \item in both cases assessing uncertainty by constructing a confidence interval from the $t$ distribution.
+  \item We can also use the Wilcoxon--Mann--Whitney test, which has fewer assumptions.
+  \item But, these all assume \alert{independent samples}.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}\frametitle<presentation>{Outline}
+  \tableofcontents
+\end{frame}
+
+%%%%%% %%%%%%% %%%%%%%%
+\section{Paired sample tests}
+
+%%%%%% %%%%%%% 
+\subsection{Paired samples}
+
+%%%%%%
+\begin{frame}{Samples, in pairs}
+
+  \begin{block}{Paired samples}
+    are two samples, with a one-to-one relationship between observations in each.
+
+    \vspace{1em}
+
+    \structure{Equivalently,} it is a \alert{single} sample, of \alert{pairs of observations}.
+  \end{block}
+
+    \vspace{2em}
+
+    As before, we'll need each pair of observations to be independent of the other pairs.
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{Example: before and after}
+
+  \structure{Often,} these are measurements on the same individual, before and after some treatment.
+
+    \vspace{2em}
+
+    \structure{Example:}
+    \begin{quote}
+The human circadian pacemaker controls the timing of the release of the pineal hormone melatonin, which promotes sleep, decreases body temperature, and diminishes cognitive performance. Abnormal melatonin secretion has been observed in psychiatric and circadian disorders. Although melatonin secretion is directly suppressed by exposure to light in a nonlinear intensity-dependent fashion, little research has focused on the effect of prior photic history on this response. We examined eight subjects in controlled laboratory conditions using a within-subjects design. Baseline melatonin secretion was monitored under constant routine conditions and compared with two additional constant routines with a fixed light stimulus for 6.5 h of 200 lux (50 ¿W/cm2) after approximately 3 d of photic exposure during the subjective day of either about 200 lux (50 ¿W/cm2) or about 0.5 lux (0.15 ¿W/cm2). We found a significant increase in melatonin suppression during the stimulus after a prior photic history of approximately 0.5 lux compared with approximately 200 lux, revealing that humans exhibit adaptation of circadian photoreception. Such adaptation indicates that translation of a photic stimulus into drive on the human circadian pacemaker involves more complex temporal dynamics than previously recognized. Further elucidation of these properties could prove useful in potentiating light therapies for circadian and affective disorders. 
+\end{quote}
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Advantages to the paired design}
+
+  Having a paired design often
+  \begin{enumerate}
+    \item controls for potential confounding factors, and
+    \item increases power by accounting for within-population variability.
+  \end{enumerate}
+
+    \vspace{2em}
+
+    \structure{Example:} Suppose that people's feet are on average 20cm long, with a standard deviation of 3cm; but that right feet are reliably 0.1cm longer than the left feet, with a standard deviation of .01cm.  Will we be able to see this effect with 100 people?
+    % Unpaired: 3/10 = 0.6 => No!
+    % Paired: 0.1/10 = .01 => Yes!
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{The difference}
+
+    \structure{Before,} we analyzed differences in sample means.
+
+    \vspace{2em}
+
+    \structure{With paired samples,} we analyze the mean of the diffences.
+
+\end{frame}
+
+
+%%%%%% %%%%%%
+\subsection{Mean differences}
+
+%%%%%%
+\begin{frame}{Notation}
+
+  Similar to before,
+  \begin{itemize}
+    \item[$Y_1$] is the generalized idea of a sample from population 1,
+    \item[$Y_2$] is the \alert{corresponding paired} sample from population 2,
+    \item[$D=Y_1-Y_2$] is their difference.
+    \item[$\mu_D$] is the population mean of the differences
+  \end{itemize}
+  and
+  \begin{itemize}
+    \item[$\bar d$] is the sample mean of the difference 
+    \item[$s_D$] is the sample standard deviation of the differences
+    \item[$n_D$] is the number of pairs of samples
+    \item[$\SE_{\bar D}$] is the standard error of $\bar D$
+  \end{itemize}
+
+    \vspace{2em}
+
+    The differences are independent observations, and so:
+    \[
+    \SE_{\bar D} = \frac{s_D}{n_D} .
+    \]
+
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Confidence intervals}
+
+  \structure{Main point:} The differences between pairs are effecitvely a \alert{single sample} of differences.
+
+    \vspace{2em}
+
+    Finding confidence intervals is \alert{the same} as \structure{single-sample $t$}, with slightly different notation.
+
+    \vspace{2em}
+
+    A \alert{95\% confidence interval} for $\mu_D$ is
+    \[  \bar d \pm t_{n_D-1,0.025} \SE_{\bar D} ,\]
+
+    \vspace{2em}
+
+    i.e.\ determined from Student's $t$ distribution with $n_D-1$ degrees of freedom.
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Example}
+
+  Myocardial blood flow, eight subjects, before (baseline, $y_1$) and after ($y_2$) caffeine consumption
+  \begin{center}
+    \begin{tabular}{lrrr}
+      \hline
+      subject & baseline & caffeine & difference \\ 
+      \hline
+      1 & 6.37 & 4.52 & 1.85 \\ 
+      2 & 5.69 & 5.44 & 0.25 \\ 
+      3 & 5.58 & 4.70 & 0.88 \\ 
+      4 & 5.27 & 3.81 & 1.46 \\ 
+      5 & 5.11 & 4.06 & 1.05 \\ 
+      6 & 4.89 & 3.22 & 1.67 \\ 
+      7 & 4.70 & 2.96 & 1.74 \\ 
+      8 & 3.53 & 3.20 & 0.33 \\ 
+      \hline
+      Mean & 5.14 & 3.99 & 1.15 \\ 
+       SD & 0.83 & 0.86 & 0.63 \\ 
+     \end{tabular}
+  \end{center}
+
+\end{frame}
+
+
+%%%%%% %%%%%%
+\subsection{Ignoring pairing}
+%%%%%%
+\begin{frame}{Pairs are good}
+
+    \structure{Example:} hunger rating with and without mCPP.
+    \begin{center}
+\begin{tabular}{lrrr}
+  \hline
+  subject & mCPP & placebo & difference \\ 
+  \hline
+  1 & 79 & 78 & 1 \\ 
+  2 & 48 & 54 & -6 \\ 
+  3 & 52 & 142 & -90 \\ 
+  4 & 15 & 25 & -10 \\ 
+  5 & 61 & 101 & -40 \\ 
+  6 & 107 & 99 & 8 \\ 
+  7 & 77 & 94 & -17 \\ 
+  8 & 54 & 107 & -53 \\ 
+  9 & 5 & 64 & -59 \\ 
+   Mean & 55 & 85 & -30 \\ 
+   SD & 32 & 34 & 33 \\ 
+   \hline
+\end{tabular}
+    \end{center}
+
+    \begin{columns}
+      \begin{column}{.5\textwidth}
+        \structure{Unpaired}:
+      \begin{align*} 
+        \SE_{(\bar Y_1 - \bar Y_2)} &= \sqrt{\frac{32^2}{9} + \sqrt{34^2}{9}} \\ 
+        &= 15.6 
+      \end{align*}
+      and so \alert{(wrongly)}
+      \[ t_s = \frac{55-85}{15.6} = -1.92 \]
+      and $P=0.075$.
+
+      \end{column}
+      \begin{column}{.5\textwidth}
+        \structure{Paired}
+        \begin{align*}
+          \SE_{\bar D} = \frac{33}{\sqrt{9}} = 11
+        \end{align*}
+        and so
+        \[  t_s = \frac{-30-0}{11} = -2.72 \]
+        and $P = 0.027$.
+
+      \end{column}
+    \end{columns}
+
+    \alert{Why, intuitively?}
+
+\end{frame}
+
+%%% exercise
+
+\section<article>{Summary}
+\section<presentation>*{Summary}
+
+\begin{frame}{Summary}
+  \begin{enumerate}
+    \item one
+  \end{enumerate}
+\end{frame}
+
+% homework
+\begin{frame}{Homework}
+  \begin{center}
+
+  % 7.4.2
+
+  \vspace{2em}
+
+  % 7.4.8
+
+  \vspace{2em}
+
+  % 7.5.1
+
+  \end{center}
+\end{frame}
+
+
+\end{document}
+
+
+
+
+
