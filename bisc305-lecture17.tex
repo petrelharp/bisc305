@@ -148,9 +148,9 @@
 \begin{frame}{Notation}
 
   Similar to before,
-  \begin{itemizew}{.5em}
-    \item[$Y_1$] is the generalized idea of a sample from population 1,
-    \item[$Y_2$] is the \alert{corresponding paired} sample from population 2,
+  \begin{itemizew}{2.5em}
+    \item[$Y_1$] is an observed sample from population 1,
+    \item[$Y_2$] is the \alert{corresponding} observation from population 2,
     \item[$D=Y_1-Y_2$] is their difference.
     \item[$\mu_D$] is the population mean of the differences
   \end{itemizew}
@@ -178,6 +178,8 @@
 
     Often, the null hypothesis is:
     \[ H_0: \; \mu_D = 0 .\]
+    and the alternative hypothesis is
+    \[ H_A: \; \mu_D \neq 0 .\]
 
 \end{frame}
 
@@ -279,7 +281,7 @@
       \begin{column}{.5\textwidth}
         \structure{Unpaired}:
       \begin{align*} 
-        \SE_{(\bar Y_1 - \bar Y_2)} &= \sqrt{\frac{32^2}{9} + \sqrt{34^2}{9}} \\ 
+        \SE_{(\bar Y_1 - \bar Y_2)} &= \sqrt{\frac{32^2}{9} + \frac{{34^2}}{9}} \\ 
         &= 15.6 
         \end{align*}
         and so
@@ -313,11 +315,13 @@
   \begin{quote}
 Studies of the effects of fetal and infant growth on later health in twins have looked at the differences in birth weight in monozygotic and dizygotic twins and at their association with differences in cardiovascular and metabolic parameters. Twin studies can resolve whether these associations are causal, or due to shared genetic factors. For blood pressure, it turned out that the association between low birth weight and high blood pressure in later life is mediated by common genes.
   \end{quote}
-\end{frame}
 
     \vspace{2em}
 
-    What analysis was done on these data?
+    How would you conduct such a study?
+
+\end{frame}
+
 
 %%% exercise
 
@@ -327,7 +331,7 @@ Studies of the effects of fetal and infant growth on later health in twins have 
 \begin{frame}{Summary}
   \begin{enumerate}
     \item Paired samples can control for confounding variables and other sources of variability.
-    \item Pairs should be \alert{indpendent} of each other.
+    \item Pairs should be \alert{independent} of each other.
     \item When analyzing paired samples, treat the differences as a single sample from a population.
   \end{enumerate}
 \end{frame}
