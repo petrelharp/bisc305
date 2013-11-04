@@ -57,20 +57,30 @@
     \item tails?
   \end{enumerate}
 
+    \vspace{2em}
+
+    \alert{Test statistic} for the sign test: number of people with longer finger on the writing hand.
+
 \end{frame}
 
+
 %%%%%%
-\begin{frame}{A nondirectional example}
+\begin{frame}{A numerical example}
 
   Do different antibiotics affect the rate of mutation accumulation of bacteria?
   Sequence genome of bacterial strains; culture in paired petri dishes for 1 week with antibiotics A \& B; sequence again; count the mutations.
 
-    \vspace{2em}
+    \vspace{1em}
 
-    \structure{$H_0$:} rate of accumulation is the same for both.
+    \noindent
+    \structure{$H_0$:} rate of accumulation is the same for both.\\
     \structure{$H_A$:} bacteria accumulate more in one than in the other.
 
+    \vspace{1em}
 
+
+    \only<1>{
+        Number of mutations:
   \begin{center}
   \begin{tabular}{rrrl}
     \hline
@@ -89,11 +99,31 @@
      \hline
   \end{tabular}
   \end{center}
+  }
+
+  \only<2>{
+      \begin{center}
+      \begin{tabular}{rrrr}
+        \hline
+        & A & B & total\\ 
+        \hline
+        \# with more mutations  &   1 &   9 & 10 \\ 
+         \hline
+      \end{tabular}
+      \end{center}
 
     \vspace{2em}
 
-    $P$-value $=$ probability that in 10 coin tosses, get $\ge 9$ or $\le 1$ heads.\\
-    $= 0.039$.
+    $N_+$ is number of differences with $D>0$; $N_-$ is number with $D<0$; 
+    \alert{test statistic} $B_s$ is larger of $N_+$, $N_-$.
+
+        \vspace{1em}
+
+        \begin{align*}
+            P&= \text{probability that in 10 coin tosses, 9 coins agree.} \\
+             &= 0.039
+        \end{align*}
+    }
 
 
 \end{frame}
@@ -105,15 +135,17 @@
 \begin{frame}{$P$-values from the binomial}
 
   The null hypothesis is \\
-  \hspace{2em} $H_0$: difference between the observations is equally likely to be positive or negative.
+  \hspace{2em} \structure{$H_0$:} difference between the observations is equally likely to be positive or negative.
 
     \vspace{2em}
 
-    so the $P$-value of the last example (9 ``+'' out of 10 pairs, calculated with $H_0$) is
+    so the $P$-value of the last example \\
+    (9 out of 10 pairs agree, calculated with $H_0$) \\
+    is:
     \begin{align*} 
       P &= \mbox{Prob}( \; \text{at least 9 heads out of 10 coin flips}\; ) \\
        &\quad + \mbox{Prob}( \; \text{at least 9 tails out of 10 coin flips}\; ) \\
-       &= \ch{10}{9} \; 0.5^10 + \ch{10}{10} \; 0.5^{10} \\
+       &= \ch{10}{9} \; 0.5^{10} + \ch{10}{10} \; 0.5^{10} \\
        &\quad + \ch{10}{9} \; 0.5^{10} + \ch{10}{10}\;  0.5^{10} \\
        &= 0.001953125 + 0.017578125 + 0.017578125 + 0.001953125  \\
        &= 0.0390625
@@ -141,7 +173,7 @@
 \begin{frame}{What to do about zeros?}
 
   Again, the null hypothesis is \\
-  \hspace{2em} $H_0$: difference between the observations is equally likely to be positive or negative.
+  \hspace{2em} \structure{$H_0$:} difference between the observations is equally likely to be positive or negative.
 
     \vspace{2em}
 
@@ -150,38 +182,147 @@
 
     \vspace{2em}
 
-    \structure{Because:} we test the hypothesis that \alert{if the paired observations are different}, $Y_1>Y_2$ is just as likely as $Y_2>Y_1$.  (and so, chance of each is 1/2).
+    \structure{Because:} we test the hypothesis that \alert{if the paired observations are different}, $Y_1>Y_2$ is just as likely as $Y_2>Y_1$.  (and so, chance of $Y_1>Y_2$, given $Y_1 \neq Y_2$, is 1/2).
 
 \end{frame}
+
 
 %%%%%%
 \begin{frame}{Example}
 
+        Number of mutations:
+  \begin{center}
+  \begin{tabular}{rrrl}
+    \hline
+  dish & A & B & sign \\ 
+    \hline
+    1 &   1 &   5 & + \\ 
+    2 &   0 &   0 & 0 \\ 
+    3 &   1 &   2 & + \\ 
+    4 &   0 &   1 & + \\ 
+    5 &   2 &   2 & 0 \\ 
+    6 &   0 &   5 & + \\ 
+    7 &   5 &   2 & - \\ 
+    8 &   2 &   2 & + \\ 
+    9 &   1 &   3 & + \\ 
+    10 &   1 &   2 & + \\ 
+     \hline
+  \end{tabular}
+  \end{center}
+
 \end{frame}
 
+
+%%%%%% %%%%%%
 \subsection{Extending the idea}
 
 %%%%%%
 \begin{frame}{Using the binomial formula}
 
   Yeast ({\it Saccaromyces cerevisiae}) can be either haploid (one copy of each chromosome per cell) or diploid (two copies, like us).
+  (\structure{$H_A$}:) Do haploid yeast accumulate mutations more quickly than diploid yeast (per chromosome)?
+  We grow pairs of otherwise identical haploid and diploid yeasts for one generation,
+  and counted mutations on each chromosome.
 
     \vspace{2em}
 
-
+    In 6 of the 10 pairs, the haploid chromosome had more mutations than both of the diploid chromosomes.
+    Is this strong support for $H_A$? {\small (\alert{hint:} this is like the sign test, but the coin is not fair.) }
+    % 1-pbinom(q=6,size=10,prob=1/3)
 
 
 \end{frame}
-%% TPS: p-value with  Pr{D>0} = 1/3
-% Wilcoxon signed-rank test
-%% how to do it: compare sums of ranks of + and -
-%% conditions: continuous distribution
-%% zeros: toss 'em.
-%% ties: average 'em.
-%% null hypothesis: H0: \mu_D = 0
-% limitations to paired sample tests
-%% when it's not just about the mean difference
-%% always report within-population variation
+
+%%%%% %%%%%%% %%%%%%%%
+\section{The Wilcoxon signed-rank test}
+
+\subsection{The signed-rank statistic}
+
+%%%%%%
+\begin{frame}{Signed ranks}
+
+    The Wilcoxon signed-rank statistic, for paired sample data,
+    \begin{itemize}
+        \item orders the \alert{absolute values} of the differences
+        \item compares the ranks of the pairs with $D>0$ to the ranks of the pairs with $D<0$.
+    \end{itemize}
+
+    \vspace{2em}
+
+    $W_+$ is the sum of the ranks of the pairs with $D>0$; $W_-$ is the sum of the ranks with $D<0$; \\
+    the \alert{test statistic}, $W_s$ is the larger of the two.
+
+    \vspace{2em}
+
+    Because it only uses \alert{ranks},
+    it is distribution-free.
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Example}
+    Density of nerves at two sites in the intestine in 9 horses:
+    \begin{center}
+\begin{tabular}{rrrr}
+  \hline
+ animal & site I & site II & difference \\ 
+  \hline
+  1 &  50.60 & 38.00 & +12.60 \\ 
+  2 &  39.20 & 18.60 & +20.60 \\ 
+  3 &  35.20 & 23.20 & +12.00 \\ 
+  4 &  17.00 & 19.00 & -2.00 \\ 
+  5 &  11.20 & 6.60 & +4.60 \\ 
+  6 &  14.20 & 16.40 & -2.20 \\ 
+  7 &  24.20 & 14.40 & +9.80 \\ 
+  8 &  37.40 & 37.60 & -0.20 \\ 
+  9 &  35.20 & 24.40 & +10.80 \\ 
+   \hline
+\end{tabular}
+    \end{center}
+
+\end{frame}
+
+\subsection{Caveats}
+
+
+%%%%%%
+\begin{frame}{What to do about zeros? ties?}
+
+    The Wilcoxon signed-rank test deals with caveats like both
+    the sign test and the Wilcoxon--Mann--Whitney test: \\
+    \begin{itemize}
+        \item Omit pairs with no difference. ($D=0$)
+        \item Average the ranks of ties.
+    \end{itemize}
+    \structure{note:} like WMW, the $P$-value is approximate.
+
+    \vspace{2em}
+
+    \structure{Example:}
+    \begin{center}
+\begin{tabular}{ccccc}
+  \hline
+  animal & site I & site II & difference & rank \\ 
+  \hline
+  1 &  1 & 1 & 0 & omit \\ 
+  2 &  2 & 3 & +1 & 1.5 \\ 
+  3 &  2 & 0 & -2 & 3 \\ 
+  4 &  3 & 2 & -1 & 1.5 \\ 
+  5 &  2 & 5 & +3 & 4 \\ 
+   \hline
+\end{tabular}
+    \end{center}
+
+    \vspace{2em}
+
+    \begin{gather*}
+        W_+ = 5.5  \qquad
+        W_- = 4.5 \\
+        n = 4 \qquad
+        W_s = 5.5 
+    \end{gather*}
+
+\end{frame}
 
 %%%%%% %%%%%%%%% %%%%%%%%%%
 \subsection{Comparison of the tests}
@@ -192,7 +333,9 @@
   The sign test versus the Wilcoxon signed-rank test:
   \begin{enumerate}
     \item Both are distribution--free
-    \item The sign test is \alert{more flexible} than the Wilcoxon signed-rank test
+    \item The sign test is \alert{more flexible} 
+    \item The Wilcoxon signed-rank test is \alert{more powerful} \\
+        if the distributions are symmetric
   \end{enumerate}
 
     \vspace{2em}
@@ -207,18 +350,18 @@
 
 \end{frame}
 
+
 \section<article>{Summary}
 \section<presentation>*{Summary}
 
 \begin{frame}{Summary}
   \begin{enumerate}
-  \item Ein \alert{Wort} ist eine Folge von Symbolen aus einem
-    \alert{Alphabet}. 
-  \item Eine \alert{Syntax} besteht aus Regeln, nach denen
-    Worte (Texte) gebaut werden dürfen.
-  \item Eine \alert{Semantik} legt fest, was Worte \alert{bedeuten}.
-  \item Eine \alert{formale Sprache} ist eine Menge von Worten
-    über einem Alphabet.
+      \item We now have two more ways to compare typical measurement values between two samples.
+      \item The \alert{sign test} is very flexible, and doesn't even require numeric measurements.
+      \item \ldots count how many pairs have $A>B$.
+      \item The Wilcoxon signed-rank test requires the distributions to be symmetric, but is more powerful than the sign test if this is true.
+      \item \ldots add the ranks of the pairs with $A>B$.
+      \item Both are distribution-free.
   \end{enumerate}
 \end{frame}
 
