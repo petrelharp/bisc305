@@ -3,13 +3,13 @@
 nflips <- 3
 nflips <- 5
 
-nreps <- 1e5
+nreps <- 1e4
 flips <- as.data.frame( ifelse( matrix( rbinom( nreps * nflips, size=1, prob=0.5 ), nrow=nreps )>0, "H", "T" ) )
-
-layout(1:2)
 
 ## look at pattern counts
 table( apply( flips, 1, paste, collapse='' ) )
+
+layout(1:2)
 
 counts <- table( apply( flips, 1, paste, collapse='' ) )
 plot( (1:2^nflips), as.numeric(counts)/nreps, col='blue', xaxt='n', yaxt='s', ylim=c(0,2/2^nflips), ylab='proportion', xlab=''  )
