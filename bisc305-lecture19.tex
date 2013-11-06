@@ -8,9 +8,9 @@
 % See the file doc/licenses/LICENSE for more details.
 
 
-\lecture[19]{The population proportion}{lecture-text}
+\lecture[19]{Estimating proportions}{lecture-text}
 
-\subtitle{categorigcal data}
+\subtitle{with confidence}
 
 \date{7 November 2013}
 
@@ -44,57 +44,271 @@
 %%%%%%
 \begin{frame}{What's your guess?}
 
+    In a random sample of 20 pigeons in Los Angeles,
+    we see 5 with brown heads and 15 with grey heads.\\
+    \structure{What do you think the true proportion of Los Angeles pigeons with brown heads is?}
+
+    \vspace{2em}
+
+    \pause
+
+    We sample another 80 pigeons, and find \emph{none} with red-polka-dotted heads.\\
+    \structure{What do you think the true proportion of Los Angeles pigeons with red-polka-dotted heads is?}
+
+    \vspace{2em}
+
+    \pause
+
+    Some pigeons have white heads due to interbreeding with escaped domestic birds,
+    but \emph{none} the 100 pigeons we have so far have white heads.\\
+    \structure{What do you think the true proportion of Los Angeles pigeons with white heads is?}
+
+
+    \structure{Is it reasonable} that the true proportion of pigeons with white heads is 10\%?
 
 
 \end{frame}
-
-
-% the sample proportion
-%% intuition: what is the true proportion?
-%% intuition: how big is it likely to be?
-%% answer by simulation
-% estimating the sample proportion
-%% the sampling distribution
-%% recall the CLT
-%% SE with known p
-%% Wilson's estimator
-%% SE for Wilson's estimator
-% confidence intervals for the proportion
-%% one sided
-%% two sided
 
 %%%%%%
-\begin{frame}{}
+\begin{frame}{Estimates, and uncertainty}
+
+    We have a random sample of observations falling in two categories.
+
+    \vspace{2em}
+
+    We want to
+    \begin{enumerate}
+        \item Estimate the population frequency.
+        \item Evaluate our uncertainty about that estimate.
+    \end{enumerate}
+
+    \vspace{2em}
+
+    If you observe \alert{none} of one category, \\
+        should you estimate that the population really has none? \\
+            \hspace{3em} \structure{Usually not.}  {\small (else, why were you looking?)}
 
 \end{frame}
 
-\begin{frame}{Die zwei Hauptbegriffe der heutigen Vorlesung.}
-  \begin{block}{Grobe Definition (Syntax)}
-    Unter einer \alert{Syntax} verstehen wir \alert{Regeln}, nach denen
-    Texte \alert{strukturiert} werden dürfen. 
-  \end{block}
-  \begin{block}{Grobe Definition (Semantik)}
-    Unter einer \alert{Semantik} verstehen wir die Zuordnung von
-    \alert{Bedeutung} zu Text.
-  \end{block}
+\subsection{Estimating the population frequency}
+
+%%%%%%
+\begin{frame}{The sampling distribution}
+
+    \begin{block}{Central Limit Theorem for Frequencies}
+        If $Y$ is the number of observations of type ``A''
+        out of a sample of $n$ independent draws
+        from a large population with a true frequency $p$ of type ``A'', \\
+        then $Y$ is \alert{approximately Normal},
+        with mean $np$ and standard deviation $\sqrt{n} p (1-p)$,
+        if $n$ is large enough.
+    \end{block}
+
+    \vspace{2em}
+
+    This implies that 
+    \[ \prob\left( np - 1.96 \sqrt{n p(1-p)} \le Y \le np + 1.96 \sqrt{n p (1-p)} \right) \approx 0.95 , \]
+    i.e.\ the number of observed type ``A'' should be about $np$, give or take $2 \sqrt{n p (1-p)}$ or so.
+
+    \vspace{2em}
+
+    \structure{simulation example}
+
 \end{frame}
 
+%%%%%%
+\begin{frame}{The standard error for $\hat p$}
 
-\subsection[Syntax \protect\\ natürlicher Sprachen]{Syntax natürlicher Sprachen}
+    The \alert{sample proportion} of type A is
+    the fraction of the sample that is type A:
+    \[ \hat p = \frac{y}{n} . \]
 
-\begin{frame}{Beobachtungen zu einem ägyptischen Text.}
-  \includegraphicscopyright[width=6cm]{beamerexample-lecture-pic3.jpg}
-  {Copyright by Guillaume Blanchard, GNU Free Documentation License, Low Resultion}
+    \vspace{2em}
 
-  \begin{block}{Beobachtungen}
+    By the Central Limit Theorem, we know that 
+    \[  \hat p \approx p \pm 2 \sqrt{ \frac{ p(1-p) }{ n } } .\]
+
+    \vspace{2em}
+
+    But, we don't actually know the population proportion $p$.
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{An estimator for $p$}
+
+    \begin{block}{Wilson's estimator}
+        for the population proportion is
+        \[ \wt p = \frac{ y+2 }{ n+4 } ,\]
+        i.e.\ the frequency in the sample with two imaginary observations of each type added.
+    \end{block}
+
+    \vspace{2em}
+
+    By the Central Limit Theorem,
+
+    \begin{block}{Standard Error}
+        for Wilson's estimator is
+        \[ \SE_{\wt P} = \sqrt{\frac{\wt p (1-\wt p)}{n+4} } .\]
+    \end{block}
+
+
+\end{frame}
+
+\subsection{Confidence intervals}
+
+%%%%%%
+\begin{frame}{Confidence intervals}
+
+    We know that 
     \begin{itemize}
-    \item Wir haben keine Ahnung, was der Text bedeutet.
-    \item Es gibt aber \alert{Regeln}, die offenbar eingehalten wurden,
-      wie »Hieroglyphen stehen in Zeilen«.
-    \item Solche Regeln sind \alert{syntaktische Regeln} -- man kann sie
-      überprüfen, ohne den Inhalt zu verstehen.
+        \item the sampling distribution of Wilson's estimator $\wt P$ is approximately Normal
+        \item with standard error $\SE_{\wt P}$,
+        \item so a $(1-\alpha)$ confidence interval is $z_{\alpha/2} \SE_{\wt P}$.
     \end{itemize}
-  \end{block}
+    It turns out that this usually does a good job \\
+    \alert{even if $n$ is not large.}
+
+    \vspace{2em}
+
+    \begin{block}{A 95\% confidence interval}
+        for Wilson's estimator is
+        \[ \wt p \pm 1.96 \; \SE_{\wt P} . \]
+    \end{block}
+
+    \vspace{2em}
+
+    Check this, \structure{by simulation}.
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{Example}
+
+    Out of 169 women with family histories of breast cancer, 27 had mutations in the BRCA1 gene.
+
+    \vspace{2em}
+
+    \alert{Wilson's estimator} gives that around
+        \[ \wt p = \frac{27 + 2}{169+4} = .168 \]
+    of women with family histories of breast cancer have mutations in BRCA1.
+
+    \vspace{2em}
+
+    The \alert{standard error} of this estimate is
+    \[ \SE_{\wt P} = \sqrt{\frac{.168(1-.168)}{169+4}} = .028  \]
+
+    \vspace{2em}
+
+    A \alert{95\% confidence interval} for this proportion is $\wt p \pm 1.96 \times .028$:
+    \[ 0.113 < p < 0.223 \]
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{From the wild}
+
+    \begin{center}
+    \includegraphicscopyright[width=\textwidth]{barn-owl-comparison}{Owl predation in Pennsylvania, Pearson \& Pearson 1947}
+    \end{center}
+
+    \vspace{2em}
+
+    Find confidence intervals for some of these percentages.  
+    Is there strong evidence that owls catch a higher percentage than traps of 
+    \textit{(a)} meadow mice?
+    \textit{(b)} Deer mice?
+    \textit{(c)} Star-nosed moles?
+
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Example}
+
+    Eleven newborn babies with respiratory failure were given ECMO.  None died.
+
+    \vspace{2em}
+
+    \alert{Wilson's estimator} of the probability of death is
+    \[ \wt p = \frac{0+2}{11+2} = 0.133 \]
+
+    \vspace{2em}
+
+    The \alert{standard error} of this estimate is
+    \[ \SE_{\wt P} = \sqrt{\frac{ .133(1-.133) }{ 11+2 }} = .088 \]
+
+    \vspace{2em}
+
+    A \alert{95\% confidence interval} for this proportion is
+        \[ -0.039 \only<2->{ < 0 }< p < 0.305 \]
+
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{One-sided confidence}
+
+    We might often want to simply \alert{upper bound} the population frequency,\\\
+    i.e.\ construct a \structure{one-sided confidence interval}.
+
+    \vspace{2em}
+
+    Since $z_{.05} = 1.645$, 
+    a \alert{95\% one-sided CI} is 
+        \[ p < 1.645 \; \SE_{\wt P} \]
+
+    \vspace{2em}
+
+    In the previous example, this is
+        \[ p < 0.278 , \]
+    so we are 95\% confident that the true chance of death is less than 27.8\%.
+
+
+\end{frame}
+
+\subsection{Planning studies}
+
+%%%%%%
+\begin{frame}{Pick your SE}
+
+    We want to estimate the population percentage to \alert{1\% accuracy}
+    (at 95\% confidence).
+    How big a sample should we take?
+
+    \vspace{2em}
+    \pause
+
+    \structure{Rephrased:} We want to estimate the population percentage
+    with two {\tiny (really, 1.96)} standard errors no larger than 1\%.
+    How big a sample should we take?
+
+    \vspace{2em}
+
+    Well,
+        \[ 2 \SE_{\wt P} = 2 \sqrt{\frac{\wt p (1-\wt p)}{n+4} } ,\]
+        so it \alert<1>{depends on $p$}, \pause but \alert<2>{no matter what $p$ is,}\\
+    $\sqrt{p (1-p)} \le 1/2$,
+    so
+    \[ 2 \SE_{\wt P} \le \sqrt{\frac{1}{(n+4)} } .\]
+
+    \vspace{1em}
+
+    We can guarantee that $2 \SE_{\wt P} \le .01$ if $n \ge 100^2$, \\
+    i.e.\ we have at least 10,000 observations.
+
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Example: polling}
+
+    We want to do a poll to determine whether a state proposition is close (within 5\%) 
+    to passing or not,
+    with 99\% confidence.
+    How many people should we poll?
+
 \end{frame}
 
 
@@ -105,13 +319,12 @@
 
 \begin{frame}{Summary}
   \begin{enumerate}
-  \item Ein \alert{Wort} ist eine Folge von Symbolen aus einem
-    \alert{Alphabet}. 
-  \item Eine \alert{Syntax} besteht aus Regeln, nach denen
-    Worte (Texte) gebaut werden dürfen.
-  \item Eine \alert{Semantik} legt fest, was Worte \alert{bedeuten}.
-  \item Eine \alert{formale Sprache} ist eine Menge von Worten
-    über einem Alphabet.
+      \item The best estimator of the population frequency is not necessarily the sample frequency
+      \item \ldots mostly because it gets tripped up for small frequencies.
+      \item A good choice is \alert{Wilson's estimator} $\wt p$, that adds two imaginary observations of each type.
+      \item The standard error of Wilson's estimator is $\sqrt{ \wt p (1-\wt p) / (n+4) }$,
+      \item \ldots and confidence intervals for $\wt p$ are found using $z$ multipliers.
+      \item Also: always think about what the results mean.
   \end{enumerate}
 \end{frame}
 
@@ -119,15 +332,15 @@
 \begin{frame}{Homework}
   \begin{center}
 
-  % 7.4.2
+  9.2.2
 
   \vspace{2em}
 
-  % 7.4.8
+  9.2.9
 
   \vspace{2em}
 
-  % 7.5.1
+  9.2.10
 
   \end{center}
 \end{frame}
