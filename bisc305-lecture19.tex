@@ -100,7 +100,7 @@
         out of a sample of $n$ independent draws
         from a large population with a true frequency $p$ of type ``A'', \\
         then $Y$ is \alert{approximately Normal},
-        with mean $np$ and standard deviation $\sqrt{n} p (1-p)$,
+        with mean $np$ and standard deviation $\sqrt{n p (1-p)}$,
         if $n$ is large enough.
     \end{block}
 
@@ -145,7 +145,6 @@
 
     \vspace{2em}
 
-    By the Central Limit Theorem,
 
     \begin{block}{Standard Error}
         for Wilson's estimator is
@@ -232,12 +231,12 @@
     \vspace{2em}
 
     \alert{Wilson's estimator} of the probability of death is
-    \[ \wt p = \frac{0+2}{11+2} = 0.133 \]
+    \[ \wt p = \frac{0+2}{11+4} = 0.133 \]
 
     \vspace{2em}
 
     The \alert{standard error} of this estimate is
-    \[ \SE_{\wt P} = \sqrt{\frac{ .133(1-.133) }{ 11+2 }} = .088 \]
+    \[ \SE_{\wt P} = \sqrt{\frac{ .133(1-.133) }{ 11+4 }} = .088 \]
 
     \vspace{2em}
 
@@ -257,7 +256,7 @@
 
     Since $z_{.05} = 1.645$, 
     a \alert{95\% one-sided CI} is 
-        \[ p < 1.645 \; \SE_{\wt P} \]
+        \[ p < \wt p + 1.645 \; \SE_{\wt P} \]
 
     \vspace{2em}
 
@@ -304,10 +303,12 @@
 %%%%%%
 \begin{frame}{Example: polling}
 
-    We want to do a poll to determine whether a state proposition is close (within 5\%) 
-    to passing or not,
-    with 99\% confidence.
+    We want to do a poll to determine whether a state proposition 
+    is ahead (above 50\%) or not,
+    with 99\% confidence,
+    as long it is actually leading (or, behind) by at least 5\%.
     How many people should we poll?
+    Assume everyone is decided.
 
 \end{frame}
 
