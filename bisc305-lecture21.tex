@@ -8,20 +8,112 @@
 % See the file doc/licenses/LICENSE for more details.
 
 
-\lecture[1]{Syntax versus Semantik}{lecture-text}
+\lecture[21]{Relationships in Categorical Data}{lecture-text}
 
-\subtitle{Text und seine Bedeutung}
+\subtitle{$\chi^2$ between two samples}
 
 \date{14 November 2013}
 
 
 % 363-372, 385-389
 
-% Multiple categorical samples
-%% contingency tables
-%% ex: HIV tests
-%% ex: owls & traps
-%% questions: same proportions in columns?
+
+\begin{document}
+
+\begin{frame}
+  \maketitle
+\end{frame}
+
+
+\begin{frame}{The last few classes,}
+    working with \alert{categorical data}, we
+  \begin{enumerate}
+      \item estimated single frequencies,
+      \item with confidence intervals.
+      \item did hypothesis tests for equality of frequencies
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}\frametitle<presentation>{Outline}
+  \tableofcontents
+\end{frame}
+
+
+\section{Multiple categorical samples}
+
+\subsection{Contingency tables}
+
+\begin{frame}{Samples, or more cateogries}
+
+    A \structure{contingency table} gives the \alert{number} of observations
+    falling into each pairwise \alert{combination} of two categorizations.
+
+    \vspace{2em}
+
+    \structure{Usually,} rows are \alert{categories} and columns are \alert{samples} from different populations.
+
+    \vspace{2em}
+
+    \structure{The key} is to think about which combinations of numbers can be viewed as a sample from a population.
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{Example: HIV}
+    A random sample of 120 college students:
+    \begin{center}
+        \begin{tabular}{lcc}
+            & female & male \\
+            \hline
+            HIV test & 9 & 8 & \\
+            no HIV test & 52 & 51 \\
+        \end{tabular}
+    \end{center}
+
+    \vspace{2em}
+
+    All 120 is a single sample,\\
+    but unless we're interested in the sex ratios at this college\\
+    we treat each \alert{column} as an independent sample.
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Example: surgery response}
+    75 patients were assigned to treatment or placebo
+    \begin{center}
+        \begin{tabular}{lcc}
+            & treatment & placebo \\
+            \hline
+            successful & 8 & 11 & \\
+            not successful & 41 & 15 \\
+        \end{tabular}
+    \end{center}
+
+    \vspace{2em}
+
+    Here each column is an independent sample.
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Recall the owls}
+
+    \begin{center}
+    \includegraphicscopyright[width=\textwidth]{barn-owl-comparison}{Owl predation in Pennsylvania, Pearson \& Pearson 1947}
+    \end{center}
+
+    \vspace{2em}
+
+    What we {really} wanted to do here was see if the \alert{two columns} had the same sets of proportions.
+
+\end{frame}
+
+\subsection{Conditional probability}
+
+
+
 % conditional probability
 %% population composed of all columns *in different proportions*
 %% but conditional is just one column
@@ -35,62 +127,6 @@
 %% H0: homogeneity in column proportions
 %% df = (r-1)(k-1)
 %% examples
-
-
-\begin{document}
-
-\begin{frame}
-  \maketitle
-\end{frame}
-
-
-\section*{Ziele und Inhalt}
-
-\begin{frame}{Die Lernziele der heutigen Vorlesung und der Übungen.} 
-  \begin{enumerate}
-  \item Die Begriffe Syntax und Semantik erklären können
-  \item Syntaktische und semantische Elemente natürlicher Sprachen und
-    von Programmiersprachen benennen können
-  \item Die Begriffe Alphabet und Wort kennen
-  \item Objekte als Worte kodieren können
-  \end{enumerate}
-\end{frame}
-
-\begin{frame}\frametitle<presentation>{Gliederung}
-  \tableofcontents
-\end{frame}
-
-
-\section{Was ist Syntax?}
-
-\begin{frame}{Die zwei Hauptbegriffe der heutigen Vorlesung.}
-  \begin{block}{Grobe Definition (Syntax)}
-    Unter einer \alert{Syntax} verstehen wir \alert{Regeln}, nach denen
-    Texte \alert{strukturiert} werden dürfen. 
-  \end{block}
-  \begin{block}{Grobe Definition (Semantik)}
-    Unter einer \alert{Semantik} verstehen wir die Zuordnung von
-    \alert{Bedeutung} zu Text.
-  \end{block}
-\end{frame}
-
-
-\subsection[Syntax \protect\\ natürlicher Sprachen]{Syntax natürlicher Sprachen}
-
-\begin{frame}{Beobachtungen zu einem ägyptischen Text.}
-  \includegraphicscopyright[width=6cm]{beamerexample-lecture-pic3.jpg}
-  {Copyright by Guillaume Blanchard, GNU Free Documentation License, Low Resultion}
-
-  \begin{block}{Beobachtungen}
-    \begin{itemize}
-    \item Wir haben keine Ahnung, was der Text bedeutet.
-    \item Es gibt aber \alert{Regeln}, die offenbar eingehalten wurden,
-      wie »Hieroglyphen stehen in Zeilen«.
-    \item Solche Regeln sind \alert{syntaktische Regeln} -- man kann sie
-      überprüfen, ohne den Inhalt zu verstehen.
-    \end{itemize}
-  \end{block}
-\end{frame}
 
 
 % . . . 
