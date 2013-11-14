@@ -29,8 +29,8 @@
     working with \alert{categorical data}, we
   \begin{enumerate}
       \item estimated single frequencies,
-      \item with confidence intervals.
-      \item did hypothesis tests for equality of frequencies
+      \item with confidence intervals,
+      \item and did hypothesis tests for equality of frequencies.
   \end{enumerate}
 \end{frame}
 
@@ -50,11 +50,11 @@
 
     \vspace{2em}
 
-    \structure{Usually,} rows are \alert{categories} and columns are \alert{samples} from different populations.
+    \structure{Often,} the entire table represents a single sample.
 
     \vspace{2em}
 
-    \structure{The key} is to think about which combinations of numbers can be viewed as a sample from a population.
+    \structure{Sometimes,} rows are \alert{categories} and columns are \alert{samples} from different populations. (e.g.\ males and females; treatment and control)
 
 \end{frame}
 
@@ -63,42 +63,41 @@
 \begin{frame}{Example: HIV}
     A random sample of 120 college students:
     \begin{center}
-        \begin{tabular}{lcc}
-            & female & male \\
+        \begin{tabular}{lcc|c}
+            & female & male & total \\
             \hline
-            HIV test & 9 & 8 & \\
-            no HIV test & 52 & 51 \\
+            HIV test & 9 & 8 & 17 \\
+            no HIV test & 52 & 51 & 103 \\
+            \hline
+            total & 61 & 59 & 120 \\
         \end{tabular}
     \end{center}
 
     \vspace{2em}
 
-    All 120 is a single sample,\\
-    but unless we're interested in the sex ratios at this college\\
-    we treat each \alert{column} as an independent sample.
 
 \end{frame}
 
 %%%%%%
 \begin{frame}{Example: surgery response}
-    75 patients were assigned to treatment or placebo
+    75 patients were randomly assigned to treatment or placebo:
     \begin{center}
-        \begin{tabular}{lcc}
-            & treatment & placebo \\
+        \begin{tabular}{lcc|c}
+            & treatment & placebo & total\\
             \hline
-            successful & 8 & 11 & \\
-            not successful & 41 & 15 \\
+            successful & 8 & 11 & 19 \\
+            not successful & 41 & 15 & 56\\
+            \hline
+            total & 49 & 26 & 75 \\
         \end{tabular}
     \end{center}
 
     \vspace{2em}
 
-    Here each column is an independent sample.
-
 \end{frame}
 
 %%%%%%
-\begin{frame}{Recall the owls}
+\begin{frame}{Example: owl diet}
 
     \begin{center}
     \includegraphicscopyright[width=\textwidth]{barn-owl-comparison}{Owl predation in Pennsylvania, Pearson \& Pearson 1947}
@@ -106,7 +105,6 @@
 
     \vspace{2em}
 
-    What we {really} wanted to do here was see if the \alert{two columns} had the same sets of proportions.
 
 \end{frame}
 
@@ -114,35 +112,338 @@
 
 
 
-% conditional probability
-%% population composed of all columns *in different proportions*
-%% but conditional is just one column
-%% Pr-hat notation
-% chi-square with estimated expected (2x2)
-%% null hypothesis: populations have same frequencies
-%% so estimate expected from both samples
-%% with 2x2, df=1: row sums, column sums, total
-%% example: HIV
-% larger contingency tables
-%% H0: homogeneity in column proportions
-%% df = (r-1)(k-1)
-%% examples
+%%%%%%
+\begin{frame}{An brief excursion}
+
+    A useful concept, and accompanying notation:
+    \begin{block}{Conditional Probability}
+        The ``\alert{probability of $E$ given $C$}''
+        is written:
+        \[ \prob\{ E \vert C \} . \]
+        One way to think about it: the probability that $E$ happens, among the cases that $C$ happens.
+    \end{block}
+
+    \vspace{2em}
+
+    \begin{block}{Conditional Frequencies}
+        The empirical fraction of observations for which $E$ and $C$ are both true,
+        out of the observations for which $C$ is true,
+        is  written
+        \[ \hat \prob \{ E \vert C \} .  \]
+        It estimates $\prob\{E \vert C\}$.
+    \end{block}
+
+\end{frame}
 
 
-% . . . 
+%%%%%%
+\begin{frame}{Main point}
+
+    Here, we use conditional probabilities
+    to talk about frequencies \alert{in a particular column}
+    of a contingency table.
+
+    \vspace{2em}
+
+    \begin{center}
+        \begin{tabular}{lcc|c}
+            & female & male & total \\
+            \hline
+            HIV test & 9 & 8 & 17 \\
+            no HIV test & 52 & 51 & 103 \\
+            \hline
+            total & 61 & 59 & 120 \\
+        \end{tabular}
+    \end{center}
+
+    \vspace{1em}
+
+    \structure{Example:}
+    \begin{align*}
+        \hat \prob\{ \text{HIV test} \} = \frac{17}{120} \\
+        \hat \prob\{ \text{HIV test} \vert \text{female} \} = \frac{9}{61} \\
+        \hat \prob\{ \text{HIV test} \vert \text{male} \} = \frac{8}{59} \\
+    \end{align*}
+
+\end{frame}
+
+\section{$\chi^2$ on $2\times2$ tables}
+
+
+%%%%%%
+\begin{frame}{$\chi^2$ without theoretical proportions}
+
+    \begin{center}
+        \begin{tabular}{lcc|c}
+            & female & male & total \\
+            \hline
+            HIV test & 9 & 8 & 17 \\
+            no HIV test & 52 & 51 & 103 \\
+            \hline
+            total & 61 & 59 & 120 \\
+        \end{tabular}
+    \end{center}
+
+
+    \vspace{2em}
+
+    \structure{Question:}
+    Are males and females equally likely to be HIV tested?
+
+    \vspace{2em}
+
+    \begin{align*}
+        H_0&: \prob\{ \text{HIV test} \vert \text{female} \} = \prob\{ \text{HIV test} \vert \text{male} \} \\
+        H_A&: \prob\{ \text{HIV test} \vert \text{female} \} \neq \prob\{ \text{HIV test} \vert \text{male} \}
+    \end{align*}
+
+\end{frame}
+
+\subsection{Finding expected counts}
+
+%%%%%%
+\begin{frame}{The test statistic}
+
+    \begin{center}
+        \begin{tabular}{lcc|c}
+            & female & male & total \\
+            \hline
+            HIV test & 9 & 8 & 17 \\
+            no HIV test & 52 & 51 & 103 \\
+            \hline
+            total & 61 & 59 & 120 \\
+        \end{tabular}
+    \end{center}
+
+    \vspace{2em}
+
+    \structure{The issue:}
+    we don't have theoretical proportions for each category.
+
+    \vspace{2em}
+    
+    \structure{Solution:}
+    estimate them, using \alert{both} categories.
+
+    \vspace{2em}
+
+    \structure{Conceptually,} see if
+    \begin{align*}
+        \hat \prob\{ \text{HIV test} \vert \text{female} \} 
+        \approx \hat \prob\{ \text{HIV test} \vert \text{male} \}
+        \approx \hat \prob\{ \text{HIV test} \},
+    \end{align*}
+    where ``$\approx$'' means ``looks the same up to sampling noise''.
+
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Expected counts}
+
+    \only<1>{
+        \begin{center}
+            \begin{tabular}{lcc|c}
+                \alert{observed}& female & male & total \\
+                \hline
+                HIV test & 9 & 8 & 17 \\
+                no HIV test & 52 & 51 & 103 \\
+                \hline
+                total & 61 & 59 & 120 \\
+            \end{tabular}
+        \end{center}
+    }
+    \only<2->{
+        \begin{center}
+            \begin{tabular}{lcc|cc}
+                \alert{expected}& female & male & total & \uncover<3->{proportion} \\
+                \hline
+                HIV test & \uncover<4->{8.64} & \uncover<4->{8.36} & 17 & \uncover<3->{0.142} \\
+                no HIV test & \uncover<4->{52.36} & \uncover<4->{50.64} & 103 & \uncover<3->{0.858} \\
+                \hline
+                total & 61 & 59 & 120 &  \\
+            \end{tabular}
+        \end{center}
+    }
+
+    \vspace{2em}
+
+    \structure{The issue:}
+    we don't have theoretical proportions for each category.
+
+    \vspace{2em}
+    
+    \structure{Solution:}
+    estimate them, using \alert{both} categories.
+
+    \vspace{2em}
+
+    \structure{Conceptually,} see if
+    \begin{align*}
+        \hat \prob\{ \text{HIV test} \vert \text{female} \} 
+        \approx \hat \prob\{ \text{HIV test} \vert \text{male} \}
+        \approx \hat \prob\{ \text{HIV test} \},
+    \end{align*}
+    where ``$\approx$'' means ``looks the same up to sampling noise''.
+
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{The test statistic}
+
+    Observed (expected) counts:
+        \begin{center}
+            \begin{tabular}{lcc|c}
+                & female & male & total \\
+                \hline
+                HIV test & 9 (8.64) & 8 (8.36) & 17 \\
+                no HIV test & 52 (52.36) & 51 (50.64) & 103 \\
+                \hline
+                total & 61 & 59 & 120 \\
+            \end{tabular}
+        \end{center}
+
+    \vspace{2em}
+
+    The test statistic is the \alert{same} as $\chi^2_s$:
+    \[
+        \chi^2_s = \frac{(9 - 8.64)^2}{8.64} + 
+            \frac{(8 - 8.36)^2}{8.36} + 
+            \frac{(52 - 52.36)^2}{52.36} + 
+            \frac{(51 - 50.64)^2}{50.64} = 0.035
+    \]
+    and there is \alert{one} {degree of freedom}, and $P > 0.2$ \\
+    so there is no significant evidence that men and women get tested at different rates.
+
+
+\end{frame}
+
+\section{Larger contingency tables}
+
+%%%%%%
+\begin{frame}{General formula:}
+
+    In a general $r \times k$ contingency table:
+    \begin{enumerate}
+        \item Compute expected counts for each cell by:
+            \[ e_i = \frac{ (\text{row total}) \times (\text{column total}) }{ \text{grand total} } . \]
+        \item The degrees of freedom are: $df = (r-1)(k-1)$.
+        \item The test statistic is:
+            \[ \chi^2_s = \sum_i \frac{ ( o_i - e_i )^2 }{ e_i } . \]
+    \end{enumerate}
+
+    \vspace{2em}
+
+    The \structure{null hypothesis} is that the (conditional) probabilities of each row category
+    do not depend on the column grouping
+    (and, vice-versa).
+
+\end{frame}
+
+\subsection{Examples}
+
+%%%%%%
+\begin{frame}{Example: plover nests}
+    
+
+        \begin{center}
+            \begin{tabular}{llll|c}
+                 location & 2004 & 2005 & 2006 & total \\
+                \hline
+                ag field & 21 \uncover<2->{\alert{(18.55)}} & 19 \uncover<2->{\alert{(21.18)}} & 26 \uncover<2->{\alert{(20.27)}} & 66 \\
+                prarie dog city & 17 \uncover<2->{\alert{(18.83)}} & 38 \uncover<2->{\alert{(27.59)}} & 12 \uncover<2->{\alert{(20.58)}} & 67 \\
+                grassland & 5 \uncover<2->{\alert{(5.62)}} & 6 \uncover<2->{\alert{(8.24)}} & 9 \uncover<2->{\alert{(6.14)}} & 20 \\
+                \hline
+                total & 43 & 63 & 47 & 153 \\
+            \end{tabular}
+        \end{center}
+
+
+    \vspace{2em}
+
+    \noindent
+    $H_0$: The population distributions of the nest locations are the same in all three years. \\
+    $H_A$: The population distributions of the nest locations differ across years.
+
+    \vspace{2em}
+
+    \uncover<3->{
+    \[ \chi^2_s = \frac{(21-18.55)^2}{18.55} +  \cdots + \frac{(9-6.14)^2}{6.14} = 14.09 ,\]
+    and $df=(3-1)(3-1)=4$, so $0.001 < P < 0.01$.
+
+    \vspace{1em}
+    Strong evidence that nest location preferences \alert{changed} across the years.
+
+
+    }
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{Example: Hair and Eye Color}
+
+    In 6,800 German men, hair (columns) and eye (rows) color were:
+        \begin{center}
+            \begin{tabular}{lccc|c}
+                & brown & black & fair & red \\
+                brown & 438 & 288 & 115 & 16 \\
+                grey/green & 1387 & 746 & 946 & 53 \\
+                blue & 807 & 189 & 1768 & 47 \\
+            \end{tabular}
+        \end{center}
+
+        \uncover<2->{How does this conclusion differ from the prairie dog example?}
+\end{frame}
+
+\section{Conditions}
+
+%%%%%%
+\begin{frame}{Conditions}
+
+    The $\chi^2$ test requires that the counts derive from \alert{independent observations}.
+
+    \vspace{2em}
+
+    This is because it uses the Normal approximation to the \structure{Binomial}.
+    (think: independent coin flips)
+
+
+    \vspace{2em}
+
+    \structure{Example:}
+    We count the number of fouls made by our team and the opposing team across 10 soccer matches,
+    categorize them by type of foul (no card, yellow card, red card),
+    and report this in a $2\times 3$ contingency table.
+    Can we use $\chi^2$ to test if our team has a different distribution of foul types than its opponents?
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{Example:}
+
+    \begin{center}
+    \includegraphicscopyright[width=\textwidth]{barn-owl-comparison}{Owl predation in Pennsylvania, Pearson \& Pearson 1947}
+    \end{center}
+
+
+\end{frame}
+
 
 \section<article>{Summary}
 \section<presentation>*{Summary}
 
 \begin{frame}{Summary}
   \begin{enumerate}
-  \item Ein \alert{Wort} ist eine Folge von Symbolen aus einem
-    \alert{Alphabet}. 
-  \item Eine \alert{Syntax} besteht aus Regeln, nach denen
-    Worte (Texte) gebaut werden dürfen.
-  \item Eine \alert{Semantik} legt fest, was Worte \alert{bedeuten}.
-  \item Eine \alert{formale Sprache} ist eine Menge von Worten
-    über einem Alphabet.
+      \item A contingency table
+      \item provides counts of independent observations
+      \item categorized by all pairwise combinations of several categories.
+      \item Often, different columns  are different (independent) samples.
+      \item A $\chi^2$ test will test for homogeneity of row poportions,
+      \item if we compute ``expected'' counts as the product of the marginals.
   \end{enumerate}
 \end{frame}
 
@@ -150,11 +451,11 @@
 \begin{frame}{Homework}
   \begin{center}
 
-  % 7.4.2
+  10.2.1
 
   \vspace{2em}
 
-  % 7.4.8
+  10.2.5
 
   \vspace{2em}
 
