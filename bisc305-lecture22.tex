@@ -8,28 +8,13 @@
 % See the file doc/licenses/LICENSE for more details.
 
 
-\lecture[22]{Syntax versus Semantik}{lecture-text}
+\lecture[22]{Analysis of Variance}{lecture-text}
 
-\subtitle{Text und seine Bedeutung}
+\subtitle{or, ANOVA}
 
 \date{19 November 2013}
 
-% 414-427
-% INTRO:
-% the problem: multiple groups; are there differences in the means?
-% not just paired tests: 
-%  multiple testing
-%  pooling informaiton to get SD
-% Null hypothesis: all means equal
-% compare variance between groups to variance within
-% ONE-WAY ANOVA:
-%  notation n dot, yij,  barbar y, bar yi, si
-%  note grand mean is not mean of all obs
-%  pooled var
-%   equals mean square within
-%  mean square between
-%  SS total = SS within + SS between
-% ANOVA TABLE:
+% pp 414-427
 
 \begin{document}
 
@@ -38,81 +23,334 @@
 \end{frame}
 
 
-\section*{Ziele und Inhalt}
-
-\begin{frame}{Die Lernziele der heutigen Vorlesung und der Übungen.} 
+\begin{frame}{Moving on\ldots}
   \begin{enumerate}
-  \item Die Begriffe Syntax und Semantik erklären können
-  \item Syntaktische und semantische Elemente natürlicher Sprachen und
-    von Programmiersprachen benennen können
-  \item Die Begriffe Alphabet und Wort kennen
-  \item Objekte als Worte kodieren können
+    \item Recall the $t$-test:
+    \item that let us \alert{compare the means} of two independent samples:
+      \begin{center}
+        \includegraphics{dots1ex}
+      \end{center}
+    \item What about more categories?
+    \item more complicated combinations?
   \end{enumerate}
+
 \end{frame}
 
-\begin{frame}\frametitle<presentation>{Gliederung}
+\begin{frame}\frametitle<presentation>{Outline}
   \tableofcontents
 \end{frame}
 
 
-\section{Was ist Syntax?}
+\section{Multiple groups}
 
-\begin{frame}{Die zwei Hauptbegriffe der heutigen Vorlesung.}
-  \begin{block}{Grobe Definition (Syntax)}
-    Unter einer \alert{Syntax} verstehen wir \alert{Regeln}, nach denen
-    Texte \alert{strukturiert} werden dürfen. 
-  \end{block}
-  \begin{block}{Grobe Definition (Semantik)}
-    Unter einer \alert{Semantik} verstehen wir die Zuordnung von
-    \alert{Bedeutung} zu Text.
-  \end{block}
+\begin{frame}{Example}
+
+  Beak length for 32 birds of the same species on three islands that differ in ecology:
+\begin{center}
+  \includegraphics{dots2ex.pdf}
+\end{center}
+
+    \vspace{2em}
+
+    \structure{Question:} Is there a significant difference in mean beak length between the islands?
+
+    \vspace{2em}
+
+    \structure{$H_0$:} All the means are the same.\\
+    ($\mu_A = \mu_B = \mu_C$)
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Why not use paired tests?}
+
+  We could compare $A$ to $B$, $A$ to $C$, and $B$ to $C$.\\
+  \structure{But:}
+  \begin{itemize}
+    \item \alert{multiple testing} makes things difficult
+    \item since at $\alpha=.05$, one in twenty true null hypotheses will be rejected
+    \item and the tests aren't independent of each other.
+  \end{itemize}
+
+    \vspace{2em}
+
+    A single framework (\alert{one-way ANOVA}) is more elegant,\\
+    and lets us \alert{pool information} across all samples.
+
+\end{frame}
+
+% MORE ON MULTIPLE TESTING?
+
+%%%%%%
+\begin{frame}{ANalysis Of VAriance}
+
+  ANOVA compares
+  \begin{itemize}
+    \item variance \alert<1>{within} groups 
+    \item to the variance \alert<2>{between} groups 
+  \end{itemize}
+
+    \vspace{2em}
+
+  \begin{center}
+    \includegraphics<1>{dots2ex-within.pdf}
+    \includegraphics<2->{dots2ex-between.pdf}
+  \end{center}
+
+
+    \uncover<3->{
+    \structure{Morally,} the test statistic is the ratio of variation \alert{between} group means to the variation \alert{within} groups.
+    }
+\end{frame}
+
+\section{One-way ANOVA:}
+
+\begin{frame}{Notation}
+
+  \begin{itemize}
+    \item[$y_{ij}$:] the $j^\mathrm{th}$ observation in group $i$
+    \item[$I$:] number of groups
+    \item[$n_i$:] number of obs. in $i^\mathrm{th}$ group
+    \item[$\bar y_i$:] (sample) mean of the $i^\mathrm{th}$ group
+    \item[$s_i$:] (sample) SD for the $i^\mathrm{th}$ group
+  \end{itemize}
+
+  and
+
+  \begin{itemize}
+    \item[$n_\cdot$:] total number of observations
+    \item[$\bar {\bar y}$:] grand mean of the observations
+  \end{itemize}
+
+  where
+
+  \begin{align*}
+    {\bar y}_i &= \frac{1}{n_i}\sum_{j} y_{ij} \\
+    \bar {\bar y} &= \frac{1}{n_\cdot}\sum_{ij} y_{ij} \\
+  \end{align*}
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Within-group variation}
+
+  Recall that the \structure{sample variance} is \\
+  the sum of the squared deviation from the sample average,\\
+  divided by the degrees of freedom:
+  \[
+  s_i^2 = \frac{ \sum_j (y_{ij}-\bar y_i)^2 }{ n_i-1 } = \frac{ (y_{i1} - \bar y_i)^2 + \cdots + (y_{in_i} - \bar y_i)^2 }{n_i-1}
+  \]
+
+    \vspace{2em}
+
+    The ``\alert{Mean Square Within Groups}'' is analogous, across all groups:
+    \begin{align*}
+      \SS(\text{within}) &= \sum_{i} (n_i-1) s_i^2 = \sum_{ij} (y_{ij}-\bar y_i)^2 \\
+      \df(\text{within}) &= n_\cdot - I \\
+      \MS(\text{within}) &= \frac{\SS(\text{within})}{\df(\text{within})}
+    \end{align*}
+
+    Another name for $\MS(\text{within})$ is the ``pooled variance''.
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Between-group variation}
+
+  What's left over? 
+  Think of the ``\alert{Mean Square Between Groups}'' 
+  as the variance, after replacing all observations by their group mean:
+  \begin{align*}
+    \SS(\text{between}) &= \sum_{i} n_i (\bar y_i - \bar{\bar y_i})^2 \\
+      \df(\text{between}) &= I - 1 \\
+      \MS(\text{between}) &= \frac{\SS(\text{between})}{\df(\text{between})}
+  \end{align*}
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Within versus Between}
+
+  Think of it as taking variances of these terms separately:
+  \[ y_{ij} = \bar y_i + (y_{ij} - \bar y_i) \]
+
+    \vspace{2em}
+
+
+  \begin{center}
+    \includegraphics[width=\textwidth]{dots2ex-within-between.pdf}
+  \end{center}
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Total Sum of Squares}
+
+  The \alert{total sum of squares} is
+  \[ \SS(\text{total}) = \sum_{ij} (y_{ij} - \bar{\bar y})^2 , \]
+  or the sum of squared deviations from the grand mean.
+
+    \vspace{2em}
+
+  \structure{Remarkably,} the ``between'' and ``within'' sum of squares \\
+  \alert{exactly partition} the total sum of squares:
+  \[  \SS(\text{total})  = \SS(\text{between}) + \SS(\text{within}) \]
+  \ldots thanks, Pythagoras.
+
+    \vspace{2em}
+
+    The associated degrees of freedom is also partitioned:
+    \[ \df(\text{total}) = n_\cdot - 1 = \df(\text{between}) + \df(\text{within}) .  \]
+
+
+\end{frame}
+
+\section{The ANOVA table}
+
+
+%%%%%%
+\begin{frame}{Displaying and ANOVA}
+
+  To summarize:
+  \begin{itemize}
+    \item 
+  \end{itemize}
+
 \end{frame}
 
 
-\subsection[Syntax \protect\\ natürlicher Sprachen]{Syntax natürlicher Sprachen}
+\section{Examples}
 
-\begin{frame}{Beobachtungen zu einem ägyptischen Text.}
-  \includegraphicscopyright[width=6cm]{beamerexample-lecture-pic3.jpg}
-  {Copyright by Guillaume Blanchard, GNU Free Documentation License, Low Resultion}
 
-  \begin{block}{Beobachtungen}
-    \begin{itemize}
-    \item Wir haben keine Ahnung, was der Text bedeutet.
-    \item Es gibt aber \alert{Regeln}, die offenbar eingehalten wurden,
-      wie »Hieroglyphen stehen in Zeilen«.
-    \item Solche Regeln sind \alert{syntaktische Regeln} -- man kann sie
-      überprüfen, ohne den Inhalt zu verstehen.
-    \end{itemize}
-  \end{block}
+%%%%%%
+\begin{frame}{Example I}
+
+\begin{tabular}{ll|rr}
+  value & group & $\bar y_i$ & $y_{ij}-\bar y_i$  \\ 
+  \hline
+3   &  A  &  5.75  &  -2.75      \\
+7   &  A  &  5.75  &  1.25       \\
+8   &  A  &  5.75  &  2.25       \\
+5   &  A  &  5.75  &  -0.75      \\
+6   &  B  &  5.00     &  1.00          \\
+5   &  B  &  5.00     &  0.00          \\
+5   &  B  &  5.00     &  0.00          \\
+10  &  B  &  5.00     &  5.00          \\
+2   &  B  &  5.00     &  -3.00         \\
+3   &  B  &  5.00     &  -2.00         \\
+2   &  B  &  5.00     &  -3.00         \\
+7   &  B  &  5.00     &  2.00        \\
+   \hline
+   & SS & 0.136 & 60.68 \\ 
+   & df & 1 & 10 \\ 
+   & MS & 0.136 & 6.068   \\ 
+\end{tabular}
+
 \end{frame}
 
+%%%%%%
+\begin{frame}{Summarized, ANOVA-style}
 
-% . . . 
+  \begin{center}
+    \includegraphics{dots3ex.pdf}
+
+    \vspace{2em}
+
+    \begin{tabular}{lrrr}
+      source & df & SS & MS \\
+      \hline
+      between groups & 1 & 0.136 & 0.136 \\
+      within groups & 10 & 60.68 & 6.068 \\
+      \hline
+      Total & 11 & 60.81 & \\
+    \end{tabular}
+
+  \end{center}
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Example 2:}
+
+\begin{tabular}{ll|ll}
+  \hline
+  value & group & $\bar y_i$ & $y_{ij} - \bar y_i$ \\ 
+  \hline
+12  &   A  &       11.5  &       0.5      \\
+15  &   A  &       11.5  &       3.5      \\
+9   &   A  &       11.5  &       -2.5     \\
+10  &   A  &       11.5  &       -1.5     \\
+2   &   B  &       4.25  &       -2.25    \\
+7   &   B  &       4.25  &       2.75     \\
+4   &   B  &       4.25  &       -0.25    \\
+1   &   B  &       4.25  &       -3.25    \\
+9   &   B  &       4.25  &       4.75     \\
+2   &   B  &       4.25  &       -2.25    \\
+2   &   B  &       4.25  &       -2.25    \\
+7   &   B  &       4.25  &       2.75     \\
+   \hline
+&   SS  &  12.742  &     76.818  \\
+&   df  &  1       &     10      \\
+&   MS  &  12.742  &     7.682   \\
+\end{tabular}
+\end{frame}
+
+%%%%%%
+\begin{frame}{Summarized, ANOVA-style}
+
+  \begin{center}
+    \includegraphics{dots4ex.pdf}
+
+    \vspace{2em}
+
+    \begin{tabular}{lrrr}
+      source & df & SS & MS \\
+      \hline
+      between groups & 1 & 12.742 & 12.742 \\
+      within groups & 10 & 76.818 & 7.682 \\
+      \hline
+      Total & 11 & 89.56 &  \\
+    \end{tabular}
+
+  \end{center}
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Thinking about it}
+
+  With fixed sample sizes, what does it mean if
+  \begin{enumerate}
+    \item $\SS(\text{within})$ is small?
+    \item $\SS(\text{between})$ is small?
+    \item $\SS(\text{between})$ is small relative to $\SS(\text{within})$?
+  \end{enumerate}
+
+\end{frame}
 
 \section<article>{Summary}
 \section<presentation>*{Summary}
 
 \begin{frame}{Summary}
   \begin{enumerate}
-  \item Ein \alert{Wort} ist eine Folge von Symbolen aus einem
-    \alert{Alphabet}. 
-  \item Eine \alert{Syntax} besteht aus Regeln, nach denen
-    Worte (Texte) gebaut werden dürfen.
-  \item Eine \alert{Semantik} legt fest, was Worte \alert{bedeuten}.
-  \item Eine \alert{formale Sprache} ist eine Menge von Worten
-    über einem Alphabet.
+    \item Goal: compare means between many groups of independent observations.
+    \item Tool: \alert{analysis of variance}, or ANOVA
+    \item that partitions the ``total variance'' into two pieces, roughly:
+    \item variance of group means (``between''), and
+    \item variance of deviations from group means (``within'').
   \end{enumerate}
+  Next time: a test statistic and a distribution.
 \end{frame}
 
 % homework
 \begin{frame}{Homework}
   \begin{center}
 
-  % 7.4.2
+  11.2.1
 
   \vspace{2em}
 
-  % 7.4.8
+  11.2.7
 
   \vspace{2em}
 
