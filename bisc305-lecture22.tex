@@ -50,13 +50,13 @@
   \includegraphics{dots2ex.pdf}
 \end{center}
 
-    \vspace{2em}
+    \vspace{1em}
 
     \structure{Question:} Is there a significant difference in mean beak length between the islands?
 
     \vspace{2em}
 
-    \structure{$H_0$:} All the means are the same.\\
+    \structure{$H_0$:} All the means are the same.
     ($\mu_A = \mu_B = \mu_C$)
 
 \end{frame}
@@ -98,9 +98,6 @@
   \end{center}
 
 
-    \uncover<3->{
-    \structure{Morally,} the test statistic is the ratio of variation \alert{between} group means to the variation \alert{within} groups.
-    }
 \end{frame}
 
 \section{One-way ANOVA:}
@@ -212,9 +209,17 @@
 \begin{frame}{Displaying and ANOVA}
 
   To summarize:
-  \begin{itemize}
-    \item 
-  \end{itemize}
+  \begin{center}
+    \begin{tabular}{lrrr}
+      source & df & SS & MS \\
+      \hline
+      between groups & $I-1$ & $\sum_i n_i (\bar y_i - \bar{\bar y})^2$  & $\SS/\df$ \\
+      within groups & $n_\cdot -I$ & $\sum_i (n_i -1 )s_i^2$ & $\SS/\df$ \\
+      \hline
+      Total & $n_\cdot -1$  & $\sum_{ij} (y_{ij}-\bar{\bar y})^2$  & \\
+    \end{tabular}
+  \end{center}
+
 
 \end{frame}
 
@@ -241,9 +246,9 @@
 2   &  B  &  5.00     &  -3.00         \\
 7   &  B  &  5.00     &  2.00        \\
    \hline
-   & SS & 0.136 & 60.68 \\ 
+   & SS & 1.5 & 66.75 \\ 
    & df & 1 & 10 \\ 
-   & MS & 0.136 & 6.068   \\ 
+   & MS & 0.15 & 6.675   \\ 
 \end{tabular}
 
 \end{frame}
@@ -259,10 +264,10 @@
     \begin{tabular}{lrrr}
       source & df & SS & MS \\
       \hline
-      between groups & 1 & 0.136 & 0.136 \\
-      within groups & 10 & 60.68 & 6.068 \\
+      between groups & 1 & 1.5 & 1.5 \\
+      within groups & 10 & 66.75 & 6.675 \\
       \hline
-      Total & 11 & 60.81 & \\
+      Total & 11 & 68.25 & \\
     \end{tabular}
 
   \end{center}
@@ -289,9 +294,9 @@
 2   &   B  &       4.25  &       -2.25    \\
 7   &   B  &       4.25  &       2.75     \\
    \hline
-&   SS  &  12.742  &     76.818  \\
+&   SS  &  140.1667  &     84.5  \\
 &   df  &  1       &     10      \\
-&   MS  &  12.742  &     7.682   \\
+&   MS  &  140.1667  &     8.45   \\
 \end{tabular}
 \end{frame}
 
@@ -306,10 +311,10 @@
     \begin{tabular}{lrrr}
       source & df & SS & MS \\
       \hline
-      between groups & 1 & 12.742 & 12.742 \\
-      within groups & 10 & 76.818 & 7.682 \\
+      between groups & 1 & 140.1667 & 140.1667 \\
+      within groups & 10 & 84.5 & 8.45 \\
       \hline
-      Total & 11 & 89.56 &  \\
+      Total & 11 & 224.6667 &  \\
     \end{tabular}
 
   \end{center}
@@ -323,7 +328,8 @@
   \begin{enumerate}
     \item $\SS(\text{within})$ is small?
     \item $\SS(\text{between})$ is small?
-    \item $\SS(\text{between})$ is small relative to $\SS(\text{within})$?
+    \item $\SS(\text{within})$ is small relative to $\SS(\text{between})$?
+    \item $\MS(\text{within})$ is small relative to $\MS(\text{between})$?
   \end{enumerate}
 
 \end{frame}
