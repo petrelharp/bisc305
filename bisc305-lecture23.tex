@@ -56,6 +56,7 @@
     \begin{center}
         \begin{tabular}{cccc}
             & Diet 1 & Diet 2 & Diet 3 \\
+            \hline
             & 8 & 9 & 15 \\
             & 16 & 16 & 10 \\
             & 9 & 21 & 17 \\
@@ -74,6 +75,7 @@
     \begin{center}
         \begin{tabular}{cccc}
             & df & $\SS$ & $\MS$ \\
+            \hline
             between diets & 2 & 36 & 18 \\
             within diets & 9 & 210 & 23.33 \\
             \hline
@@ -261,21 +263,22 @@
 \begin{frame}{Example}
 
     \begin{center}
-\begin{tabular}{rrrrrr}
-  \hline
-  a & b & c & d & e \\ 
-  \hline
-  $n_i$ & 12.00 & 15.00 & 16.00 & 16.00 & 21.00 \\ 
-  $\bar y_i$ & 1.04 & 1.70 & 2.41 & 2.93 & 0.09 \\ 
-  $s_i$ & 2.72 & 17.62 & 3.73 & 9.85 & 0.38 \\ 
-   \hline
-\end{tabular}
+        \includegraphics{ex23-1.pdf}
     \end{center}
+    
 
-    \vspace{2em}
+
 
     \begin{center}
-        \includegraphics{ex23-1.pdf}
+\begin{tabular}{rrrrrr}
+  \hline
+  & a & b & c & d & e \\ 
+  \hline
+  $n_i$ &  20 & 21 & 14 & 11 & 14 \\
+  $\bar y_i$ & 1.9985894 & 0.4176685 & 0.9994830 & -0.6623678 & 2.7572143 \\
+  $s_i$ & 3.9715284 & 11.1465035 & 0.8638515 & 8.3122179 & 3.9775048 \\
+   \hline
+\end{tabular}
     \end{center}
 \end{frame}
 
@@ -311,10 +314,11 @@
 
     Beak size of finches in different islands:
 
-\begin{tabular}{ccccccccccc}
+    { \tiny
+\begin{tabular}{c|cccccccccc}
     &   a & a & b & b & c & c & d & d & e & e \\
     &   F & M & F & M & F & M & F & M & F & M \\
-    &     \hline
+    \hline
     & 10.10  &  10.66  & 11.86  &  14.67  &  10.07  & 12.95  &  11.51  &  14.60  &   12.74  & 14.33  \\
     & 9.32   &  13.31  & 14.14  &  14.60  &  10.34  & 11.39  &  13.15  &  13.88  &   13.83  & 16.18  \\
     & 8.42   &  11.88  & 10.72  &  13.97  &  8.42   & 10.86  &  12.93  &  12.48  &   12.91  & 16.42  \\
@@ -329,94 +333,216 @@
     &        &          &  10.57  &         &          &         &   11.61  &         &           & \\
     &        &          &         &          &          &         &   14.43  &         &           & \\
    \hline
-   $n_i$ &   7 & 11 & 12 & 5 & 8 & 6 & 13 & 11 & 4 & 3 \\
-   mean & 9.45 & 10.94 & 12.00 & 13.67 & 10.06 & 11.10 & 12.76 & 13.93 & 13.14 & 15.64 \\
-   SD & 1.01 & 1.08 & 1.30 & 1.04 & 0.96 & 1.14 & 0.88 & 0.85 & 0.48 & 1.14 \\
+$n_i$  &  7     &  11     &  12     &  5      &  8      &  6      &  13     &  11     &  4      &  3      \\
+mean   &  9.45  &  10.94  &  12.00  &  13.67  &  10.06  &  11.10  &  12.76  &  13.93  &  13.14  &  15.64  \\
+SD     &  1.01  &  1.08   &  1.30   &  1.04   &  0.96   &  1.14   &  0.88   &  0.85   &  0.48   &  1.14   \\
 \end{tabular}
-
+}
 \end{frame}
 
 %%%%%%
 \begin{frame}{Example: beak size}
 
-    Beak size of finches in different islands:
-    \begin{center}
-        \includegraphics{ex23-beaks.pdf}
-    \end{center}
+    Question: does mean beak size differ between islands? \\
+    between sexes?  \\
+    Is the size of the sex difference larger in some islands than others?
+
 
     \vspace{2em}
 
+    \only<1>{
+  Means, summarized:
+\begin{center}
+  \begin{tabular}{c|ccccc|c}
+    means & a & b & c & d & e &  \\
+    \hline
+ F & 9.45 & 12.00 & 10.06 & 12.76 & 13.14  & 11.57 \\
+ M & 10.94 & 13.67 & 11.10 & 13.93 & 15.64 & 12.65 \\
+ \hline 
+& 10.36 & 12.49 & 10.51 & 13.30 & 14.21 & 12.06 \\
+  \end{tabular}
+\end{center}
+}
+
+    \only<2>{
+  Means, relative to grand mean:
+\begin{center}
+  \begin{tabular}{c|ccccc|c}
+    means & a & b & c & d & e &  \\
+    \hline
+ F & -2.60 & -0.05 & -1.99 & 0.70 & 1.08  & -0.48  \\
+ M & -1.11 & 1.61 & -0.95 & 1.87 & 3.57 & 0.59 \\
+ \hline 
+ & -1.69 & 0.43 & -1.55 & 1.24 & 2.15 & \alert{12.06} \\
+  \end{tabular}
+\end{center}
+}
+
+    \only<3>{
+  Means, relative to sex and island means:
+\begin{center}
+  \begin{tabular}{c|ccccc|c}
+    means & a & b & c & d & e &  \\
+    \hline
+    F & -0.42 & 1.04 & -1.94 & -0.32 & 3.12 & \alert{-0.48} \\
+    M & -0.15 & 0.86 & -2.79 & 0.20 & 0.83 & \alert{0.59} \\
+ \hline 
+ & \alert{-1.69} & \alert{0.43} & \alert{-1.55} & \alert{1.24} & \alert{2.15} & \alert{12.06} \\
+  \end{tabular}
+\end{center}
+}
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Example: beak size}
+    Beak size of finches in different islands
+    \only<2>{with male/female means subtracted off:}
+    \only<3>{with island means subtracted off:}
+    \only<4>{with both subtracted off:}
     \begin{center}
-        \begin{tabular}
-
-        \end{tabular}
+        \includegraphics<1>{ex23-beaks.pdf}
+        \includegraphics<2>{ex23-beaks-nosex.pdf}
+        \includegraphics<3>{ex23-beaks-noisland.pdf}
+        \includegraphics<4>{ex23-beaks-nosex-noisland.pdf}
     \end{center}
-
-\end{frame}
-
-% two way ANOVA
-%   intro additive example
-%   extend model
-%   intro interaction example
-%   extend model
-% partition of sum-squares
-%   nested F test
-%   summary
-% (relation to t test and to chi-squared) ??
-
-
-Or, Sticklebacks (has plot): http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0059644
-
-From http://www.sciencemag.org.libproxy.usc.edu/content/296/5568/707.full:
-
-The first samples in 1973 (221 G. fortis and 72 G. scandens) were compared by ANOVAs with the last samples in 2001 (114 G. fortis and 35 G. scandens). The data were trimmed to 2.5 SD on either side of the mean by removing one to three individuals from the samples of each species. This corrected for skewness and unequal variances. Sex was included in two-factor ANOVAs because males are generally larger than females. Mean body size was significantly smaller in G. fortis (F 1,132 = 7.773, P = 0.0061) and in G. scandens (F 1,50 = 11.272, P < 0.0001) in 2001 than in 1973. There was a significant effect of sex in each species (P < 0.002) but no sex-by-year interaction (P > 0.1). Mean beak size did not differ between years in either G. fortis (F 1,166 = 0.004, P = 0.9480) or G. scandens (F 1,50 = 3.108, P= 0.0840); sex effects were significant in both species (P< 0.007), but there were no sex-by-year interactions (P> 0.1). Beak shape differed between years in both species. For G. scandens there was a strong year effect (F 1,72 = 17.168, P < 0.0001), a weak sex effect (F 1,72 = 5.943, P = 0.0172), and no interaction. The G. fortis sexes do not differ in beak shape (P = 0.9715), and therefore a one-factor ANOVA was performed with adult males, females, and birds of unknown sex. It demonstrated a strong difference between years (F 1,287 = 30.246, P < 0.0001). 
-
-\section{Was ist Syntax?}
-
-\begin{frame}{Die zwei Hauptbegriffe der heutigen Vorlesung.}
-  \begin{block}{Grobe Definition (Syntax)}
-    Unter einer \alert{Syntax} verstehen wir \alert{Regeln}, nach denen
-    Texte \alert{strukturiert} werden dürfen. 
-  \end{block}
-  \begin{block}{Grobe Definition (Semantik)}
-    Unter einer \alert{Semantik} verstehen wir die Zuordnung von
-    \alert{Bedeutung} zu Text.
-  \end{block}
 \end{frame}
 
 
-\subsection[Syntax \protect\\ natürlicher Sprachen]{Syntax natürlicher Sprachen}
+%%%%%%
+\begin{frame}{Two-way ANOVA model}
 
-\begin{frame}{Beobachtungen zu einem ägyptischen Text.}
-  \includegraphicscopyright[width=6cm]{beamerexample-lecture-pic3.jpg}
-  {Copyright by Guillaume Blanchard, GNU Free Documentation License, Low Resultion}
+  Now, $y_{ijk}$ is the $k^\mathrm{th}$ observation
+  in the $i^\mathrm{th}$ group of the first factor
+  and the $j^\mathrm{th}$ group of the second factor,
+    \[
+    y_{ijk} = \mu + \tau_i + \beta_j + \only<2->{\eta_{ij} +} \epsilon_{ijk} ,
+    \]
+    where \alert{$\mu$} is the population mean, \\
+    \alert{$\tau_i$} and \alert{$\beta_j$} are the mean effects of groups $i$ and $j$,\\
+    and the \alert{$\epsilon_{ijk}$} are independent noise terms.
 
-  \begin{block}{Beobachtungen}
-    \begin{itemize}
-    \item Wir haben keine Ahnung, was der Text bedeutet.
-    \item Es gibt aber \alert{Regeln}, die offenbar eingehalten wurden,
-      wie »Hieroglyphen stehen in Zeilen«.
-    \item Solche Regeln sind \alert{syntaktische Regeln} -- man kann sie
-      überprüfen, ohne den Inhalt zu verstehen.
-    \end{itemize}
-  \end{block}
+
+    \vspace{2em}
+    \pause
+
+    and with \structure{interaction effects}, \\
+    \alert{$\eta_{ij}$} is the mean effect of the combination of $i$ and $j$, \\
+    after accounting for each group's effect.
+
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Sum of Squares in Two-way ANOVA}
+
+  Define the residual sample means as before:
+    \[
+    y_{ijk} = \hat \mu + \hat \tau_i + \hat \beta_j + \hat \eta_{ij} + \hat \epsilon_{ijk} ,
+    \]
+    and $n_{ij}$ the number of observations in $(i,j)$; 
+    $n_{i\cdot} = \sum_j n_{ij}$, and 
+    $n_{\cdot j} = \sum_i n_{ij}$.
+  We can still partition the sum of squares:
+  \begin{align*}
+    \SS(\text{between $i$}) &= \sum_{i} n_{i\cdot} \hat \tau_{i}^2 & \df(\text{between $i$}) &= I-1 \\
+    \SS(\text{between $j$}) &= \sum_{j} n_{\cdot j} \hat \beta_{j}^2 & \df(\text{between $j$}) &= J-1 \\
+    \SS(\text{interactions}) &= \sum_{ij} n_{ij} \hat \eta_{ij}^2  & \df(\text{interactions}) &= (I-1)(J-1) \\
+    \SS(\text{within}) &= \sum_{ijk} \hat \epsilon_{ijk}^2  & \df(\text{within}) &= n_{\cdot} - IJ\\
+    \SS(\text{total}) &= \sum_{ijk} (y_{ijk}-\hat \mu)^2 & \df(\text{total}) &= n_\cdot - 1  
+  \end{align*}
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{$F$-test for two-way ANOVA}
+
+  \structure{General Principle of the $F$ test:}
+  \[
+  F_s = \frac{ \MS(\text{effect you are testing}) }{ \MS(\text{within}) } 
+  \]
+
+    \vspace{2em}
+
+    \structure{Why?} $\MS(\text{within})$ estimates the within-group SD.
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{$F$-tests, beak sizes:}
+
+    \[
+    y_{\text{island},\text{sex},k} =  \mu +  \tau_\text{island}, +  \beta_\text{sex}, +  \eta_{\text{island},\text{sex},} +  \epsilon_{\text{island},\text{sex},k} 
+    \]
+
+
+    \only<1>{
+  Are there sex differences in mean beak size that are of different sizes on different islands?
+  (or, Are mean beak size effects of sex and island \emph{not} additive?)
+  \begin{align*} 
+    H_0 &: \quad \eta_{11} = \eta_{12} = \cdots = \eta_{I-1,J} = \eta_{IJ} \\
+    F_s &= \frac{ \MS(\text{interaction}) }{ \MS(\text{within}) } = \frac{0.776}{1.060} = 0.7318\\
+    df &= (4,70)
+  \end{align*} 
+  }
+  
+
+  \only<2>{
+  Are there differences in mean beak size between islands (consistent across both sexes)?
+  \begin{align*} 
+    H_0 &: \quad \tau_1 = \cdots = \tau_I \\
+    F_s &= \frac{ \MS(\text{between islands}) }{ \MS(\text{within}) } = \frac{43.478}{1.060} = 41.0228 \\
+    df &= (4,70)
+  \end{align*} 
+  }
+
+  \only<3>{
+  Are there differences in mean beak size between sexes (consistent across all islands)?
+  \begin{align*} 
+    H_0 &: \quad \beta_1 = \cdots = \beta_J \\
+    F_s &= \frac{ \MS(\text{between sexes}) }{ \MS(\text{within}) } = \frac{23.032}{1.060} = 21.7317 \\
+    df &= (1,70)
+  \end{align*} 
+  }
+
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{$F$-tests, summary:}
+
+  \begin{center}
+    \begin{tabular}{c|ccccc}
+ & df & Sum Sq & Mean Sq & F value & $P$  \\
+ \hline
+island & 4 & 173.912 & 43.478 & 41.0228 & $<$.000001 \\
+sex & 1 & 23.032 & 23.032 & 21.7317 & .000014 \\
+interaction & 4 & 3.102 & 0.776 & 0.7318 & 0.5733  \\
+within & 70 & 74.189 & 1.060 &  & \\
+\hline
+total & 79 & 274.235 & & & \\
+\end{tabular}
+\end{center}
+
+
+    \vspace{2em}
+
+    \structure{Conclusion:} We have very strong evidence that mean beak size varies between sexes, and by island, but have no evidence that these effects are not additive.
+
 \end{frame}
 
 
-% . . . 
 
 \section<article>{Summary}
 \section<presentation>*{Summary}
 
 \begin{frame}{Summary}
   \begin{enumerate}
-  \item Ein \alert{Wort} ist eine Folge von Symbolen aus einem
-    \alert{Alphabet}. 
-  \item Eine \alert{Syntax} besteht aus Regeln, nach denen
-    Worte (Texte) gebaut werden dürfen.
-  \item Eine \alert{Semantik} legt fest, was Worte \alert{bedeuten}.
-  \item Eine \alert{formale Sprache} ist eine Menge von Worten
-    über einem Alphabet.
+    \item The $F$ test is the ratio of mean squares, between to within,
+    \item and tests for significant differences between group means.
+    \item To be sensible, it needs independent samples and similar within-group SDs.
+    \item The ANOVA framework extends to multifactorial designs,
+    \item but follows the same principle of comparing means squares between to within.
   \end{enumerate}
 \end{frame}
 
@@ -424,15 +550,16 @@ The first samples in 1973 (221 G. fortis and 72 G. scandens) were compared by AN
 \begin{frame}{Homework}
   \begin{center}
 
-  % 7.4.2
+  11.4.5
 
   \vspace{2em}
 
-  % 7.4.8
+
+  11.7.1
 
   \vspace{2em}
 
-  % 7.5.1
+  11.7.2
 
   \end{center}
 \end{frame}
@@ -443,4 +570,10 @@ The first samples in 1973 (221 G. fortis and 72 G. scandens) were compared by AN
 
 
 
+
+Or, Sticklebacks (has plot): http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0059644
+
+From http://www.sciencemag.org.libproxy.usc.edu/content/296/5568/707.full:
+
+The first samples in 1973 (221 G. fortis and 72 G. scandens) were compared by ANOVAs with the last samples in 2001 (114 G. fortis and 35 G. scandens). The data were trimmed to 2.5 SD on either side of the mean by removing one to three individuals from the samples of each species. This corrected for skewness and unequal variances. Sex was included in two-factor ANOVAs because males are generally larger than females. Mean body size was significantly smaller in G. fortis (F 1,132 = 7.773, P = 0.0061) and in G. scandens (F 1,50 = 11.272, P < 0.0001) in 2001 than in 1973. There was a significant effect of sex in each species (P < 0.002) but no sex-by-year interaction (P > 0.1). Mean beak size did not differ between years in either G. fortis (F 1,166 = 0.004, P = 0.9480) or G. scandens (F 1,50 = 3.108, P= 0.0840); sex effects were significant in both species (P< 0.007), but there were no sex-by-year interactions (P> 0.1). Beak shape differed between years in both species. For G. scandens there was a strong year effect (F 1,72 = 17.168, P < 0.0001), a weak sex effect (F 1,72 = 5.943, P = 0.0172), and no interaction. The G. fortis sexes do not differ in beak shape (P = 0.9715), and therefore a one-factor ANOVA was performed with adult males, females, and birds of unknown sex. It demonstrated a strong difference between years (F 1,287 = 30.246, P < 0.0001). 
 
