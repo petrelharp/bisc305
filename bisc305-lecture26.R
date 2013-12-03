@@ -1,0 +1,23 @@
+galton <- read.csv("Galton.csv")
+
+pdf(file='galton.pdf', width=3, height=2, pointsize=10)
+par(mar=c(4,4,0,0)+.3)
+with(galton, plot(jitter(Midparent),jitter(Child), pch=20, cex=.5, col=adjustcolor('black',.25), xlab='Midparent', ylab='Child') )
+with(galton, abline( lm( Child ~ Midparent ) ) )
+dev.off()
+
+pdf(file='galton-mean.pdf', width=3, height=2, pointsize=10)
+par(mar=c(4,4,0,0)+.3)
+with(galton, plot(jitter(Midparent),jitter(Child), pch=20, cex=.5, col=adjustcolor('black',.25), xlab='Midparent', ylab='Child') )
+with(galton, abline( lm( Child ~ Midparent ) ) )
+abline(h=mean(galton$Child), col='red')
+points( c(66,69), rep( mean(galton$Child), 2) , col='red' )
+dev.off()
+
+pdf(file='galton-pred.pdf', width=3, height=2, pointsize=10)
+par(mar=c(4,4,0,0)+.3)
+with(galton, plot(jitter(Midparent),jitter(Child), pch=20, cex=.5, col=adjustcolor('black',.25), xlab='Midparent', ylab='Child') )
+with(galton, abline( lm( Child ~ Midparent ) ) )
+abline(v=c(66,69), col='red')
+points( c(66,69), predict( lm( Child ~ Midparent, data=galton ), newdata=list(Midparent=c(66,69)) ), col='red' )
+dev.off()

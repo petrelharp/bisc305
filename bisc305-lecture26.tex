@@ -16,15 +16,159 @@
 
 % pp. 505-527
 
-% the linear model
-%   why linear?
-%   conditional means, sds
-%   the model y = b1 x + b0 + eps
-% estimates from data
-%   connection to estimated quantities
-% prediction
-%   example:   height + weight
-%   (+ regression to the mean)
+
+\begin{document}
+
+\begin{frame}
+  \maketitle
+\end{frame}
+
+
+\begin{frame}\frametitle<presentation>{Outline}
+  \tableofcontents
+\end{frame}
+
+
+\section{The linear model}
+
+%%%%%%
+\begin{frame}{Conditional means, SDs}
+
+  \begin{block}{Notation}
+    \begin{align*}
+      \mu_{Y|X} &= \; \text{mean value of $Y$ given $X$} \\
+      \sigma_{Y|X} &= \; \text{SD of $Y$ given $X$} \\
+    \end{align*}
+  \end{block}
+
+
+    \vspace{2em}
+
+    \structure{Example:}
+    Drug dose ($X$) and blood pressure ($Y$) in patients. \\
+    $\mu_{Y|X}$ is the mean blood pressure among patients with dose $X$; \\
+    $\sigma_{Y|X}$ is the SD.
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{The linear model}
+
+  \structure{In words,} the values of $Y$ are normally distributed with mean
+  a linear function of $X$ and a standard deviation that does not depend on $X$:
+  \begin{align*}
+    \mu_{Y|X} &= \beta_0 + \beta_1 X \\
+    \sigma_{Y|X} &= \sigma_\epsilon
+  \end{align*}
+  or, equivalently,
+  \begin{align*}
+    Y = \beta_0 + \beta_1 X + \epsilon \\
+    \epsilon \; \text{independent, with SD $\sigma_\epsilon$} .
+  \end{align*}
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{Why linear?}
+
+  \begin{enumerate}
+      
+    \item It is arguably the simplest possible relationship between $X$ and $Y$,
+      requiring only two parameters ($b_0$ and $b_1$)
+
+    \item Most things look linear at the right level of approximation.
+
+    \item The mathematics works out nicely.
+
+    \item Nonlinear relationships can often be transformed to linear relationships.
+
+  \end{enumerate}
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Transformation example}
+
+\end{frame}
+
+
+
+\section{Estimates from data}
+
+
+%%%%%%
+\begin{frame}{Conditions}
+
+  We clearly need some sort of \structure{independence} in the $(X,Y)$ data to make good estimates.
+
+    \vspace{2em}
+
+    \begin{block}{Random Subsampling Model}
+      Each observed pair $(x_i,y_i)$ can be regarded as having $y_i$ sampled
+      at random from the \alert{conditional} population of $Y$ values having the $X$ value $x_i$,
+      and independent of the other samples.
+    \end{block}
+
+    \vspace{2em}
+
+    \structure{Examples:}
+    \begin{itemize}
+      \item Heights ($X$), weights ($Y$) of a random sample from a populations.
+      \item Clotting rate ($Y$) after a dose ($X$) of warfarin was administered,
+        with dose assigned randomly.
+    \end{itemize}
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Parameter estimates}
+
+  If the random subsampling model holds, then
+  \begin{enumerate}
+    \item[$b_0$] is an estimate of $\beta_0$ (the intercept)
+    \item[$b_1$] is an estimate of $\beta_1$ (the slope)
+    \item[$s_e$] is an estimate of $\sigma_\epsilon$ (the SD of the noise)
+  \end{enumerate}
+
+\end{frame}
+
+\section{Prediction}
+
+%%%%%%
+\begin{frame}{Example:}
+
+  Son's height ($Y$) and ``midparent'' height (average of: father's and 1.08 $\times$ mother's heights)
+  (Galton 1885):
+  \begin{center}
+    \includegraphics<1>{galton.pdf}
+    \includegraphics<2>{galton-mean.pdf}
+    \includegraphics<3>{galton-pred.pdf}
+
+  \only<2>{\structure{Error} size $\approx \sigma_Y$}
+  \only<3>{\structure{Error} size $\approx \sigma_\epsilon < \sigma_Y$}
+  \begin{align*}
+    \mu_X &= 68.09 & \sigma_X &= 2.52 \\
+    \mu_Y &= 68.31 & \sigma_Y &= 1.79 \\
+    r &= 0.459 & s_e &= 2.24 
+  \end{align*}
+  \end{center}
+
+\end{frame}
+
+
+\section{Inference on the slope}
+
+%%%%%%
+\begin{frame}{The standard error of the slope}
+
+  Recall that $b_1$ is our \structure{estimate} for the slope $\beta_1$.
+
+  \begin{block}{Standard Error for $b_1$}
+  \end{block}
+
+\end{frame}
+
 % inference on the slope
 %   SE of b_1
 %   depends on X and Y sampling: fig 12.5.1
@@ -38,63 +182,6 @@
 %   residual plot
 %   fitted vs residuals
 %   transformations
-
-
-\begin{document}
-
-\begin{frame}
-  \maketitle
-\end{frame}
-
-
-\section*{Ziele und Inhalt}
-
-\begin{frame}{Die Lernziele der heutigen Vorlesung und der Übungen.} 
-  \begin{enumerate}
-  \item Die Begriffe Syntax und Semantik erklären können
-  \item Syntaktische und semantische Elemente natürlicher Sprachen und
-    von Programmiersprachen benennen können
-  \item Die Begriffe Alphabet und Wort kennen
-  \item Objekte als Worte kodieren können
-  \end{enumerate}
-\end{frame}
-
-\begin{frame}\frametitle<presentation>{Gliederung}
-  \tableofcontents
-\end{frame}
-
-
-\section{Was ist Syntax?}
-
-\begin{frame}{Die zwei Hauptbegriffe der heutigen Vorlesung.}
-  \begin{block}{Grobe Definition (Syntax)}
-    Unter einer \alert{Syntax} verstehen wir \alert{Regeln}, nach denen
-    Texte \alert{strukturiert} werden dürfen. 
-  \end{block}
-  \begin{block}{Grobe Definition (Semantik)}
-    Unter einer \alert{Semantik} verstehen wir die Zuordnung von
-    \alert{Bedeutung} zu Text.
-  \end{block}
-\end{frame}
-
-
-\subsection[Syntax \protect\\ natürlicher Sprachen]{Syntax natürlicher Sprachen}
-
-\begin{frame}{Beobachtungen zu einem ägyptischen Text.}
-  \includegraphicscopyright[width=6cm]{beamerexample-lecture-pic3.jpg}
-  {Copyright by Guillaume Blanchard, GNU Free Documentation License, Low Resultion}
-
-  \begin{block}{Beobachtungen}
-    \begin{itemize}
-    \item Wir haben keine Ahnung, was der Text bedeutet.
-    \item Es gibt aber \alert{Regeln}, die offenbar eingehalten wurden,
-      wie »Hieroglyphen stehen in Zeilen«.
-    \item Solche Regeln sind \alert{syntaktische Regeln} -- man kann sie
-      überprüfen, ohne den Inhalt zu verstehen.
-    \end{itemize}
-  \end{block}
-\end{frame}
-
 
 % . . . 
 
