@@ -175,6 +175,23 @@
 
 
 %%%%%%
+\begin{frame}{Conclusions?}
+
+    \begin{center}
+        \includegraphics[height=2in]{usc-temps-just-regression}
+
+    \begin{align*}
+        r &= 0.3128291 & n &= 1114 \\
+        t_s &=  r \sqrt{ \frac{ n-2}{1-r^2} } = 10.98305 &
+        P &< 10^{-16} .
+    \end{align*}
+    What do we conclude?
+
+    \end{center}
+\end{frame}
+
+
+%%%%%%
 \begin{frame}{Observed minus predicted}
 
     \begin{block}{Residuals}
@@ -210,13 +227,14 @@
 
     \vspace{2em}
 
-    We are using the \structure{least squares regression line},\\
+    The regression line, or the line of local averages, is also known as the \structure{least squares regression line},\\
     which is the straight line that \alert{minimizes} $\SS(\text{resid})$.
 
     \vspace{2em}
 
     Amazing fact: the equation of this line is easy to compute,
-    and is related to the correlation coefficient.
+    and is related to the correlation coefficient. \\
+    (i.e.\ the equations for $b_0$ and $b_1$ earlier)
 
 
 \end{frame}
@@ -285,29 +303,28 @@
 
 \section{Examples}
 
-\section{USC weather}
-
 
 
 %%%%%%
-\begin{frame}{Back to the example}
+\begin{frame}{From the book}
 
-    \begin{center}
-        \includegraphics[height=2in]{usc-temps-just-regression}
+  \begin{center}
+  \includegraphics[height=.8\textheight]{ex12-3-1.png}
+  \end{center}
 
-    \begin{align*}
-        r &= 0.3128291 & n &= 1114 \\
-        t_s &=  r \sqrt{ \frac{ n-2}{1-r^2} } = 10.98305 &
-        P &< 10^{-16} .
-    \end{align*}
-    What do we conclude?
-
-    \end{center}
 \end{frame}
 
 
-\section{Other examples}
+%%%%%%
+\begin{frame}{From the wild}
 
+
+  \begin{quote}
+    1. Residents of a chronic care hospital (13 men of mean age 88.5 +/- 6 SD years and 13 women of mean age 86.5 +/- 6 SD years) who had multiple pathologies were assessed for leg extensor capability in several ways. 2. A custom-built rig was used to assess leg extensor power, that is, maximal power output over less than 1 s in a single extension of one leg. Performance measures were obtained by timing chair rises, stair climbing,  and a walk. \ldots 3. Leg extensor power was \textbf{significantly correlated} with all performance measures, but the performance measures were not related to each other except for chair rising and walking speed. 4. Women had significantly less extensor power than men, but their power explained more of the variance in performance, e.g.\ power \textbf{accounted for 86\% of the variance} in walking speed.
+  \end{quote}
+  \figcaption{ Leg extensor power and functional performance in very old men and women, Bassey et al 1992 }
+
+\end{frame}
 
 % . . . 
 
