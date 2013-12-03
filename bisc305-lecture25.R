@@ -107,7 +107,7 @@ cor(xy)
 pdf(file="r2ex-3.pdf", width=3, height=2.5)
 par(mar=c(3,3,1,0)+.1,mgp=c(2,1,0))
 xy <- data.frame(x=rnorm(100),y=rnorm(100))
-xy$y <- xy$x/5 + xy$y
+xy$y <- xy$x + xy$y*3
 with(xy, plot(x,y, xlab="", ylab="", pch=20, cex=.5, col=adjustcolor('black',.25) ) )
 abline( coef( lm( y ~ x, data=xy ) ) )
 dev.off()
