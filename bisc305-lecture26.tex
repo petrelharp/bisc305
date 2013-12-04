@@ -87,12 +87,6 @@
 
 \end{frame}
 
-%%%%%%
-\begin{frame}{Transformation example}
-
-\end{frame}
-
-
 
 \section{Estimates from data}
 
@@ -165,38 +159,202 @@
   Recall that $b_1$ is our \structure{estimate} for the slope $\beta_1$.
 
   \begin{block}{Standard Error for $b_1$}
+      \[
+          \SE_{b_1} = \frac{ s_e }{ s_x \sqrt{n-1} }
+      \]
   \end{block}
+
+    \vspace{2em}
+    
+    \only<1>{
+        \begin{center}
+        \includegraphics[width=3in]{fig-12-5-1.png}
+        \end{center}
+    }
+    \pause
+
+    This quantifies the intuition that
+    we will be more certain about the relationship with
+    \begin{itemize}
+        \item less noise in the relationship ($s_e$)
+        \item larger sample size ($n$)
+        \item a wider spread of $x$ values ($s_x$)
+    \end{itemize}
+
+    \vspace{2em}
+
+    A 95\% confidence interval for the slope is then
+    \[
+        b_1 \pm t_{n-2,0.025} \SE_{b_1} .
+    \]
 
 \end{frame}
 
-% inference on the slope
-%   SE of b_1
-%   depends on X and Y sampling: fig 12.5.1
-%   CI for b_1 using t-distribution
-%   hypothesis test for b_1 = 0
-% interpretation
-%   beware of
-%     nonlinearity
-%     outliers
-%     leverage points
-%   residual plot
-%   fitted vs residuals
-%   transformations
 
-% . . . 
+%%%%%%
+\begin{frame}{Hypothesis testing}
+
+    We can do as usual with $\SE_{b_1}$:
+    under a null hypothesis of no relationship
+    \[
+        H_0: \; \beta_1 = 0
+    \]
+    the test statistic 
+    \[
+        t_s = \frac{b_1 - 0}{\SE_{b_1}}
+    \]
+    is $t$-distributed with $n-2$ degrees of freedom.
+
+    \vspace{2em}
+
+    \structure{Note:} this is the \alert{same} as our previous test of no correlation.
+
+\end{frame}
+
+
+%%%% %%%%%%% %%%%%%%
+\section{Interpretation}
+
+
+%%%%%%
+\begin{frame}{Nonlinearity}
+
+    \begin{center}
+    \includegraphics<1>{nonlinear1.pdf}
+    \includegraphics<2>{nonlinear2.pdf}
+    \end{center}
+
+    If the true relationship isn't linear, then linear regression might not be the right tool.
+
+
+\end{frame}
+
+% %%%%%%
+% \begin{frame}{Transformation example}
+% 
+% \end{frame}
+
+
+%%%%%%
+\begin{frame}{Outliers}
+
+    An \alert{outlier} is a data point unusually far from the rest (in some sense; usually in the sense of having \alert{large residuals}).
+    \begin{center}
+        \includegraphics<1>[width=3in]{fig-12-6-3.png}
+        \includegraphics<2>[width=2in]{fig-12-6-3.png}
+    \end{center}
+    \pause
+
+    These usually indicate deviations from the model;\\
+    and may have a large effect on the results.
+
+
+    \vspace{2em}
+
+    \structure{What to do:} investigate, use robust statistics, stay skeptical.
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{Leverage points}
+
+    A \alert{leverage point} is one that \emph{could} have a large effect on the regression.
+    (i.e.\ moving it changes the slope of the regression line a lot)
+    \begin{center}
+        \includegraphics<1>[width=3in]{fig-12-6-3.png}
+        \includegraphics<2>[width=2in]{fig-12-6-3.png}
+    \end{center}
+    \pause
+
+    \vspace{1em}
+
+    These are \structure{far from the center of mass}.
+
+
+    \vspace{1em}
+
+    \structure{What to do:} investigate, stay skeptical.
+
+\end{frame}
+
+
+
+%%%%%%
+\begin{frame}{Influential points}
+
+    An \alert{influential point} is one that actually \alert{is} affecting the regression line a lot -- if it was removed, the slope would change dramatically.
+    \begin{center}
+        \includegraphics[width=3in]{fig-12-6-4.png}
+    \end{center}
+
+    \vspace{2em}
+
+    \structure{What to do:} investigate, stay skeptical.
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{Nonindependence}
+
+    Twenty measurements of serum cholesterol ($X$) and serum glucose ($Y$)
+    in two humans (ten each):
+    \begin{center}
+        \includegraphics[width=3in]{fig-12-6-5.png}
+    \end{center}
+
+    Is the correlation significant? \\
+    (How many data points are there?)
+
+\end{frame}
+
+
+\section{Diagnostic plots}
+
+
+%%%%%%
+\begin{frame}{Residuals versus predicted}
+    Checks for nonlinearity; \uncover<3->{heteroskedasticity (different variances)}
+    \begin{center}
+        \includegraphics<1>{nonlinear2-resids.pdf}
+        \includegraphics<2>[width=\textwidth]{usc-temps-fit-resid.pdf}
+        \includegraphics<3>{hetersked-resids.pdf}
+    \end{center}
+
+    \structure{The hope} is to see \alert{no structure} in the residual plot.
+
+\end{frame}
+
+
+
+%%%%%%
+\begin{frame}{What can go wrong?}
+
+    \begin{center}
+        \includegraphics[width=\textwidth]<1>{many-regressions-1.pdf}
+        \includegraphics[width=\textwidth]<2>{many-regressions-2.pdf}
+        \includegraphics[width=\textwidth]<3>{many-regressions-3.pdf}
+    \end{center}
+
+\end{frame}
+
+
+
 
 \section<article>{Summary}
 \section<presentation>*{Summary}
 
 \begin{frame}{Summary}
   \begin{enumerate}
-  \item Ein \alert{Wort} ist eine Folge von Symbolen aus einem
-    \alert{Alphabet}. 
-  \item Eine \alert{Syntax} besteht aus Regeln, nach denen
-    Worte (Texte) gebaut werden dürfen.
-  \item Eine \alert{Semantik} legt fest, was Worte \alert{bedeuten}.
-  \item Eine \alert{formale Sprache} ist eine Menge von Worten
-    über einem Alphabet.
+      \item Linear regression fits a model where the mean of $Y$ is a linear function of $X$
+      \item and the variances do not depend on $X$.
+      \item Under the ``random subsampling model'',
+      \item $b_0$ and $b_1$ are good estimates of the terms in the linear relationship
+      \item and $s_e$ is a good estimate of the residual SD.
+      \item Testing for correlation is equivalent to testing for $b_1=0$,
+      \item which we can do with a $t$ test and $\SE_{b_1}$.
+      \item Look at the data to check if the conditions are met.
   \end{enumerate}
 \end{frame}
 
@@ -204,15 +362,11 @@
 \begin{frame}{Homework}
   \begin{center}
 
-  % 7.4.2
+      Two 8.5"$\times$11" pages, two-sided, of handwritten notes.
 
-  \vspace{2em}
+    \vspace{2em}
 
-  % 7.4.8
-
-  \vspace{2em}
-
-  % 7.5.1
+    Bring a calculator (besides your phone).
 
   \end{center}
 \end{frame}

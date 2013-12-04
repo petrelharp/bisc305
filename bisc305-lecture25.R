@@ -79,6 +79,17 @@ abline( coef( lm( temp ~ year, data=usc ) ) )
 dev.off()
 
 
+pdf(file="usc-temps-fit-resid.pdf", width=5, height=2.5)
+layout(t(1:2))
+par(mar=c(3,3,1,0)+.1,mgp=c(2,1,0))
+with(usc, plot(year,temp, xlab="", ylab="mean temperature", pch=20, cex=.5, col=adjustcolor('black',.25), las=2 ) )
+templm <- lm( temp ~ year, data=usc )
+abline( coef( templm ) )
+plot( fitted(templm), resid(templm), xlab='predicted', ylab='residual', cex=.5, pch=20, col=adjustcolor('black',.25) )
+abline(h=0)
+lines( lowess( fitted(templm), resid(templm), f=.2 ), col='red', lwd=2 )
+dev.off()
+
 
 ### fake examples
 
