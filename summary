@@ -1,0 +1,105 @@
+INFORMAL SUMMARY + HOMEWORK
+
+* Correlation & Causation
+**   confounding factors
+* t test
+**   one-sided or two-sided?
+**   7.4.2: confounding factors
+**   7.4.8: correlation is not causation
+**   7.5.1: two-sample t-test
+* signficance and importance
+**   effect size
+**   CIs
+**   P-value, sample size, power
+**   7.6.1: significant and/or important?
+* conditions
+**   test statistic; under null model
+**   if they are wrong then P-values are wrong and/or test has lower power
+**   for t-test: random, independent samples; sampling distribution of the means close to Normal.
+**   7.8.2: why not t-test?
+**   7.9.1: interpret hypothesis test
+* wilcoxon-mann-whitney
+**   distribution-free
+**   versus power
+**   7.10.4: do WMW
+**   7.10.6: do and interpret WMW
+* paired-sample t
+**   difference to unpaired t test
+**   increased power
+**   8.2.2: do paired-sample t, CI
+**   8.2.3: ditto
+* paired-sample sign test & Wilcoxon sign-rank test
+**   procedure for each; zeros, ties
+**   conditions, differences
+**   8.4.3: sign test
+**   8.4.11: sample size for power in sign test? (hard)
+**   8.5.4: sign-rank test
+* estimating proportions
+**   CLT for frequencies
+**   Wilson's estimator and SE
+**   and CI
+**   picking sample size for estimation of proportion
+**   9.2.2: SE for proportion
+**   9.2.9: sample size for estimation
+**   9.2.10: continued
+* chi-squared for proportions
+**   omnidirectional
+**   parking lot example
+**   9.4.1: test to given proportions
+**   9.4.6: again
+* two-sample chi-squared
+**   contingency tables
+**   motivation: conditional prob in columns 
+**   df
+**   conclusions depend on nature of data: one big sample or columns are different samples?
+**   conditions: independence
+**   10.2.1: make fake data with chisq = x
+**   10.2.5: do chisq
+* ANOVA
+**   means across multiple groups
+**   variance within to variance between
+**   11.2.1: find SS, MS...
+**   11.2.7: invent data with within=0, between=0
+* F test and two-way ANOVA
+**   partition of sum of squares
+**   anova model
+**   F statistic
+**   factorial, two-way design
+**   beak size x island example
+**   two-way anova model
+**   test for no interactions
+**   11.4.5: one-way ANOVA
+**   11.7.1: graph two-way data
+**   11.7.2: continue, do F test for interactions and one effect; estimate SD
+* correlation and coefficient
+**   toxoplasma example
+**   r and what it means
+**   linear!
+**   hypothesis test for rho=0
+**   12.2.1: identify r
+**   12.2.5: compute, test, interpret correlation
+**   12.2.6: again
+* least-squares regression
+**   usc temperature example
+**   equation for regression line 
+**   residual SS and SD
+**   proportion of variance explained
+**   12.3.3: do regression etc
+**   12.3.6: again
+* linear model, regression
+**   linear model
+**   random subsampling model (conditions)
+**   SE for slope
+**   testing the slope
+**   nonlinearity
+**   outliers
+**   leverage points
+**   influential points
+**   clustering; nonindependence
+**   residuals versus predicted
+**   12.4.3, 12.4.4: prediction and SD
+**   12.5.3: CI for slope
+**   12.6.2: sample size and certainty of slope
+**   12.6.6: identify residual plots (+ interpret!)
+  
+  

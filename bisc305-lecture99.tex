@@ -1,0 +1,97 @@
+% Copyright 2007 by Till Tantau
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+
+\lecture[review]{Sum-up and revew}{lecture-body}
+
+\date{5 December 2013}
+
+
+\begin{document}
+
+\begin{frame}\frametitle<presentation>{Outline}
+  \begin{enumerate}
+    \item General principles
+    \item Test
+    \item What you should know for each test
+    \item Other concepts
+  \end{enumerate}
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{General Principles}
+
+  \begin{itemize}
+    \item always look at, and think about, the data
+    \item correlation is not causation (consider confounding factors)
+    \item  sample size is like a magnifying glass, it lets you see smaller effect sizes
+    \item  ... but statistical significance does not imply real-world importance
+    \item  statistical (hypothesis) tests have two pieces: a test statistic, and a null model
+    \item  the P-value is the probability of seeing a test statistic at least as extreme under the null model
+    \item  nonindependent observations can drastically mislead you
+    \item  if the sampling distribution is not close to Normal, use a distribution-free test
+  \end{itemize}
+
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{Tests}
+
+  \begin{itemize}
+    \item two-sample t-test
+    \item Wixocon-Mann-Whitney
+    \item paired-sample t
+    \item paired-sample sign
+    \item Wilcoxon sign-rank
+    \item CI for estimated proportion
+    \item chi-squared for single-sample proportions
+    \item two-sample chi-squared
+    \item F-test for one-way ANOVA
+    \item F-test for two-way ANOVA
+    \item t-test for no linear correlation
+  \end{itemize}
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{What you should know for each test}
+
+  \begin{itemize}
+    \item what sort of data the test applies to
+    \item what conditions the test needs to be appropriate
+    \item how to check the conditions are satisfied
+    \item how to formulate the null \& alternative hypotheses
+    \item what the test statistic is and how to compute it
+    \item how to interpret the result, statistically, and in real-world terms
+  \end{itemize}
+
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Other concepts}
+  
+  \begin{itemize}
+    \item standard deviation of --
+    \item standard error of --
+    \item effect size (of difference in means)
+    \item back-calculation of necessary sample size to have power to see a certain effect (e.g. for differences in proportion)
+    \item the two-way ANOVA model: group means, interaction means, plus noise/variability
+    \item correlation: proportion of variance explained
+    \item the linear (regression) model: linear conditional men plus noise/variability
+    \item regression: residuals, leverage, influence
+  \end{itemize}
+
+
+\end{frame}
+
+\end{document}
