@@ -4,7 +4,7 @@ lectures = $(patsubst bisc305-lecture%.tex,lecture%,$(wildcard bisc305-lecture*.
 
 .SECONDARY : 
 
-all : bisc305-lecture15-slides.pdf bisc305-lecture16-slides.pdf bisc305-lecture17-slides.pdf bisc305-lecture18-slides.pdf bisc305-lecture19-slides.pdf bisc305-lecture20-slides.pdf bisc305-lecture21-slides.pdf bisc305-lecture22-slides.pdf bisc305-lecture23-slides.pdf bisc305-lecture24-slides.pdf bisc305-lecture25-slides.pdf bisc305-lecture26-slides.pdf 
+all : bisc305-lecture15-slides.pdf bisc305-lecture16-slides.pdf bisc305-lecture17-slides.pdf bisc305-lecture18-slides.pdf bisc305-lecture19-slides.pdf bisc305-lecture20-slides.pdf bisc305-lecture21-slides.pdf bisc305-lecture22-slides.pdf bisc305-lecture23-slides.pdf bisc305-lecture24-slides.pdf bisc305-lecture25-slides.pdf bisc305-lecture26-slides.pdf  bisc305-lecture99-slides.pdf 
 	pdfjoin --outfile bisc305-lecture-all.pdf bisc305-lecture*-slides.pdf
 
 lecture.% : bisc305-lecture%-slides.pdf bisc305-lecture%-print.pdf
