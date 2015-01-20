@@ -108,14 +108,14 @@ dev.off()
 
 pdf(file="quakes-mag-time.pdf", width=3, height=2.5, pointsize=10)
 par(mar=c(4,4,1,1)+.1)
-with( subset(quakes, MAG>1), plot( MAG ~ date, xlab="", ylab="magnitude", pch=20, cex=0.25 ) )
+with( subset(quakes, MAG>1), plot( MAG ~ date, xlab="", ylab="magnitude", pch=20, cex=0.1 ) )
 dev.off()
 
 pdf(file="quakes-mag-time-lines.pdf", width=3, height=2.5, pointsize=10)
 par(mar=c(4,4,1,1)+.1)
 with( subset(quakes, MAG>1), {
          plot( MAG ~ date, xlab="", ylab="magnitude", pch=20, cex=0.1 ) 
-         lines( lowess( date, MAG, f=.1), col='red' )
+         lines( lowess( date, MAG, f=.05), col='red' )
     } )
 dev.off()
 
