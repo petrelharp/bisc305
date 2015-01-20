@@ -69,8 +69,8 @@
     The \alert{median} of a collection of $n$ observations
     is:
     \begin{enumerate}
-        \item \textbf{$n$ odd} the middle value.
-        \item \textbf{$n$ even} the average of the middle two values.
+        \item (\textbf{$n$ odd}) the middle value.
+        \item (\textbf{$n$ even}) the average of the middle two values.
     \end{enumerate}
 
     \vspace{3em}
@@ -139,10 +139,10 @@
 
 
 %%%%%
-\begin{frame}{Robustness}
+\begin{frame}{Median vs Mean; Robustness}
 
     A statistic is \alert{robust} if it doesn't change much\\
-    even if a small number of observations change by a lot.
+    even if a small number of observations change by a lot. \\
 
     \vspace{3em}
 
@@ -155,7 +155,12 @@
     \vspace{3em}
     \pause
 
+    The median is robust, the mean is not.
+
+    \vspace{2em}
+
     \textbf{Think of a situation} when the median be a better choice than the mean.
+
     And, vice-versa.
 
 \end{frame}
@@ -334,7 +339,7 @@
 \subsection{Boxplots and dotcharts, by category}
 
 %%%%%
-\begin{frame}{Boxplots, by category}
+\begin{frame}{Categorical--numeric}
 
     Earthquakes, again:
     \begin{center}
@@ -349,12 +354,14 @@
 \subsection{Scatter plots}
 
 %%%%%
-\begin{frame}{Bivariate scatter plots}
+\begin{frame}{Numeric--numeric: Bivariate scatter plots}
 
   Earthquakes, again:
   \begin{center}
     \includegraphics<1>{quakes-mag-depth}
     \includegraphics<2>{quakes-mag-depth-lines}
+    \includegraphics<3>{quakes-mag-time}
+    \includegraphics<4>{quakes-mag-time-lines}
   \end{center}
 
 

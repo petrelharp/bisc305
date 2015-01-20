@@ -106,6 +106,19 @@ with( subset(quakes, MAG>2), {
     } )
 dev.off()
 
+pdf(file="quakes-mag-time.pdf", width=3, height=2.5, pointsize=10)
+par(mar=c(4,4,1,1)+.1)
+with( subset(quakes, MAG>1), plot( MAG ~ date, xlab="", ylab="magnitude", pch=20, cex=0.25 ) )
+dev.off()
+
+pdf(file="quakes-mag-time-lines.pdf", width=3, height=2.5, pointsize=10)
+par(mar=c(4,4,1,1)+.1)
+with( subset(quakes, MAG>1), {
+         plot( MAG ~ date, xlab="", ylab="magnitude", pch=20, cex=0.1 ) 
+         lines( lowess( date, MAG, f=.1), col='red' )
+    } )
+dev.off()
+
 # map
 if (interactive()) {
     plot( LAT ~ LON, data=quakes, cex=MAG/2 )
