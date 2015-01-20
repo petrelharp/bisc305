@@ -40,13 +40,16 @@
 
 %%%%%
 \begin{frame}{Overview}
+    Goal: describe a dataset, i.e.
     \begin{enumerate}
-        \item Goal: describe a dataset, i.e.
         \item summarize important quantities (statistics)
         \item and visualize the data (plots)
     \end{enumerate}
 
-    Generally, these are \alert{descriptive statistics}.
+    \vspace{3em}
+
+    Like the histogram,
+    these are \alert{descriptive statistics}.
 \end{frame}
 
 
@@ -57,19 +60,21 @@
 
 
 %%%%% %%%%%
-\section{Measures of Center}
+\section{Measures of Center: median and mean}
 
 
 %%%%%
 \begin{frame}{The Median}
 
-    The \alert{median} of a collection of observations
-    is
+    The \alert{median} of a collection of $n$ observations
+    is:
     \begin{enumerate}
-        \item[$n$ odd] the middle value.
-        \item[$n$ even] the average of the middle two values.
+        \item \textbf{$n$ odd} the middle value.
+        \item \textbf{$n$ even} the average of the middle two values.
     \end{enumerate}
 
+    \vspace{3em}
+    \pause
 
     \structure{Example:} Weight gain of lambs:
     \begin{center}
@@ -79,6 +84,8 @@
     \end{center}
 
     \pause
+
+    \vspace{3em}
 
     \structure{``Example:''} Weight gain of baby sharks:
     \begin{center}
@@ -93,7 +100,7 @@
 %%%%%
 \begin{frame}{The Mean}
 
-    The \alert{mean} (or ``average'') of a collection of observations is
+    The \alert{mean} (or ``average'') of a collection of observations is:
     \begin{enumerate}
         \item the sum of the observations, divided by the number of observations:
             \[
@@ -109,6 +116,7 @@
     \]
 
     \pause
+    \vspace{2em}
 
     \structure{Example:} Weight gain of lambs:
     \begin{center}
@@ -118,6 +126,7 @@
     \end{center}
 
     \pause
+    \vspace{2em}
 
     \structure{``Example:''} Weight gain of baby sharks:
     \begin{center}
@@ -132,16 +141,22 @@
 %%%%%
 \begin{frame}{Robustness}
 
-    A statistic is \alert{robust} if it doesn't change much
+    A statistic is \alert{robust} if it doesn't change much\\
     even if a small number of observations change by a lot.
 
     \vspace{3em}
 
-    These are ``robust to errors'' in the data.
+    \structure{Think of:} ``robust to error''.
 
     \vspace{3em}
 
-    Conversely, they tend to not ``use all the data''.
+    \structure{Conversely,} robust statistics tend to ``not use all the data''.
+
+    \vspace{3em}
+    \pause
+
+    \textbf{Think of a situation} when the median be a better choice than the mean.
+    And, vice-versa.
 
 \end{frame}
 
@@ -149,16 +164,19 @@
 %%%%%
 \begin{frame}{the Quartiles}
 
-    divide the data into \emph{quarters}:
+    \textbf{Quartiles} divide the data into \emph{quarters}:
     \begin{itemize}
         \item the \alert{first quartile} is the median of the {lower half}
-        \item the \alert{second quartile} is the median
+        \item (the \alert{second quartile} is the median)
         \item the \alert{third quartile} is the median of the {upper half}
     \end{itemize}
 
-    The \alert{interquartile range} (\textbf{IQR}) is the difference between the third and the first quartiles.
+    \vspace{2em}
+
+    The \alert{interquartile range} (``\textbf{IQR}'') is the difference between the third and the first quartiles.
 
     \pause
+    \vspace{2em}
 
     \structure{Example:} blood pressures.
     \begin{center}
@@ -168,6 +186,7 @@
     \end{center}
 
     \pause
+    \vspace{2em}
 
     \structure{Example:} pulses.
     \begin{center}
@@ -196,27 +215,30 @@
 \begin{frame}{Boxplots: modified}
 
     Medians and quartiles are \textbf{robust},
-    but not the \alert{extremes}.
+    but the maximum and minimum are \alert{not}.
 
-    \vspace{3em}
+    \vspace{2em}
 
     We'd like the boxplot to be robust. 
 
-    \vspace{3em}
+    \vspace{2em}
 
     \structure{Solution:}
-    Extend the whiskers out only to
+    Extend the whiskers out only to the ``fences'':
     \[
         \text{( quartile )} \; \pm \; 1.5 \times \text{( IQR )} 
     \]
 
+    \centering
+    \includegraphics[width=0.8\textwidth]{modified-boxplot-fig_2_4_2.png}
+
 \end{frame}
 
 %%%%%
-\begin{frame}{Comparison: earthquakes}
+\begin{frame}{Comparison of the methods:}
 
-    SoCal earthquakes in 2014, \\
-    {\small from \url{http://service.scedc.caltech.edu/ftp/catalogs/SCEC_DC/2014.catalog} }
+  166 SoCal earthquakes magnitude ${}>3$ in 2014 \\
+  {\small (from \url{http://service.scedc.caltech.edu/}) }
 
     \begin{center}
         \includegraphics<1>[width=\textwidth]{quakes-dotplot}
@@ -229,10 +251,33 @@
 
 
 %%%%% %%%%%
-\section{Stacked frequency plots}
+\section{Visualizing relationships}
+
+\begin{frame}{More than one variable: relationships}
+
+  Histograms, medians, means, and boxplots \\
+  are all summaries of a \alert{single group} of numbers:\\
+  \textbf{measurements} of a single variable.
+
+  \vspace{2em}
+
+  \structure{Often,} we measure \alert{more than one variable},
+  and what we can do depends on the type of variables, e.g.
+  \begin{itemize}
+    \item \structure{categorical-categorical}: treatment $\times$ result \\ 
+      -- how many fall in each combination of categories?
+    \item \structure{categorical-numeric}: treatment $\times$ measurement \\ 
+      -- how do the distributions of measurements in different categories compare?
+    \item \structure{numeric-numeric}: measurement $\times$ measurement \\ 
+      -- how do the two variables relate to each other?
+  \end{itemize}
+
+\end{frame}
+
+\subsection{Stacked frequency plots}
 
 %%%%%
-\begin{frame}{Absolute frequencies}
+\begin{frame}{Absolute frequencies, stacked}
     \begin{center}
         % \begin{column}{0.5\textwidth}
             \includegraphics[width=.8\textwidth]{ecoli-counts-tab2_5_1.png}
@@ -245,7 +290,7 @@
 \end{frame}
 
 %%%%%
-\begin{frame}{Relative frequencies}
+\begin{frame}{Relative frequencies, stacked}
     \begin{center}
         % \begin{column}{0.5\textwidth}
             \includegraphics[width=0.8\textwidth]{ecoli-freqs-tab2_5_2.png}
@@ -260,6 +305,8 @@
 
 %%%%%
 \begin{frame}{What's the difference?}
+
+  What does each one show more clearly than the other?
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -284,7 +331,7 @@
 
 
 %%%%% %%%%%
-\section{Categorical-numeric relationships}
+\subsection{Boxplots and dotcharts, by category}
 
 %%%%%
 \begin{frame}{Boxplots, by category}
@@ -297,26 +344,60 @@
 
 \end{frame}
 
+
+%%%%% %%%%%
+\subsection{Scatter plots}
+
+%%%%%
+\begin{frame}{Bivariate scatter plots}
+
+  Earthquakes, again:
+  \begin{center}
+    \includegraphics<1>{quakes-mag-depth}
+    \includegraphics<2>{quakes-mag-depth-lines}
+  \end{center}
+
+
+\end{frame}
+
+
 \section<article>{Summary}
 \section<presentation>*{Summary}
 
 \begin{frame}{Summary}
   \begin{enumerate}
-      \item
+    \item The median and mean are two summaries of \emph{location}.
+    \item The median is more \emph{robust} to outliers,
+    \item the mean is a better predictor of \emph{sums}.
+    \item \emph{Quartiles} divide the data into quarters,
+    \item and can be depicted in \emph{boxplots}.
+    \item Relationships between variables can be depicted with
+    \begin{itemize}
+      \item stacked frequencies
+      \item parallel boxplots
+      \item scatterplots
+    \end{itemize}
   \end{enumerate}
+  \vspace{2em}
+
+  \structure{Rule of thumb:}
+  maximize information while minimizing ink.
 \end{frame}
 
 % homework
 \begin{frame}{Homework}
   \begin{center}
 
-  2.3.10, 2.3.15, 2.3.16
+  2.3.15, 2.3.16
 
   \vspace{2em}
 
 
   2.4.3
   
+  \vspace{2em}
+
+  2.5.2
 
   \end{center}
 \end{frame}
