@@ -60,13 +60,6 @@ dev.off()
 pdf(file="quakes-hist-only.pdf",width=3,height=2,pointsize=10)
 par(mar=c(4,3,1,1)+.1)
 xh <- with(quakes, hist(MAG, breaks=60,main='',xlab='magnitude') )
-with( quakes, {
-        abline( v=mean(MAG), col='red' )
-        for (k in 1:3) {
-            with( subset(quakes, abs(MAG-mean(MAG))<k*sd(MAG) ), 
-                    hist(MAG, col=adjustcolor(k,0.3), breaks=xh$breaks, add=TRUE ) )
-        }
-    } )
 dev.off()
 
 pdf(file="quakes-hist-mean-sd.pdf",width=3,height=2,pointsize=10)
