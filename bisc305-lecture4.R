@@ -1,3 +1,4 @@
+if (interactive()) {
 # Example: why n-1?
 
 nsamps <- 1e4
@@ -25,8 +26,17 @@ rowMeans(small.sds^2)
 
 
 
+###
+# CV plots
+
+layout(1:3)
+par(mar=c(2,1,3,0)+.1)
+for (cv in c(1,10,100)){
+    hist( x+cv, breaks=30, xlim=range(0,x+cv), main=paste("CV =", cv), xlab='', ylab='' )
+}
 
 
+}
 
 ###
 # figures for slides
@@ -40,9 +50,23 @@ par(mar=c(4,3,1,1)+.1)
 xh <- with(quakes, hist(MAG, breaks=60,xlab='magnitude',main='') )
 with( subset(quakes, rank(MAG)>nrow(quakes)/4 & rank(MAG)<nrow(quakes)*3/4), 
         hist(MAG, col=adjustcolor("blue",0.5), breaks=xh$breaks, add=TRUE ) )
-text( quantile(MAG,.75), 1000, labels="50%", col='red', cex=0.75 )
-abline( v=median(quakes$MAG), col='red' )
-abline( v=quantile(quakes$MAG,c(.25,.75)), lty=2, col='red' )
+with( quakes, {
+    text( quantile(MAG,.75), 1000, labels="50%", col='red', cex=0.75 )
+    abline( v=median(quakes$MAG), col='red' )
+    abline( v=quantile(quakes$MAG,c(.25,.75)), lty=2, col='red' )
+        } )
+dev.off()
+
+pdf(file="quakes-hist-only.pdf",width=3,height=2,pointsize=10)
+par(mar=c(4,3,1,1)+.1)
+xh <- with(quakes, hist(MAG, breaks=60,main='',xlab='magnitude') )
+with( quakes, {
+        abline( v=mean(MAG), col='red' )
+        for (k in 1:3) {
+            with( subset(quakes, abs(MAG-mean(MAG))<k*sd(MAG) ), 
+                    hist(MAG, col=adjustcolor(k,0.3), breaks=xh$breaks, add=TRUE ) )
+        }
+    } )
 dev.off()
 
 pdf(file="quakes-hist-mean-sd.pdf",width=3,height=2,pointsize=10)
@@ -66,9 +90,11 @@ par(mar=c(4,3,1,1)+.1)
 xh <- with(quakes, hist(sqrt(MAG), breaks=60,xlab='magnitude',main='') )
 with( subset(quakes, rank(sqrt(MAG))>nrow(quakes)/4 & rank(sqrt(MAG))<nrow(quakes)*3/4), 
         hist(sqrt(MAG), col=adjustcolor("blue",0.5), breaks=xh$breaks, add=TRUE ) )
-text( quantile(sqrt(MAG),.75), 1000, labels="50%", col='red', cex=0.75 )
-abline( v=median(quakes$sqrt(MAG)), col='red' )
-abline( v=quantile(quakes$sqrt(MAG),c(.25,.75)), lty=2, col='red' )
+with( quakes, {
+    text( quantile(sqrt(MAG),.75), 1000, labels="50%", col='red', cex=0.75 )
+    abline( v=median(sqrt(MAG)), col='red' )
+    abline( v=quantile(sqrt(MAG),c(.25,.75)), lty=2, col='red' )
+    } )
 dev.off()
 
 pdf(file="quakes-sqrt-hist-mean-sd.pdf",width=3,height=2,pointsize=10)
@@ -101,3 +127,4 @@ with( quakes, {
         }
     } )
 dev.off()
+
