@@ -106,6 +106,11 @@ with( quakes, {
 dev.off()
 
 
+pdf(file="quakes-lat-only.pdf",width=3,height=2,pointsize=10)
+par(mar=c(4,3,1,1)+.1)
+xh <- with(quakes, hist(LAT, breaks=60,main='',xlab='magnitude') )
+dev.off()
+
 pdf(file="quakes-lat-mean-sd.pdf",width=3,height=2,pointsize=10)
 par(mar=c(4,3,1,1)+.1)
 xh <- with(quakes, hist(LAT, breaks=60,main='',xlab='magnitude') )

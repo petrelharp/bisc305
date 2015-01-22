@@ -238,11 +238,12 @@ The denominator is $n-1$, not $n$:
         \item $\bar y \pm 3s$: almost everything ($>99\%$).
     \end{itemize}
 
-    Earthquake \only<1-2>{magnitude:} \only<3>{latitude:}
+    Earthquake \only<1-3>{magnitude:} \only<4->{latitude:}
     \includegraphics<1>[width=\textwidth]{quakes-hist-IQR}
     \includegraphics<2>[width=\textwidth]{quakes-hist-only}
     \includegraphics<3>[width=\textwidth]{quakes-hist-mean-sd}
-    \includegraphics<4>[width=\textwidth]{quakes-lat-mean-sd}
+    \includegraphics<4>[width=\textwidth]{quakes-lat-only}
+    \includegraphics<5>[width=\textwidth]{quakes-lat-mean-sd}
 
 \end{frame}
 
@@ -304,9 +305,10 @@ The denominator is $n-1$, not $n$:
         \item $\bar y \pm 3s$: almost everything ($>99\%$).
     \end{itemize}
 
-    Distribution of $\sqrt{\text{magnitude}}$:
+    Distribution of \only<1>{magnitude}\only<2>{$\sqrt{\text{magnitude}}$}:
 
-    \includegraphics[width=\textwidth]{quakes-sqrt-hist-mean-sd}
+    \includegraphics<1>[width=\textwidth]{quakes-hist-mean-sd}
+    \includegraphics<2>[width=\textwidth]{quakes-sqrt-hist-mean-sd}
 
 \end{frame}
 
