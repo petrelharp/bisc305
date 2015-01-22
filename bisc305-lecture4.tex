@@ -161,9 +161,9 @@
 
 \centering
 \only<5->{Square root of ( \\} 
-\only<6->{$(1-1/n)\times{}$\\} 
-\only<4->{average (} 
-\only<3->{sum of squared} 
+\only<6->{$(1+\frac{1}{n-1})\times{}$\\} 
+\only<4->{average ( squared} 
+\only<3>{sum of squared} 
 \only<2->{deviations from the mean}
 \only<4->{)\\} 
 \only<5->{)}
@@ -180,7 +180,7 @@
 
 
 %%%%%
-\begin{frame}{Wait, $1-\frac{1}{n}$?}
+\begin{frame}{Wait, $1+\frac{1}{n-1}$?}
 
 The denominator is $n-1$, not $n$:
     \[
@@ -341,8 +341,9 @@ The denominator is $n-1$, not $n$:
     \item The SD is \emph{almost} the root mean square deviation,
     \item and is a less robust, but sometimes better, measure of dispersion.
     \item It is useful to think about these as concrete aspects of the histogram.
-    \item The SD and CV do not change under multiplicative rescaling,
-    \item and the mean and SD don't change under additive shifts.
+    \item The CV doesn't change under multiplicative rescaling,
+    \item the SD doesn't change under additive shifts,
+    \item and the SD and mean change in natural ways under both multiplicative and additive shifts.
   \end{enumerate}
 \end{frame}
 
