@@ -32,7 +32,7 @@ rowMeans(small.sds^2)
 layout(1:3)
 par(mar=c(2,1,3,0)+.1)
 for (cv in c(1,10,100)){
-    hist( x+cv, breaks=30, xlim=range(0,x+cv), main=paste("CV =", cv), xlab='', ylab='' )
+    hist( x+cv, breaks=30, xlim=range(0,x+cv), main=paste("CV =", round(1/cv,20)), xlab='', ylab='' )
 }
 
 
