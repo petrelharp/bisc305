@@ -25,8 +25,12 @@
 \usepackage{tikz}
 \usepackage{colortbl}
 % \usepackage{yfonts}
-\usepackage{colortbl}
 
+% for aligning columns on decimal points:
+%   http://tex.stackexchange.com/questions/2746/aligning-numbers-by-decimal-points-in-table-columns
+%   http://tex.stackexchange.com/questions/140353/align-position-of-decimal-point-within-table-of-numbers-text-and-percentage-val?rq=1
+\usepackage{dcolumn}
+\newcolumntype{Y}{D..{3.2}}
 
 % Common settings for all lectures in this course
 
