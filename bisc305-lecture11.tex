@@ -1,0 +1,300 @@
+% Copyright 2007 by Till Tantau
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+
+\lecture[11]{Comparing two samples}{lecture-text}
+
+\subtitle{hypothesis testing, and the $t$ statistic}
+
+\date{2 March 2015}
+
+% pp. 218-(242?)
+
+
+\begin{document}
+
+\begin{frame}
+  \maketitle
+\end{frame}
+
+
+\begin{frame}\frametitle<presentation>{Outline}
+  \tableofcontents
+\end{frame}
+
+
+\section{Hypothesis testing}
+
+%%%%%%
+\begin{frame}{The goal}
+
+    You have measurements from two groups of samples:
+    \begin{itemize}
+        \item case/control
+        \item treatment/control
+        \item red/green
+        \item (etcetera)
+    \end{itemize}
+
+    \vspace{2em}
+
+    They have different means:
+    \[  \bar y_1 > \bar y_2 . \]
+    Do we believe the groups are different?
+
+    \vspace{2em}
+    \pause
+
+    \begin{block}{If the label has no effect,}
+        we can the samples are from the \alert{same population}.
+    \end{block}
+
+    \vspace{2em}
+    \pause
+
+    \structure{Randomizing} the \alert{group labels}
+    estimates how big a difference $|\bar y_1 - \bar y_2|$ is expected 
+    due to random chance.
+
+\end{frame}
+
+
+%%%%%
+\begin{frame}{Example: }
+
+    Flexibility (in cm):  
+    \begin{center}
+      \begin{tabular}{rcrr}
+        & & Aerobics & Dance \\
+       \hline
+       & 38  & 48 \\
+       & 45  & 59 \\
+       & 58  & 61 \\
+       & 64  & \\
+       \hline
+       mean & 51.25 & 56.00 \\
+     \end{tabular}
+   \end{center}
+     A 10\% difference!  Do we believe it?
+
+     \vspace{2em}
+
+     \pause
+
+     \structure{Proportion of} rearrangements with
+     \[
+         | \bar y_1 - \bar y_2 | > |51.25-56.00| = 4.75
+     \]
+     is $20/35 = 0.57$.
+ 
+\end{frame}
+
+
+%%%%%
+\begin{frame}{Example:}
+
+    Are earthquakes bigger around solistices and equinoxes?
+
+\end{frame}
+
+
+%%%%%
+\begin{frame}{Hypothesis testing}
+
+    Here's what we just did:
+    \begin{itemize}
+        \item No difference in means between groups\\
+            $\Rightarrow$ expect \structure{(this much)} difference in sample means\\
+            due to random chance.
+        \item If the observed difference \alert{seems unlikely} \\
+            there's probably a real difference.
+    \end{itemize}
+
+     \vspace{2em}
+     \pause
+
+     Or:
+     \begin{itemize}
+         \item Either
+             \begin{itemize}
+                 \item[(null)] The observed difference is just due to chance, or
+                 \item[(alternative)] the population means of the two groups are different.
+             \end{itemize}
+         \item If the observed difference has \alert{small probability}
+             in the case that $H_0$ is true, that's good evidence for $H_A$.
+     \end{itemize}
+
+     \vspace{2em}
+     \pause
+
+     Or:
+     \begin{itemize}
+         \item Either
+             \begin{itemize}
+                 \item[$H_0$] $\mu_1 = \mu_2$, or
+                 \item[$H_A$] $\mu_1 \neq \mu_2$.
+             \end{itemize}
+         \item Assuming $H_0$, if
+             \[ \text{Prob}( |\bar Y_1 - \bar Y_2| \ge |\bar y_1 - \bar y_2| ) \]
+             is small, then we \alert{reject} $H_0$.
+     \end{itemize}
+
+\end{frame}
+
+
+%%%%%
+\begin{frame}{Framing hypotheses}
+
+    We had:
+     \begin{itemize}
+         \item[$H_0$] The observed difference is just due to chance.
+         \item[$H_A$] The population means of the two groups are different.
+     \end{itemize}
+
+     \vspace{2em}
+
+    The general framework is:
+         \begin{itemize}
+             \item[$H_0$] I'm worried that my results might just be caused by random noise of this sort.
+             \item[$H_A$] But if not, I have good evidence that this is true.
+         \end{itemize}
+
+\end{frame}
+
+%%%%%% %%%%%%
+\section{The $t$ test}
+
+
+%%%%%
+\begin{frame}{}
+
+    To test the null hypotheses
+    \[  H_0: \qquad \only<1>{\mu_1 = \mu_2} \only<2->{\mu_1 - \mu_2 = 0} \]
+    against the alternative
+    \[  H_A: \qquad \only<1>{\mu_1 \neq \mu_2} \only<2->{\mu_1 - \mu_2 \neq 0} \]
+     \pause
+     \pause
+    we can use
+
+     \vspace{2em}
+
+     \begin{block}{The $t$ test (short form)}
+         Under $H_0$, the \alert{$t$ statistic}
+         \[ t_s = \frac{ (\bar y_1 - \bar y_2) - 0 }{ \SE_{\bar Y_1 - \bar Y_2} } \]
+         has, approximately, \alert{Student's $t$ distribution}
+         with degrees of freedom equal to
+         \[ \df = \frac{ (\SE_1^2 + \SE_2^2)^2 }{ \SE_1^4/(n_1-1) + \SE_2^4/(n_2-1) } . \]
+     \end{block}
+
+\end{frame}
+
+%%%%%
+\begin{frame}{Example: }
+
+    Noreprenephrin (NE) concentration (ng/gm) in rat brains:
+    \begin{center}
+      \begin{tabular}{c|rr}
+            & Toluene & Control \\
+          \hline
+          $n$ & 6 & 5 \\
+          $\bar y$ & 541.8 & 444.2 \\
+          $s$  & 66.1 & 69.6 \\
+          $\SE$ & 27 & 31 \\
+     \end{tabular}
+   \end{center}
+
+
+     \pause
+     \begin{align*}
+         \SE_{\bar Y_1 - \bar Y_2} &= 41.195 \\
+         t_s &= 2.34  \\
+         \df &= 8.47 
+     \end{align*}
+     $P$-value: 0.0454 .
+
+\end{frame}
+
+
+%%%%%
+\begin{frame}{Example:}
+
+
+    Are earthquakes bigger around solistices and equinoxes?
+
+    \pause
+
+    Which is ``better'', randomization or the $t$-test?
+
+\end{frame}
+
+%%%%%
+\begin{frame}{Assumptions for the $t$ test:}
+
+     \begin{block}{The $t$ test (longer form)}
+         If $\bar y_1$ and $\bar y_2$ are independent samples of size $n_1$ and $n_2$
+         from normally distributed populations,
+         then the \alert{$t$ statistic}
+         \[ t_s = \frac{ (\bar y_1 - \bar y_2) - 0 }{ \SE_{\bar Y_1 - \bar Y_2} } \]
+         has, Student's $t$ distribution
+         with degrees of freedom approximately equal to
+         \[ \df = \frac{ (\SE_1^2 + \SE_2^2)^2 }{ \SE_1^4/(n_1-1) + \SE_2^4/(n_2-1) } . \]
+     \end{block}
+
+     \vspace{2em}
+
+     \structure{To check,} look at histograms.  (we'll come back to this later)
+ 
+\end{frame}
+
+
+%%%%%
+\section{$P$-values}
+
+
+
+%%%%%
+\begin{frame}{What is a $P$-value?}
+
+    \begin{center}
+        \includegraphics{width=0.6\textwidth}{p_values}
+        \figcaption{xkcd:1478}
+    \end{center}
+
+\end{frame}
+
+
+
+\section<article>{Summary}
+\section<presentation>*{Summary}
+
+\begin{frame}{Summary}
+  \begin{enumerate}
+      \item 
+  \end{enumerate}
+\end{frame}
+
+% homework
+\begin{frame}{Homework}
+  \begin{center}
+
+      Find an interesting study reported on in the news.
+
+    \vspace{2em}
+
+
+  \end{center}
+\end{frame}
+
+
+\end{document}
+
+
+
+
+
