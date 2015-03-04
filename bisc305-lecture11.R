@@ -27,7 +27,8 @@ cat("Mean winter/summer: ", mean.solstice, "\n")
 cat("Mean spring/fall: ", mean.equinox, "\n")
 cat("Difference: ", mean.solstice-mean.equinox, "\n")
 
-# randomization:
+
+##### randomization:
 quakes$fake_season <- sample(quakes$subseason)
 with( quakes, {
             xh <- hist(MAG,plot=FALSE)
@@ -42,8 +43,12 @@ random.samples <- replicate(1000, {
     mean(quakes$MAG[fake_season=="winter/summer"])-mean(quakes$MAG[fake_season!="winter/summer"]) } )
 
 hist(random.samples)
+
 abline(v=mean.solstice-mean.equinox,col='red',lwd=2)
 
+
+
+##### t-test version
 # SE for solstice
 sd.solstice <- sd(quakes$MAG[quakes$subseason=="winter/summer"]) 
 n.solstice <- length(quakes$MAG[quakes$subseason=="winter/summer"]) 
@@ -60,7 +65,7 @@ df <- ( se.solstice^2 + se.equinox^2 )^2 / ( (se.solstice^4/(n.solstice-1)) + (s
 se.diff <- sqrt( se.solstice^2 + se.equinox^2 )
 t.statistic <- ( mean.solstice-mean.equinox ) / se.diff
 
-random.stats <- replicate(4000, {
+random.stats <- replicate(1000, {
     fake_season <- sample(quakes$subseason)
     fake.diff <- mean(quakes$MAG[fake_season=="winter/summer"])-mean(quakes$MAG[fake_season!="winter/summer"]) 
     return( fake.diff / se.diff )
@@ -73,7 +78,7 @@ abline(v=t.statistic,col='red',lwd=2)
 polygon( x=c(xh$mids,rev(xh$mids)), y=sum(xh$counts)*c(diff(pt(xh$breaks,df=df)),rep(0,length(xh$mids))), col=adjustcolor("blue",0.5) )
 
 # and t-test
-1-pt( t.statistic, df=df )
+2*(1-pt( t.statistic, df=df ))
 
 # or, built-in
 t.test( quakes$MAG[quakes$subseason=="winter/summer"], quakes$MAG[quakes$subseason!="winter/summer"] )

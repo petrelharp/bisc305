@@ -279,7 +279,7 @@
   \vspace{2em}
 
   \begin{itemize}
-    \item $P \ge \alpha$ is ``statistically significant evidence in favor of $H_A$'' \\
+    \item $P < \alpha$ is ``statistically significant evidence in favor of $H_A$'' \\
       or ``reject $H_0$''.
     \item Otherwise, ``Lack of evidence to reject $H_0$.''
   \end{itemize}
@@ -350,14 +350,14 @@
   For the $t$-test,
   \[  \text{reject $H_0$ at the $\alpha$ significance level} \]
   is \structure{equivalent to}
-  \[  \text{ 0 is not in the $\alpha$-confidence interval for $\mu_1-\mu_2$ }. \]
+  \[  \text{ 0 is not in the $(1-\alpha)$-confidence interval for $\mu_1-\mu_2$ }. \]
 
 
   \vspace{2em}
 
   \structure{Why?}
 
-  The $\alpha$-confidence interval asks: 
+  The $(1-\alpha)$-confidence interval asks: 
   \begin{quote}
     How big could $\mu_1-\mu_2$ be and still get a $P$-value greater than $\alpha$ for the observed $\bar y_1 - \bar y_2$?
   \end{quote}
@@ -392,7 +392,7 @@
 
   \vspace{2em}
 
-  Here $t_{0.025} = 2.28$, so an $\alpha=0.05$ confidence interval is
+  Here $t_{0.025} = 2.28$, so an $1-\alpha=0.95$ confidence interval is
   \[  (541.8-444.2) \pm 2.28 \times 41.195 = (3.68,191.52) . \]
 
 \end{frame}
