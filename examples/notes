@@ -1,0 +1,24 @@
+omisison-bias_* : 
+    * "Omission Bias and Pertussis Vaccination", David A. Asch Jonathan Baron John C. Hershey Howard Kunreuther Jacqueline Meszaros Ilana Ritov 
+    * http://mdm.sagepub.com/content/14/2/118
+    * http://www.npr.org/blogs/13.7/2015/02/09/384877284/psychological-biases-play-a-part-in-vaccination-decisions
+    * risk calculation somewhat subtle
+    * does not report effect size in abstract or news
+    * differences in percentages
+
+sun-lifespan_* :
+    * Solar activity at birth predicted infant survival and women's fertility in historical Norway, Gine Roll Skjærvø , Frode Fossøy , Eivin Røskaft 
+    * http://phys.org/news/2015-01-sun-lifespan-birth.html
+    * http://rspb.royalsocietypublishing.org/content/282/1801/20142032
+    * GLMM for various things
+    * "5 year difference" not described in the paper
+    * main signficant result is on prob of survival, p=0.87 for boys, p=0.12 for girls (for term in GLM)
+
+
+twins-exercise_* :
+    * Physical activity, fitness, glucose homeostasis, and brain morphology in twins.
+    * http://well.blogs.nytimes.com/2015/03/04/one-twin-exercises-the-other-doesnt
+    * http://www.ncbi.nlm.nih.gov/pubmed/25003773
+    * also no effect sizes
+    * paired measurements
+

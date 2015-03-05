@@ -1,4 +1,5 @@
 % Copyright 2007 by Till Tantau
+
 %
 % This file may be distributed and/or modified
 %
@@ -28,6 +29,25 @@
   \tableofcontents
 \end{frame}
 
+%%%%%
+\begin{frame}{Last time}
+
+  \begin{itemize}
+    \item \structure{Null hypothesis, $H_0$:} ``what if this was just random noise?''
+    \item \structure{$P$-value:} the probability of seeing something as suprising as we did, if that was true.
+    \item the $t$-test: 
+      \begin{itemize}
+        \item ``The sample means differ, but could the population means be the same?''
+        \item $t_s = (\bar y_1 - \bar y_2) / \SE_{\bar Y_1 - \bar Y_2}$
+        \item also need: degrees of freedom.
+      \end{itemize}
+    \item \structure{Significance value:} $\alpha$, the cutoff for ``good evidence against $H_0$.''
+  \end{itemize}
+
+\end{frame}
+
+
+%%%%% %%%%%
 \section{Confidence intervals and $P$-values}
 
 
@@ -43,7 +63,7 @@
   \vspace{2em}
 
   This is because of \alert{symmetry}: \\
-  the distribution of the $t-statistic$ always \structure{looks the same},
+  the distribution of the $t$-statistic always \structure{looks the same},
   no matter the true value of $\mu_1 - \mu_2$,
   just \structure{shifted}.
 
@@ -107,25 +127,24 @@
   \vspace{2em}
   \pause
 
-  It is the \alert{false positive rate}:
-
-  \vspace{2em}
-  \pause
-
-  i.e.\ if we did the experiment many times,\\
-  \structure{and there was no real effect} ($H_0$ is true)\\
-  how often would we \alert{wrongly} conclude there is an effect?
+  It is the 
+  \begin{block}{False positive rate:}
+    If we did the experiment many times,\\
+    \structure{and there was no real effect} ($H_0$ is true)\\
+    how often would we \alert{wrongly} conclude there is an effect?
+  \end{block}
 
 \end{frame}
 
 
 
 %%%%%
-\begin{frame}{Music and Marigolds}
+\begin{frame}{Example: Music and Marigolds}
 
     Suppose many researchers run experiments\\
     to test whether marigolds grow taller \\
-    when listening to Bach (mean height $\mu_1$) or Mozart (mean height $\mu_2$). 
+    when listening to Bach (mean height $\mu_1$) \\
+    or Mozart (mean height $\mu_2$). 
 
 
     \vspace{2em}
@@ -143,7 +162,7 @@
         \item 2.5\% would find statistically significant evidence that Mozart is better
         \item 2.5\% would find statistically significant evidence that Bach is better
     \end{itemize}
-    \ldots \alert{controversy!}
+    \ldots leading to \alert{controversy!}
 
 \end{frame}
 
@@ -177,7 +196,8 @@
         \item What questions are being asked?
         \item What is the size of the effect?
         \item Are the assumptions met?
-        \item What is the $P$-value?
+        \item How strong is the support?  \\
+          (What is the $P$-value?)
     \end{itemize}
 
 \end{frame}
@@ -208,13 +228,47 @@
 
     \vspace{2em}
 
-    \begin{itemize}
+    \begin{description}
         \item[Type I:] Our significant result is actually due to random noise.
         \item[Type II:] There's something really happening, but we couldn't distinguish it from random noise.
-    \end{itemize}
+    \end{description}
 
 \end{frame}
 
+%%%%%
+\begin{frame}{History and etymology}
+
+  (from: \textit{``The testing of statistical hypotheses in relation to probabilities a priori".} Jerzy Neyman \& Egon Pearson, 1933. )
+
+    \vspace{2em}
+
+  $H_0$ is the ``alternative to be tested''.
+  \begin{quote}
+    As a result of the statistical analysis we shall decide either
+    \begin{itemize}
+        \item[(a)] to accept [the hypothesis to be tested,] $H_0$, 
+        \item[(b)] to reject $H_0$, 
+        \item[(c)] to remain in doubt 
+          on the grounds that the evidence provided by the data is inadequate.
+    \end{itemize}
+    % A statistical test is therefore equivalent to a rule of the following type,
+    % \begin{itemize}
+    %   \item[(a)] Reject $H_0$ if $\Sigma$ falls into a region $w$.
+    %   \item[(b)] Accept $H_0$ if $\Sigma$ falls into another region $w'$.
+    %   \item[(c)] Remain in doubt if $\Sigma$ falls into third region $w''$.
+    % \end{itemize}
+    In making decisions \textit{(a)} or \textit{(b)}
+    we shall sometimes be in error
+    ... [and] these errors will be of two kinds:
+    \begin{itemize}
+      \item[(I)] we reject $H_0$ [i.e., the hypothesis to be tested] when it is true,
+      \item[(II)] we accept $H_0$ when some alternative $H_i$ is true.
+    \end{itemize}
+    The problem before us is to consider how these errors may be best controlled.
+  \end{quote}
+
+
+\end{frame}
 
 %%%%%
 \begin{frame}{Power and Type II error}
@@ -229,6 +283,12 @@
 
     It depends on the \structure{strength} of the signal,\\
     the sample size, and the experimental setup.
+
+
+    \vspace{2em}
+
+    It does \alert{not} depend on (the random model of) $H_0$.\\
+    (but it does depend on the test used)
 
 \end{frame}
 
@@ -265,6 +325,22 @@
     
     Maybe we had a \structure{strong directional hypothesis}:\\
     we are throwing away half our power!
+
+    \vspace{2em}
+
+    \structure{Example:}
+    Measure infection loads in subjects with ($\bar y_1$) and without ($\bar y_2$) a new antibiotic. 
+
+    \vspace{1em}
+
+    \structure{$H_0$:} antibiotic doesn't affect infection load, $\mu_1 = \mu_2$ \\
+    \structure{$H_A$:} antibiotic decreases infection load, $\mu_1< \mu_2$ .
+
+    \vspace{2em}
+    \pause
+
+    \alert{What if} infection load is \emph{larger} in samples with antibiotics? ($\bar y_1 > \bar y_2$)
+
 
 \end{frame}
 
@@ -341,6 +417,44 @@
 
 \end{frame}
 
+%%%%%
+\begin{frame}{Example: Niacin supplements}
+
+  One group of lambs fed niacin supplements; one control group.  
+  \begin{align*}
+    H_0 &: \quad \mu_\text{niacin} = \mu_\text{control}  \\
+    H_A &: \quad \mu_\text{niacin} > \mu_\text{control}  
+  \end{align*}
+
+
+    \vspace{2em}
+
+  
+  Weight gains (lbs):
+    \begin{center}
+      \begin{tabular}{c|rr}
+            & Niacin & Control \\
+          \hline
+          $\bar y$ & 14 & 10 \\
+          $\SE$ & 1.5 & 1.6 \\
+     \end{tabular}
+   \end{center}
+   and $df = 18$.
+
+
+    \vspace{2em}
+    \pause
+
+    \[
+    t_s = \frac{ \bar y_\text{niacin} - \bar y_\text{control} }{ \SE_{\bar Y_1 - \bar Y_2} } = \frac{ 14 - 10 }{ \sqrt{ 1.5^2 + 1.6^2 } } = 1.82
+    \]
+    and $P = 0.043$.
+    \pause
+    \structure{What would the $P$-value be for a two-sided test?}
+
+\end{frame}
+
+
 %%
 \subsection{What to watch out for}
 
@@ -362,9 +476,9 @@
     If 100 studies look for an effect that isn't real, 
     how many will ``find'' the effect, with
     \begin{itemize}
-      \item[\bf (a)] two-tailed tests
-      \item[\bf (b)] one-tailed tests, and a clear prior hypothesis
-      \item[\bf (c)] one-tailed tests, cheating
+      \item[\bf (a)] two-sided tests
+      \item[\bf (b)] one-sided tests, and a clear prior hypothesis
+      \item[\bf (c)] one-sided tests, cheating
     \end{itemize}
   \end{block}
 
@@ -377,7 +491,16 @@
 
 \begin{frame}{Summary}
   \begin{enumerate}
-    \item
+    \item $P$-values or confidence intervals: strength of evidence versus effect size
+    \item ``Significance level'' can be interpreted as a \alert{false positive rate}
+    \item but somehow science moves forward anyhow.
+    \item \structure{Type I} error: wrongly interpreting noise as pattern.
+    \item \structure{Type II} error: failing to find pattern amidst noise.
+    \item \alert{Statistical power} is the chance of finding a true pattern, \\
+      or $1-{}$ type II error probability
+    \item If the hypothesis is strongly one-sided,
+    \item use a one-sided test, which increases power.
+    \item But don't cheat.
   \end{enumerate}
 \end{frame}
 
@@ -393,7 +516,7 @@
 
     \vspace{2em}
 
-
+    7.5.5
 
   \end{center}
 \end{frame}
