@@ -201,19 +201,6 @@
 
 \end{frame}
 
-%%%%%
-\begin{frame}{Interpreting a significant result:}
-
-    \begin{itemize}
-        \item What questions are being asked?
-        \item What is the size of the effect?
-        \item Are the assumptions met?
-        \item How strong is the support?  \\
-          (What is the $P$-value?)
-    \end{itemize}
-
-\end{frame}
-
 %%%%% %%%%%
 \section{Type I and Type II Errors}
 
@@ -254,7 +241,6 @@
 
     \vspace{2em}
 
-  $H_0$ is the ``alternative to be tested''.
   \begin{quote}
     As a result of the statistical analysis we shall decide either
     \begin{itemize}
@@ -273,7 +259,7 @@
     we shall sometimes be in error
     ... [and] these errors will be of two kinds:
     \begin{itemize}
-      \item[(I)] we reject $H_0$ [i.e., the hypothesis to be tested] when it is true,
+      \item[(I)] we reject $H_0$ when it is true,
       \item[(II)] we accept $H_0$ when some alternative $H_i$ is true.
     \end{itemize}
     The problem before us is to consider how these errors may be best controlled.
@@ -334,6 +320,12 @@
 
 %%%%%
 \begin{frame}{Back to the $t$ test}
+
+
+    \begin{center}
+        \includegraphics[width=.75\textwidth]{two-tailed-t}
+        \flushright \tiny {Samuels, Witmer \& Schaffner}
+    \end{center}
     
     Maybe we had a \structure{strong directional hypothesis}:\\
     we are throwing away half our power!
@@ -351,7 +343,7 @@
     \vspace{2em}
     \pause
 
-    \alert{What if} infection load is \emph{larger} in samples with antibiotics? ($\bar y_1 > \bar y_2$)
+    \alert{What if} infection load turns out to be \emph{larger} in samples with antibiotics? ($\bar y_1 > \bar y_2$)
 
 
 \end{frame}
@@ -361,9 +353,9 @@
 
   \begin{description}
 
-    \item[two-sided test:] ``Could the two groups look \alert{this different} if they were actually the same?''
+    \item[two-sided test:] ``Would the sample means be \alert{this different} if the population means were actually the same?''
 
-    \item[one-sided test:] ``Could this group look \alert{this much larger} than the other group if they were actually the same?''
+    \item[one-sided test:] ``Would this sample mean be \alert{this much larger} than the other if the population means were actually the same?''
 
   \end{description}
 
