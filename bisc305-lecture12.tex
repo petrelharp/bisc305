@@ -24,11 +24,6 @@
   \maketitle
 \end{frame}
 
-
-\begin{frame}\frametitle<presentation>{Outline}
-  \tableofcontents
-\end{frame}
-
 %%%%%
 \begin{frame}{Last time}
 
@@ -44,6 +39,11 @@
     \item \structure{Significance value:} $\alpha$, the cutoff for ``good evidence against $H_0$.''
   \end{itemize}
 
+\end{frame}
+
+
+\begin{frame}\frametitle<presentation>{Outline}
+  \tableofcontents
 \end{frame}
 
 
@@ -127,7 +127,12 @@
   \vspace{2em}
   \pause
 
-  It is the 
+  It is the \alert{cutoff} for ``statistically significant evidence''
+  for the $P$-value.
+
+    \vspace{2em}
+
+    More concretely, it is the 
   \begin{block}{False positive rate:}
     If we did the experiment many times,\\
     \structure{and there was no real effect} ($H_0$ is true)\\
@@ -179,9 +184,16 @@
         \small
         Suppose you throw a dart at the Big Chart O' Human Metabolic Pathways and supplement your experimental group with the chemical you hit. Then ten years later you come back and see how many of them died of heart attacks.
         Most chemicals on the Big Chart probably don't prevent heart attacks. Let's say only one in a thousand do. 
+    \end{quote}
+
+    \vspace{1em}
+
+    If only studies significant at $\alpha=5\%$ publish,
+    what proportion are wrong?
 
     \vspace{1em}
         
+    \begin{quote}
         \pause Maybe your study will successfully find that 1/1000. But the 999 inactive chemicals will also throw up about 50 (999 $\times$ 5\%) false positives significant at the 5\% level. Therefore, even if you conduct your study perfectly, and it shows a significant decrease in heart attacks, there's about a 98\% chance it's false.
     \end{quote}
     \figcaption{http://slatestarcodex.com/2013/02/17/90-of-all-claims-about-the-problems-with-medical-studies-are-wrong/}
