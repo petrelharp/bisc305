@@ -44,7 +44,7 @@
 
     \vspace{2em}
 
-    To find out, we sample from a population, recording:
+    To find out, we take some samples, recording:
       \begin{enumerate}
           \item explanatory variable(s) ($X$)
           \item response variable(s) ($Y$)
@@ -135,25 +135,27 @@
 \begin{frame}{There's more to an experiment than observation.}
 
   \begin{block}{How to do an observational study}
-    \alert{Observe} (measure) some stuff.
+    \alert{Observe} (measure) something about an existing situation.
   \end{block}
 
   \vspace{2em}
 
   \begin{block}{How to do an experimental study}
-    Observe (measure) some stuff, 
-    in samples from populations that are \alert{identical},
-    except for the explanatory variable(s).
+    Observe (measure) something
+    from groups whose \structure{differences} were \alert{chosen} by you.
   \end{block}
-
-  \vspace{2em}
-
-  The hard part is \textbf{identical}.
 
   \vspace{2em}
 
   \alert{Easy way to get experimental:}
   Randomly assign to treatment and control groups.
+
+  \vspace{2em}
+
+  \begin{quote}
+    In an \textbf{experiment}, the researcher manipulates the experimental conditions,
+    \textbf{defining} the populations being compared.
+  \end{quote}
 
 \end{frame}
 
@@ -172,10 +174,30 @@
 
   \end{enumerate}
 
+  \vspace{2em}
+
+  \begin{quote}
+    In an \textbf{experiment}, the researcher manipulates the experimental conditions,
+    \textbf{defining} the populations being compared.
+  \end{quote}
+
 \end{frame}
 
 %
+\begin{frame}{}
 
+
+  {\small
+  ``\emph{Physical activity, fitness, glucose homeostasis, and brain morphology in twins.}'', 
+  \url{http://www.ncbi.nlm.nih.gov/pubmed/25003773}
+  }
+  \begin{center}
+    \includegraphics[width=0.85\textwidth]{examples/twins-exercise_news}
+  \end{center}
+  \flushright\small\figcaption{\url{http://well.blogs.nytimes.com/2015/03/04/one-twin-exercises-the-other-doesnt}}
+
+
+\end{frame}
 
 %
 \begin{frame}{The difference}
@@ -193,6 +215,7 @@
   \structure{Example:}
   \begin{description}
       \item[Study 1:] Children of smokers have lower birth weight.
+        \pause
       \item[Study 2:] We got a randomly chosen half of our sample to start smoking,
           and their children had lower birth weight.
   \end{description}
@@ -250,7 +273,9 @@ then the association is \alert{spurious}.
 
 \begin{frame}{Exercise}
 
-  \includegraphicscopyright[width=.8\textwidth]{ss-7-4-5}{Samuels, Whitmer, \& Schaffner}
+  \begin{center}
+  \includegraphicscopyright[width=.9\textwidth]{ss-7-4-5}{Samuels, Whitmer, \& Schaffner}
+  \end{center}
 
 
 \end{frame}
@@ -261,22 +286,41 @@ then the association is \alert{spurious}.
 
 \subsection{Unpacking the terminology}
 
+
+%%%%%%
+\begin{frame}{Interpreting results}
+
+  % \begin{quote}
+  %   \textbf{Results:}
+  %   According to pairwise analysis, the active twins had lower body fat percentage ($P=0.029$) and homeostatic model assessment index ($P=0.031$) and higher Matsuda index ($P=0.021$) compared with their inactive co-twins.  Striatal andprefrontal cortex (subgyral and inferior frongal gyrus) brain gray matter volumes were larger in the nondominant hemisphere in active twins compared with those in inactive co-twins, with a statistical threshold of $P<0.001$.
+  % \end{quote}
+  \begin{center}
+    \includegraphics[width=\textwidth]{examples/twins-exercise_abstract_results}
+  \end{center}
+  \flushright{\small \url{http://www.ncbi.nlm.nih.gov/pubmed/25003773}}
+
+  \vspace{2em}
+
+  Let's unpack those statements.
+
+\end{frame}
+
 %%%%%%
 \begin{frame}{Statistical significance}
 
     \begin{quote}
-        the difference was \only<2->{\alert{statistically} }significant \\
-        \only<2->{\alert{(with $P<.05$)}}
+        had \only<2->{\alert{statistically significantly} }lower body fat percentage ($P=0.029$),
+        \only<3->{\alert{at the $\alpha=0.05$ significance level}}
     \end{quote}
 
-    \uncover<3->{
-    \structure{means}
+    \uncover<4->{
+    \structure{means, roughly}
     \begin{quote}
-        we found good evidence that the difference in sample means was not caused by chance variation alone
+        we found good evidence that the differences was not caused by chance variation alone
     \end{quote}
     }
 
-    \uncover<4->{
+    \uncover<5->{
     \structure{or more precisely}
     \begin{quote}
         if the null hypothesis was true, we'd expect to see at least this large a difference no more than 5\% of the time
@@ -289,11 +333,11 @@ then the association is \alert{spurious}.
 \begin{frame}{Lack of statistical signficance}
 
     \begin{quote}
-        the difference was \alert{not} significant (with $P>0.5$)
+      no \only<2->{\alert{statistically significant }}difference was found in body mass index ($P=0.28$) \only<2->{\alert{at the $\alpha=0.05$ signficance level}}
     \end{quote}
 
-    \uncover<2->{
-    \structure{means}
+    \uncover<3->{
+    \structure{means, roughly}
     \begin{quote}
         there was not sufficient evidence that the observed difference was due to anything other than chance variation
     \end{quote}
@@ -545,6 +589,38 @@ then the association is \alert{spurious}.
 }
 
 
+%
+\begin{frame}{What's missing?}
+  \begin{center}
+    \includegraphics[width=0.85\textwidth]{examples/twins-exercise_news}
+  \end{center}
+  \flushright\small\figcaption{\url{http://well.blogs.nytimes.com/2015/03/04/one-twin-exercises-the-other-doesnt}}
+\end{frame}
+
+%
+\begin{frame}{Is it here?}
+  {\small
+  ``{Physical activity, fitness, glucose homeostasis, and brain morphology in twins.}'', 
+  }
+  \begin{center}
+    \includegraphics[width=\textwidth]{examples/twins-exercise_abstract_results}
+  \end{center}
+  \flushright\small\figcaption{
+  ``Physical activity, fitness, glucose homeostasis, and brain morphology in twins.'', 
+  \url{http://www.ncbi.nlm.nih.gov/pubmed/25003773}
+  }
+\end{frame}
+
+%
+\begin{frame}[plain]{The results}
+  \begin{center}
+    \includegraphics[width=1.2\textwidth]{examples/twins-exercise_study-results}
+  \end{center}
+  \flushright\small\figcaption{
+  \url{http://www.ncbi.nlm.nih.gov/pubmed/25003773}
+  }
+\end{frame}
+
 
 %%%%%
 \section<article>{Summary}
@@ -552,33 +628,23 @@ then the association is \alert{spurious}.
 
 \begin{frame}{Summary}
   \begin{itemize}
-    \item An \alert{observational study} simply observes an existing situation,
+    \item An \alert{observational study} observes an existing situation,
     \item to look for correlations.
     \item But, \alert{correlation is not causation},
     \item thanks in part to \alert{confounding factors}.
     \item \alert{Experimental studies} try to eliminate these,
-    \item and so can provide much stronger evidence for direct causation.
+    \item so provide much stronger evidence of causation.
   \end{itemize}
-
-    When communicating numerical results using statistics:
-      \begin{enumerate}
-          \item Always think about what you are trying to learn,
-          \item what you have learned about, 
-          \item and what is still uncertain.
-      \end{enumerate}
-      (Sometimes you have to do this for others' results as well.)
-
 
     \vspace{1em}
 
-    \begin{enumerate}
-        \item Statistical signficance \alert{does not imply} real--world significance.
-        \item Lack of statistical signficance \alert{does not imply} real--world insignificance.
-        \item Sample size acts like a magnifying glass, making smaller differences visible.
-        \item The \alert{effect size} is the difference in means as a proportion of the within-population variability, and is
-          a good way to describe the scale of the difference.
-        \item Confidence intervals are a good way to assess both statistical signficance and real--world importance.
-    \end{enumerate}
+    \begin{itemize}
+        \item Statistical signficance \alert{does not imply} \\real--world significance.
+        \item Lack of statistical signficance \alert{does not imply} \\real--world insignificance.
+        \item Sample size acts like a \structure{magnifying glass}, making smaller differences visible.
+        \item The \alert{effect size} describes the scale of a difference.
+        \item Confidence intervals communicate both statistical signficance and real--world importance.
+    \end{itemize}
 \end{frame}
 
 % homework
@@ -586,10 +652,15 @@ then the association is \alert{spurious}.
 
   \begin{center}
 
-  7.6.1
+    7.4.6
 
   \vspace{2em}
 
+    7.6.1
+
+  \vspace{2em}
+
+  If you haven't already, email me an interesting scientific study reported on in the news.  (by Thursday)
 
   \end{center}
 
