@@ -21,14 +21,22 @@ fmat <- function(nreps=20,...) {
     xx <- matrix(rdata(n*nreps),nrow=n)
     dothese <- 1:min(ncol(xx), floor(5000/n))
     layout(1:2)
+    # dotchart of data
     dchart(xx[,dothese,drop=FALSE],xlim=xlims,gdata=colMeans(xx[,dothese,drop=FALSE]),labels=NA,pch=20,gcex=2,ylab='datasets',...)
     abline(v=0)
-    cmh <- hist(colMeans(xx),xlim=xlims,col=adjustcolor("red",.5),freq=FALSE,main='',xlab='')
+    invisible(scan(n=1,quiet=TRUE)) # pause
+    cmh <- hist(colMeans(xx),plot=FALSE,breaks=min(50,ncol(xx)/8))
+    # histogram of the data
+    hist(as.vector(xx),freq=FALSE,col=adjustcolor("black",.5),breaks=min(50,length(xx)/4),xlim=xlims,main='',xlab='',ylim=c(0,max(cmh$density)))
+    xvals <- seq(xlims[1],xlims[2],length.out=100)
+    invisible(scan(n=1,quiet=TRUE)) # pause
+    # histogram of means of datasets
+    plot(cmh,add=TRUE,col=adjustcolor("red",.5),freq=FALSE)
     xbreaks <- seq(xlims[1],xlims[2],length.out=1000)
     xmids <- xbreaks[-1]-diff(xbreaks)/2
+    invisible(scan(n=1,quiet=TRUE)) # pause
+    # the Normal approximation
     lines(xmids, diff( pnorm( xbreaks, mean=rmean, sd=rsd/sqrt(n) ) )/diff(xbreaks), col='red', lwd=2 )
-    hist(as.vector(xx),add=TRUE,freq=FALSE,col=adjustcolor("black",.5),breaks=min(50,length(xx)/4))
-    xvals <- seq(xlims[1],xlims[2],length.out=100)
     layout(1)
     invisible(colMeans(xx))
 }
@@ -56,15 +64,15 @@ rsd <- 1
 xlims <- c(-6,6)
 
 n <- 5
-fmat(1000000)
+fmat(1000000,main="n=5")
 
 xlims <- c(-6,6)
 n <- 100
-fmat(10000)
+fmat(10000,main="n=100")
 
 xlims <- c(-2,2)
 n <- 100
-fmat(10000)
+fmat(10000,main="n=100")
 
 
 ##
@@ -75,15 +83,15 @@ rsd <- 1
 
 xlims <- c(-1,7)
 n <- 5
-fmat(1000000)
+fmat(1000000,main="n=5")
 
 xlims <- c(-1,7)
 n <- 100
-fmat(10000)
+fmat(10000,main="n=100")
 
 xlims <- c(0,2)
 n <- 100
-fmat(10000)
+fmat(10000,main="n=100")
 
 ##
 # and, transformed
@@ -93,15 +101,15 @@ rsd <- 1
 
 xlims <- c(-3,3)
 n <- 5
-fmat(1000000)
+fmat(1000000,main="n=5")
 
 xlims <- c(-3,3)
 n <- 100
-fmat(10000)
+fmat(10000,main="n=100")
 
 xlims <- c(-1,1)
 n <- 100
-fmat(10000)
+fmat(10000,main="n=100")
 
 ##
 #  Truncated Cauchy??
@@ -136,7 +144,7 @@ ft <- function(nreps=10000,...) {
     # attr(tt,"df") <- mean( sapply( ttt, "[[", "parameter" ) )
     df <- attr(tt,"df") <- 2*(n-1)
     layout(1:2)
-    th <- hist(tt,xlim=c(-3,3),breaks=50)
+    th <- hist(tt,xlim=c(-3,3),breaks=50,main=paste("t-statistics, n=",n,sep=''), xlab='')
     xvals <- seq(-3,3,length.out=100)
     xmids <- xvals[-1] - diff(xvals)/2
     lines( th$mids, sum(th$counts) * diff( pt(th$breaks, df=attr(tt,"df")) ), col='red' )

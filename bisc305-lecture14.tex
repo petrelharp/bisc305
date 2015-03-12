@@ -54,8 +54,9 @@
   \alert{Conditions}, a.k.a.\ ``assumptions'', come from the generative model.
   If they are not true, we might
   \begin{itemize}
-    \item have \alert{wrong} $P$-values (i.e.\ misreport the probability of type I error)
-    \item \structure{and/or} have lower power than a better test (i.e.\ have more type II errors)
+    \item have \alert{wrong} $P$-values (misreport the type I error rate)
+    \item \structure{and/or} have lower power than a better test \\
+      (i.e.\ have more type II errors)
   \end{itemize}
 
 \end{frame}
@@ -63,9 +64,9 @@
 \subsection{The $t$-test}
 
 %%%%%%
-\begin{frame}{Conditions for the $t$-test}
+\begin{frame}{the $t$-test}
 
-  \begin{block}{Conditions}
+  \begin{block}{Conditions for the $t$-test}
     \begin{enumerate}
       \item The sampling procedure provides:
         \begin{enumerate}
@@ -81,19 +82,23 @@
 
   \vspace{2em}
 
-  Sampling distributions of sample means are close to Normal if the sample sizes are large enough.\\
+  \structure{Red flags for the $t$-test:}
+  \begin{enumerate}
+    \item Nonindependence of samples
+    \item Small sample sizes 
+    \item Skewed distributions
+  \end{enumerate}
 
   \vspace{2em}
 
-  ``\alert{Large enough}'' is at least 20, but is larger, 
-  the further the \alert{population distributions} are from Normal.
+  ``Small'' means less than around 20,
+  but depends on how close the population distribution is to Normal.
 
 \end{frame}
 
 %%%%%%
 \begin{frame}{Simple example}
 
-  \structure{Last time} we saw:
 
   \vspace{2em}
 
@@ -116,10 +121,56 @@
 
    \vspace{2em}
   
-   \alert{Are there any red flags here?}
+   \pause
+   \alert{The sample sizes are too small} to take the statistics seriously.
    
 \end{frame}
 
+
+%
+\begin{frame}{Example: earthquakes}
+
+  % > do.call( cbind, with( subset(quakes,MAG>3), tapply( MAG, weekdays(date), function (x) { list(n=length(x),mean=mean(x),sd=sd(x)) } ) ) )
+  %      Friday    Monday    Saturday  Sunday    Thursday  Tuesday   Wednesday
+  % n    21        24        31        22        23        24        21       
+  % mean 3.33381   3.433333  3.509677  3.309545  3.49913   3.29125   3.382857 
+  % sd   0.2215508 0.3715732 0.5015409 0.3381388 0.4162376 0.2501706 0.3910645
+  % > with( subset(quakes,MAG>3), t.test( MAG[weekdays(date)=="Sunday"], MAG[weekdays(date)=="Monday"] ) )
+  % t = -1.183, df = 43.999, p-value = 0.2432
+  % alternative hypothesis: true difference in means is not equal to 0
+  % 95 percent confidence interval:
+  %  -0.33468020  0.08710444
+  %
+  % 
+  % pdf(file="quakes-mag-hist.pdf",width=3,height=1,pointsize=10)
+  % par(mar=c(2,1,0,0)+.1)
+  % hist( quakes$MAG[quakes$MAG>3], breaks=25, col=adjustcolor("green",.75), main='', xlab='', ylab='' )
+  % dev.off()
+
+  Earthquake magnitudes, for those above magnitude 3.0, on Sundays and Mondays in 2014:
+  \begin{center}
+    \begin{tabular}{crr}
+       & Sundays & Mondays \\
+       \hline
+       $n$ & 22 & 24 \\
+       $\bar y$ & 3.31 & 3.43 \\
+       $s$ & 0.34 & 0.37
+     \end{tabular}
+
+   \vspace{2em}
+
+   {$t_s=-1.183$ and $P=0.24$}\\
+   CI for $\bar \mu_1 - \bar \mu_2$: $(-0.33,0.09)$
+   \end{center}
+
+   \pause 
+   \begin{center}
+     \includegraphics{quakes-mag-hist}
+   \end{center}
+
+   \alert{The distribution is skewed,} so with $n\approx 20$, the Normal assumption might not be good.
+
+\end{frame}
 
 %%%%%%%%%%%
 \subsection{Transforming the data}
@@ -150,6 +201,53 @@
     \vspace{2em}
 
     \structure{Remember:} informally, ``Normal'' means ``bell-shaped''.
+
+\end{frame}
+
+%
+\begin{frame}{Example: earthquakes}
+
+%      do.call( cbind, with( subset(quakes,MAG>3), tapply( log(MAG-3.0), weekdays(date), function (x) { list(n=length(x),mean=mean(x),sd=sd(x)) } ) ) )
+%      Friday    Monday    Saturday  Sunday   Thursday  Tuesday   Wednesday
+% n    21        24        31        22       23        24        21       
+% mean -1.406708 -1.211826 -1.240581 -1.7097  -1.140423 -1.828194 -1.432289
+% sd   0.984279  0.9498052 1.234087  1.158273 1.145213  1.35883   1.040219 
+%      with( subset(quakes,MAG>3), t.test( log(MAG-3.0)[weekdays(date)=="Sunday"], log(MAG-3.0)[weekdays(date)=="Monday"] ) )
+% t = -1.5858, df = 40.736, p-value = 0.1205
+% alternative hypothesis: true difference in means is not equal to 0
+% 95 percent confidence interval:
+%  -1.1320528  0.1363043
+% sample estimates:
+% mean of x mean of y 
+% -1.709700 -1.211826 
+%   
+%   pdf(file="quakes-log-mag-hist.pdf",width=3,height=1,pointsize=10)
+%   par(mar=c(2,1,0,0)+.1)
+%   hist( log(quakes$MAG[quakes$MAG>3]-3.0), breaks=25, col=adjustcolor("green",.75), main='', xlab='', ylab='' )
+%   dev.off()
+
+Earthquake \alert{$\log(\text{magnitude}-3.0)$}, for those above magnitude 3.0, on Sundays and Mondays in 2014:
+  \begin{center}
+    \begin{tabular}{crr}
+       & Sundays & Mondays \\
+       \hline
+       $n$ & 22 & 24 \\
+       $\bar y$ & -1.71 & -1.21 \\
+       $s$ & 1.16 & 0.95
+     \end{tabular}
+
+   \vspace{2em}
+
+   {$t_s=-1.60$ and $P=0.12$}\\
+   CI for $\bar \mu_1 - \bar \mu_2$: $(-1.13,0.14)$
+   \end{center}
+
+   \pause 
+   \begin{center}
+     \includegraphics{quakes-log-mag-hist}
+   \end{center}
+
+   That looks \emph{closer} to bell-shaped.
 
 \end{frame}
 
@@ -226,7 +324,7 @@
     \vspace{2em}
     \pause
 
-  We have genetic data from a genetic variants in 1,000 healthy people and 1,000 people with a disease,
+  We have genetic data from a genetic variant in 1,000 healthy people and 1,000 people with a disease,
   and would like to find out whether the genetic variant affects the chances of getting the disease.
 
 \end{frame}
@@ -279,12 +377,20 @@
     \end{enumerate}
 
     \vspace{2em}
+    \pause
+
+    If you get a positive result,
+    what's the chance that you have the illness?
+
+    \vspace{2em}
+    \pause
 
     \structure{True or false:} 
     We have found significant evidence for $H_A$ with $P<5\%$,
     so the probability that $H_0$ is true is 5\%.
 
     \vspace{2em}
+    \pause
 
     What is a true statement similar to the above?
 
