@@ -8,11 +8,11 @@
 % See the file doc/licenses/LICENSE for more details.
 
 
-\lecture[16]{the Wilcoxon--Mann--Whitney test}{lecture-text}
+\lecture[15]{the Wilcoxon--Mann--Whitney test}{lecture-text}
 
 \subtitle{and nonparametric testing}
 
-\date{29 October 2013}
+\date{24 March 2015}
 
 % pp. 282-293
 
@@ -46,7 +46,7 @@
 \subsection{Distribution--free tests}
 
 \begin{frame}{Distribution--free tests}
-  \begin{block}{Distribution--free (or, nonparametric}
+  \begin{block}{Distribution--free (or, nonparametric)}
     means that the validity of the test does not depend on the specific shape of population distributions.
   \end{block}
 
@@ -104,6 +104,12 @@
     \hline
     gap & 22 \hspace{.25em} 29 \hspace{.25em} 13 \hspace{.25em} 16 \hspace{.25em} 15 \hspace{.25em} 18 \hspace{.25em} 14 \hspace{.25em} 6 \\
   \end{tabular}
+
+    \uncover<2->{
+    % wilcox.test( c(17,20,22,64,170,190,315), c(6,13,14,15,16,18,22,29) ) #= 0.015
+    $K_1 = 49.5$ and $K_2 = 6.5$ \\
+    $0.009 \le P \le 0.014$
+    }
   \end{center}
 
 \end{frame}
@@ -161,34 +167,6 @@
 
 \end{frame}
 
-%%%%%%
-\begin{frame}{Example: soil respiration}
-
-  Soil cores from two locations, ``gap'' and ``growth'';
-  measured amount of CO${}_2$ released.
-
-  \begin{center}
-  \begin{tabular}{l|p{2.5in}}
-    growth & 17 \hspace{.25em} 20 \hspace{.25em} 170 \hspace{.25em} 315 \hspace{.25em} 22 \hspace{.25em} 190 \hspace{.25em} 64 \\
-    \hline
-    gap & 22 \hspace{.25em} 29 \hspace{.25em} 13 \hspace{.25em} 16 \hspace{.25em} 15 \hspace{.25em} 18 \hspace{.25em} 14 \hspace{.25em} 6 \\
-  \end{tabular}
-
-    \vspace{2em}
-
-    \structure{Exercise:} help compute the $P$-value.
-
-    \vspace{2em}
-
-
-    \uncover<2->{
-    % wilcox.test( c(17,20,22,64,170,190,315), c(6,13,14,15,16,18,22,29) ) #= 0.015
-    $K_1 = 49.5$ and $K_2 = 6.5$ \\
-    $0.009 \le P \le 0.014$
-    }
-  \end{center}
-
-\end{frame}
 
 %%%%%%
 \begin{frame}{Directional Wilcoxon--Mann--Whitney}
@@ -203,7 +181,20 @@
 
     \vspace{2em}
 
-    \structure{For $H_A$:} population 1 tends to be larger than population 2, \\
+    \structure{Directional test:}
+    \begin{itemize}
+      \item If the comparison against the direction of the hypothesis, $P>1/2$.
+      \item Otherwise, divide the $P$ value by two.
+    \end{itemize}
+
+    \vspace{2em}
+
+
+    \structure{Example:}  If \\
+    $H_A$: population 1 tends to be larger than population 2, 
+    
+    \vspace{1em}
+
     \hspace{2em} if $K_1 < K_2$, then $P>1/2$, \\
     \hspace{2em} otherwise, find the $P$ with $U_s = K_1$ and divide by two.
 
@@ -269,6 +260,78 @@
 
 
 %%%%%%
+\begin{frame}{A thought experiment}
+
+  Suppose there are two islands: 
+  on one, half the birds are big (10cm) and the other half are small (1cm);
+  on the other, birds are intermediate: half are 5cm, the other half are 6cm.
+
+  \vspace{2em}
+
+  We do not know this, take random samples from the two islands,
+  and compare the sizes on the two islands with a Wilcoxon--Mann--Whitney test.
+  \begin{itemize}
+    \item If we get a significant $P$-value, is that an error or not?
+    \item Is the test appropriate?
+    \item Are we likely to get a significant $P$-value?
+  \end{itemize}
+
+  \vspace{2em}
+  \pause
+
+  (Investigation by simulation.)
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Another thought experiment}
+
+  Now, suppose we visit two other islands:
+  on one, half the birds are big (10cm) and the other half are small (1cm);
+  on the other, birds are intermediate: half are 8cm, the other half are 9cm.
+
+  \vspace{2em}
+
+  Again, we take random samples from the two islands,
+  and compare the sizes on the two islands with a Wilcoxon--Mann--Whitney test.
+  \begin{itemize}
+    \item If we get a significant $P$-value, is that an error or not?
+    \item Is the test appropriate?
+    \item Are we likely to get a significant $P$-value?
+  \end{itemize}
+
+  \vspace{2em}
+  \pause
+
+  (Investigation by simulation.)
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{The alternative hypothesis}
+
+  This is why the alternative hypothesis for Wilcoxon--Mann--Whitney is:
+  \[  H_A \, : \, \text{( one distribution tends to be larger than the other )} \]
+  or, more precisely, if we define
+  \begin{align*}
+    P_\text{diff} = \Pr & \text{( a random sample from population 1 is larger} \\
+      & \qquad \text{than an indpendent sample from population 2 )} , 
+  \end{align*}
+  then
+  \[  H_A \, : \, P_\text{diff} \neq 1/2 .\]
+
+  \vspace{2em}
+
+  This is an issue of \structure{power}:
+  if the distributions differ, even substantially,
+  but $P_\text{diff}=1/2$,
+  then Wilcoxon--Mann--Whitney has \alert{no power}.
+  (and power is determined by the alternative hypothesis)
+
+\end{frame}
+
+
+%%%%%%
 \begin{frame}{The perils of heteroscedasticity}
 
   \structure{Strictly speaking}, the $t$ distribution only applies 
@@ -281,7 +344,7 @@
 
     \vspace{2em}
 
-    Both Wilcoxon--Mann--Whitney and the $t$-test are similar in this regard.
+    Wilcoxon--Mann--Whitney and the $t$-test are similar in this regard.
 
 \end{frame}
 
@@ -305,6 +368,7 @@
   \end{block}
 
     \vspace{2em}
+    \pause
 
     This differs from the Wilcoxon--Mann--Whitney in the choice of \alert{test statistic}.
 
