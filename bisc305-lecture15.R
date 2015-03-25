@@ -6,14 +6,13 @@ conts.pvals <- replicate(1000, {
         sample.2 <- rnorm(m)
         wilcox.test(sample.1,sample.2)$p.value
     } )
-
 hist(conts.pvals)
 mean(conts.pvals < 0.05)
 
 disc.pvals <- replicate(1000, {
         n <- m <- 100
         sample.1 <- c(1,10)[1+rbinom(n,size=1,prob=1/2)]
-        sample.2 <- c(5,6)[1+rbinom(m,size=1,prob=1/2)]
+        sample.2 <- c(7,8)[1+rbinom(m,size=1,prob=1/2)]
         wilcox.test(sample.1,sample.2)$p.value
     } )
 
