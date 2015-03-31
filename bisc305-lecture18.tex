@@ -8,11 +8,12 @@
 % See the file doc/licenses/LICENSE for more details.
 
 
-\lecture[18]{Paired sample sign test}{lecture-text}
+\lecture[18]{Estimating proportions}{lecture-text}
 
-\subtitle{and the Wilcoxon signed-rank test}
+\subtitle{with confidence}
 
-\date{5 November 2013}
+\date{2 April 2015}
+
 
 \begin{document}
 
@@ -21,10 +22,13 @@
 \end{frame}
 
 
-\begin{frame}{We know how to}
+\begin{frame}{So far we have}
   \begin{enumerate}
-    \item Do distribution-free single-sample and two-sample tests.
-    \item Use the $t$-test to analyze paired-sample data.
+    \item analyzed \alert{quantitative} data:
+    \item when each observation is a numerical measurement,
+    \item using means, standard deviations, ranks, etcetera.
+    \item \alert{Categorical data} assigns each observation to a discrete category,
+    \item and we analyze the proportions, or counts in each.
   \end{enumerate}
 \end{frame}
 
@@ -33,156 +37,152 @@
 \end{frame}
 
 
-\section{The sign test}
 
-\subsection{A test without measurements}
-
-\begin{frame}{Example}
-
-  \structure{Hypothesis:} writing makes your fingers longer by stretching out your ligaments.
-
-    \vspace{2em}
-  
-  Class survey: how many have
-  \begin{enumerate}
-    \item middle finger longer on your writing hand?
-    \item middle finger shorter on your writing hand?
-  \end{enumerate}
-
-    \vspace{2em}
-
-    Supplemental survey: flip a fair coin.  How many got:
-  \begin{enumerate}
-    \item heads?
-    \item tails?
-  \end{enumerate}
-
-    \vspace{2em}
-
-    \alert{Test statistic} for the sign test: number of people with longer finger on the writing hand.
-
-\end{frame}
-
+\section{Estimating the sample proportion}
+\subsection{Intuition}
 
 %%%%%%
-\begin{frame}{A numerical example}
+\begin{frame}{Not so obvious}
 
-  Do different antibiotics affect the rate of mutation accumulation of bacteria?
-  Sequence genome of bacterial strains; culture in paired petri dishes for 1 week with antibiotics A \& B; sequence again; count the mutations.
+    In a random sample of 20 pigeons in Los Angeles,
+    we see 5 with brown heads and 15 with grey heads.\\
+    \structure{What do you think the true proportion of Los Angeles pigeons with brown heads is?}
+
+    \vspace{2em}
+
+    \pause
+
+    We sample another 80 pigeons, and find \emph{none} with red-polka-dotted heads.\\
+    \structure{What do you think the true proportion of Los Angeles pigeons with red-polka-dotted heads is?}
+
+    \vspace{2em}
+
+    \pause
+
+    We know some pigeons have white heads due to interbreeding with escaped domestic birds,
+    but \emph{none} the 100 pigeons we have so far have white heads.\\
+    \structure{What do you think the true proportion of Los Angeles pigeons with white heads is?}
 
     \vspace{1em}
+    \pause
 
-    \noindent
-    \structure{$H_0$:} rate of accumulation is the same for both.\\
-    \structure{$H_A$:} bacteria accumulate more in one than in the other.
+    \alert{Is it reasonable} that the true proportion of pigeons with white heads is 10\%?
+
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Estimates, and uncertainty}
+
+    We have a random sample of observations falling in two categories.
+
+    \vspace{2em}
+
+    We want to
+    \begin{enumerate}
+        \item Estimate the population frequency.
+        \item Evaluate our uncertainty about that estimate.
+    \end{enumerate}
+
+    \vspace{2em}
+
+    If you observe \alert{none} of one category, \\
+        should you estimate that the population really has none? \\
+            \hspace{3em} \structure{Usually not.}  {\small (else, why were you looking?)}
+
+\end{frame}
+
+\subsection{Estimating the population frequency}
+
+%%%%%%
+\begin{frame}{The sampling distribution}
+
+    \begin{block}{Central Limit Theorem for Frequencies}
+        If $Y$ is the number of observations of type ``A''
+        out of a sample of $n$ independent draws
+        from a large population with a true frequency $p$ of type ``A'', \\
+        then $Y$ is \alert{approximately Normal},
+        with mean $np$ and standard deviation $\sqrt{n p (1-p)}$,
+        if $n$ is large enough.
+    \end{block}
+
+    \vspace{2em}
+
+    This implies that 
+    \[ \prob\left( np - 1.96 \sqrt{n p(1-p)} \le Y \le np + 1.96 \sqrt{n p (1-p)} \right) \approx 0.95 , \]
+    i.e.\ the number of observed type ``A'' should be about $np$, give or take $2 \sqrt{n p (1-p)}$ or so.
+
+    \vspace{2em}
+
+    \structure{simulation example}
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{The standard error for $\hat p$}
+
+    The \alert{sample proportion} of type A is
+    the fraction of the sample that is type A:
+    \[ \hat p = \frac{y}{n} . \]
+
+    \vspace{2em}
+
+    By the Central Limit Theorem, we know that 
+    \[  \hat p \approx p \pm 2 \sqrt{ \frac{ p(1-p) }{ n } } .\]
+
+    \vspace{2em}
+
+    But, we don't actually know the population proportion $p$.
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{An estimator for $p$}
+
+    \begin{block}{Wilson's estimator}
+        for the population proportion is
+        \[ \wt p = \frac{ y+2 }{ n+4 } ,\]
+        i.e.\ the frequency in the sample with two imaginary observations of each type added.
+    \end{block}
+
+    \vspace{2em}
+
+
+    \begin{block}{Standard Error}
+        for Wilson's estimator is
+        \[ \SE_{\wt P} = \sqrt{\frac{\wt p (1-\wt p)}{n+4} } .\]
+    \end{block}
 
     \vspace{1em}
-
-
-    \only<1>{
-        Number of mutations:
-  \begin{center}
-  \begin{tabular}{rrrl}
-    \hline
-  dish & A & B & sign \\ 
-    \hline
-    1 &   1 &   5 & + \\ 
-    2 &   0 &   1 & + \\ 
-    3 &   1 &   2 & + \\ 
-    4 &   0 &   1 & + \\ 
-    5 &   2 &   4 & + \\ 
-    6 &   0 &   5 & + \\ 
-    7 &   5 &   2 & - \\ 
-    8 &   2 &   3 & + \\ 
-    9 &   1 &   3 & + \\ 
-    10 &   1 &   2 & + \\ 
-     \hline
-  \end{tabular}
-  \end{center}
-  }
-
-  \only<2>{
-      \begin{center}
-      \begin{tabular}{rrrr}
-        \hline
-        & A & B & total\\ 
-        \hline
-        \# with more mutations  &   1 &   9 & 10 \\ 
-         \hline
-      \end{tabular}
-      \end{center}
-
-    \vspace{2em}
-
-    $N_+$ is number of differences with $D>0$; $N_-$ is number with $D<0$; 
-    \alert{test statistic} $B_s$ is larger of $N_+$, $N_-$.
-
-        \vspace{1em}
-
-        \begin{align*}
-            P&= \text{probability that in 10 coin tosses, 9 coins agree.} \\
-             &= 0.021
-        \end{align*}
-    }
+    \structure{Why?} Problems happen if $\wt p$ is near 0 or 1; Wilson moves the estimate away from these.
 
 
 \end{frame}
 
-%%%%%% %%%%%%%%%
-\subsection{The binomial distribution}
+\subsection{Confidence intervals}
 
 %%%%%%
-\begin{frame}{$P$-values from the binomial}
+\begin{frame}{Confidence intervals}
 
-  The null hypothesis is \\
-  \hspace{2em} \structure{$H_0$:} difference between the observations is equally likely to be positive or negative.
-
-    \vspace{2em}
-
-    so the $P$-value of the last example \\
-    (9 out of 10 pairs agree, calculated with $H_0$) \\
-    is:
-    \begin{align*} 
-      P &= \mbox{Prob}( \; \text{at least 9 heads out of 10 coin flips}\; ) \\
-       &\quad + \mbox{Prob}( \; \text{at least 9 tails out of 10 coin flips}\; ) \\
-       &= \ch{10}{10} \; 0.5^{10} + \ch{10}{9} \; 0.5^{10} \\
-       &\quad + \ch{10}{9} \; 0.5^{10} + \ch{10}{10}\;  0.5^{10} \\
-       &= 0.0009765625 + 0.0097656250 + 0.0097656250 + 0.0009765625 \\
-       &= 0.0214848
-     \end{align*}
-
-\end{frame}
-
-%%%%%%
-\begin{frame}{Reminder: binomial probabilities}
-
-  \begin{align*}
-    &\mbox{Prob}( k \; \text{heads in} \; n \; \text{coin flips} ) \\
-    \qquad \qquad &= \ch{n}{k} \; 0.5^k \; 0.5^{n-k} \\
-    \qquad \qquad &= \text{(\# ways to get $k$ heads)} \text{(prob of each possibility)}
-  \end{align*}
+    We know that 
+    \begin{itemize}
+        \item the sampling distribution of Wilson's estimator $\wt P$ is approximately Normal
+        \item with standard error $\SE_{\wt P}$,
+        \item so a $(1-\alpha)$ confidence interval is $z_{\alpha/2} \SE_{\wt P}$.
+    \end{itemize}
+    It turns out that this usually does a good job \\
+    \alert{even if $n$ is not large.}
 
     \vspace{2em}
 
-    \structure{live simulation example}
-
-
-\end{frame}
-
-%%%%%%
-\begin{frame}{What to do about zeros?}
-
-  Again, the null hypothesis is \\
-  \hspace{2em} \structure{$H_0$:} difference between the observations is equally likely to be positive or negative.
+    \begin{block}{A 95\% confidence interval}
+        for Wilson's estimator is
+        \[ \wt p \pm 1.96 \; \SE_{\wt P} . \]
+    \end{block}
 
     \vspace{2em}
 
-    \structure{So:} got some ties?  (i.e.\ $D=0$) \\
-    \alert{Ignore them;} compute the $P$-value as if they weren't there.
-
-    \vspace{2em}
-
-    \structure{Because:} we test the hypothesis that \alert{if the paired observations are different}, $Y_1>Y_2$ is just as likely as $Y_2>Y_1$.  (and so, chance of $Y_1>Y_2$, given $Y_1 \neq Y_2$, is 1/2).
+    Check this, \structure{by simulation}.
 
 \end{frame}
 
@@ -190,179 +190,147 @@
 %%%%%%
 \begin{frame}{Example}
 
-        Number of mutations:
-  \begin{center}
-  \begin{tabular}{rrrl}
-    \hline
-  dish & A & B & sign \\ 
-    \hline
-    1 &   1 &   5 & + \\ 
-    2 &   0 &   0 & 0 \\ 
-    3 &   1 &   2 & + \\ 
-    4 &   0 &   1 & + \\ 
-    5 &   2 &   2 & 0 \\ 
-    6 &   0 &   5 & + \\ 
-    7 &   5 &   2 & - \\ 
-    8 &   2 &   2 & + \\ 
-    9 &   1 &   3 & + \\ 
-    10 &   1 &   2 & + \\ 
-     \hline
-  \end{tabular}
-  \end{center}
-
-\end{frame}
-
-
-%%%%%% %%%%%%
-\subsection{Extending the idea}
-
-%%%%%%
-\begin{frame}{Using the binomial formula}
-
-  Yeast ({\it Saccaromyces cerevisiae}) can be either haploid (one copy of each chromosome per cell) or diploid (two copies, like us).
-  (\structure{$H_A$}:) Do haploid yeast accumulate mutations more quickly than diploid yeast (per chromosome)?
-  We grow pairs of otherwise identical haploid and diploid yeasts for one generation,
-  and counted mutations on each chromosome.
+    Out of 169 women with family histories of breast cancer, 27 had mutations in the BRCA1 gene.
 
     \vspace{2em}
 
-    In 6 of the 10 pairs, the haploid chromosome had more mutations than both of the diploid chromosomes.
-    Is this strong support for $H_A$? {\small (\alert{hint:} this is like the sign test, but the coin is not fair.) }
-    % 1-pbinom(q=6,size=10,prob=1/3)
-
-
-\end{frame}
-
-%%%%% %%%%%%% %%%%%%%%
-\section{The Wilcoxon signed-rank test}
-
-\subsection{The signed-rank statistic}
-
-%%%%%%
-\begin{frame}{Signed ranks}
-
-    The Wilcoxon signed-rank statistic, for paired sample data,
-    \begin{itemize}
-        \item orders the \alert{absolute values} of the differences
-        \item compares the ranks of the pairs with $D>0$ to the ranks of the pairs with $D<0$.
-    \end{itemize}
+    \alert{Wilson's estimator} gives that around
+        \[ \wt p = \frac{27 + 2}{169+4} = .168 \]
+    of women with family histories of breast cancer have mutations in BRCA1.
 
     \vspace{2em}
 
-    $W_+$ is the sum of the ranks of the pairs with $D>0$; \\
-    $W_-$ is the sum of the ranks with $D<0$; \\
-    the \alert{test statistic}, $W_s$ is the larger of the two.
+    The \alert{standard error} of this estimate is
+    \[ \SE_{\wt P} = \sqrt{\frac{.168(1-.168)}{169+4}} = .028  \]
 
     \vspace{2em}
 
-    It only uses \alert{ranks},
-    and so is distribution-free.
+    A \alert{95\% confidence interval} for this proportion is $\wt p \pm 1.96 \times .028$:
+    \[ 0.113 < p < 0.223 \]
 
 \end{frame}
 
 %%%%%%
-\begin{frame}{Example}
-    Density of nerves at two sites in the intestine in 9 horses:
+\begin{frame}{From the wild}
+
     \begin{center}
-\begin{tabular}{rrrr}
-  \hline
- animal & site I & site II & difference \\ 
-  \hline
-  1 &  50.60 & 38.00 & +12.60 \\ 
-  2 &  39.20 & 18.60 & +20.60 \\ 
-  3 &  35.20 & 23.20 & +12.00 \\ 
-  4 &  17.00 & 19.00 & -2.00 \\ 
-  5 &  11.20 & 6.60 & +4.60 \\ 
-  6 &  14.20 & 16.40 & -2.20 \\ 
-  7 &  24.20 & 14.40 & +9.80 \\ 
-  8 &  37.40 & 37.60 & -0.20 \\ 
-  9 &  35.20 & 24.40 & +10.80 \\ 
-   \hline
-\end{tabular}
-    \end{center}
-
-\end{frame}
-
-\subsection{Caveats}
-
-
-%%%%%%
-\begin{frame}{What to do about zeros? ties?}
-
-    The Wilcoxon signed-rank test deals with caveats like both
-    the sign test and the Wilcoxon--Mann--Whitney test: \\
-    \begin{itemize}
-        \item Omit pairs with no difference. ($D=0$)
-        \item Average the ranks of ties.
-    \end{itemize}
-    \structure{note:} like WMW, the $P$-value is approximate.
-
-    \vspace{2em}
-
-    \structure{Example:}
-    \begin{center}
-\begin{tabular}{ccccc}
-  \hline
-  animal & site I & site II & difference & rank \\ 
-  \hline
-  1 &  1 & 1 & 0 & omit \\ 
-  2 &  2 & 3 & +1 & \alert<2>{1.5} \\ 
-  3 &  2 & 0 & -2 & \alert<3>{3} \\ 
-  4 &  3 & 2 & -1 & \alert<3>{1.5} \\ 
-  5 &  2 & 5 & +3 & \alert<2>{4} \\ 
-   \hline
-\end{tabular}
+    \includegraphicscopyright[width=\textwidth]{barn-owl-comparison}{Owl predation in Pennsylvania, Pearson \& Pearson 1947}
     \end{center}
 
     \vspace{2em}
 
-    \begin{gather*}
-      \alert<2>{W_+ = 5.5}  \qquad
-        \alert<3>{W_- = 4.5} \\
-        n = 4 \qquad
-        W_s = 5.5 
-    \end{gather*}
+    Find confidence intervals for some of these percentages.  
+    Is there strong evidence that owls catch a higher percentage than traps of 
+    \textit{(a)} meadow mice?
+    \textit{(b)} Deer mice?
+    \textit{(c)} Star-nosed moles?
+
 
 \end{frame}
-
-%%%%%% %%%%%%%%% %%%%%%%%%%
-\subsection{Comparison of the tests}
 
 %%%%%%
-\begin{frame}{Conditions}
+\begin{frame}{Example}
 
-  The sign test versus the Wilcoxon signed-rank test:
-  \begin{enumerate}
-    \item Both are distribution--free
-    \item The sign test is \alert{more flexible} 
-    \item The Wilcoxon signed-rank test is \alert{more powerful} \\
-        if the distributions are symmetric
-  \end{enumerate}
+    Eleven newborn babies with respiratory failure were given ECMO.  None died.
 
     \vspace{2em}
 
-    Sign test:
-    \[ H_0: \quad \mbox{Prob}(D>0) = 1/2 . \]
+    \alert{Wilson's estimator} of the probability of death is
+    \[ \wt p = \frac{0+2}{11+4} = 0.133 \]
 
     \vspace{2em}
 
-    Wilcoxon signed-rank test:
-    \[ H_0: \quad \text{ distribution of $D$ is symmetric } .\]
+    The \alert{standard error} of this estimate is
+    \[ \SE_{\wt P} = \sqrt{\frac{ .133(1-.133) }{ 11+4 }} = .088 \]
+
+    \vspace{2em}
+
+    A \alert{95\% confidence interval} for this proportion is
+        \[ -0.039 \only<2->{ < 0 }< p < 0.305 \]
+
 
 \end{frame}
 
+%%%%%%
+\begin{frame}{One-sided confidence}
+
+    We might often want to simply \alert{upper bound} the population frequency,\\\
+    i.e.\ construct a \structure{one-sided confidence interval}.
+
+    \vspace{2em}
+
+    Since $z_{.05} = 1.645$, 
+    a \alert{95\% one-sided CI} is 
+        \[ p < \wt p + 1.645 \; \SE_{\wt P} \]
+
+    \vspace{2em}
+
+    In the previous example, this is
+        \[ p < 0.278 , \]
+    so we are 95\% confident that the true chance of death is less than 27.8\%.
+
+
+\end{frame}
+
+\subsection{Planning studies}
+
+%%%%%%
+\begin{frame}{Pick your SE}
+
+    We want to estimate the population percentage to \alert{1\% accuracy}
+    (at 95\% confidence).
+    How big a sample should we take?
+
+    \vspace{2em}
+    \pause
+
+    \structure{Rephrased:} We want to estimate the population percentage
+    with two {\tiny (really, 1.96)} standard errors no larger than 1\%.
+    How big a sample should we take?
+
+    \vspace{2em}
+
+    Well,
+        \[ 2 \SE_{\wt P} = 2 \sqrt{\frac{\wt p (1-\wt p)}{n+4} } ,\]
+        so it \alert<1>{depends on $p$}, \pause but \alert<2>{no matter what $p$ is,}\\
+    $\sqrt{p (1-p)} \le 1/2$,
+    so
+    \[ 2 \SE_{\wt P} \le \sqrt{\frac{1}{(n+4)} } .\]
+
+    \vspace{1em}
+
+    We can guarantee that $2 \SE_{\wt P} \le .01$ if $n \ge 100^2$, \\
+    i.e.\ we have at least 10,000 observations.
+
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Example: polling}
+
+    We want to do a poll to determine whether a state proposition 
+    is ahead (above 50\%) or not,
+    with 99\% confidence,
+    as long it is actually leading (or, behind) by at least 5\%.
+    How many people should we poll?
+    Assume everyone is decided.
+
+\end{frame}
+
+
+% . . . 
 
 \section<article>{Summary}
 \section<presentation>*{Summary}
 
 \begin{frame}{Summary}
   \begin{enumerate}
-      \item We now have two more ways to compare typical measurement values between two samples.
-      \item The \alert{sign test} is very flexible, and doesn't even require numeric measurements.
-      \item \ldots count how many pairs have $A>B$.
-      \item The Wilcoxon signed-rank test requires the distributions to be symmetric, but is more powerful than the sign test if this is true.
-      \item \ldots add the ranks of the pairs with $A>B$.
-      \item Both are distribution-free.
+      \item The best estimator of the population frequency is not necessarily the sample frequency
+      \item \ldots mostly because it gets tripped up for small frequencies.
+      \item A good choice is \alert{Wilson's estimator} $\wt p$, that adds two imaginary observations of each type.
+      \item The standard error of Wilson's estimator is $\sqrt{ \wt p (1-\wt p) / (n+4) }$,
+      \item \ldots and confidence intervals for $\wt p$ are found using $z$ multipliers.
+      \item Also: always think about what the results mean.
   \end{enumerate}
 \end{frame}
 
@@ -370,16 +338,15 @@
 \begin{frame}{Homework}
   \begin{center}
 
-  8.4.3
+  9.2.2
 
   \vspace{2em}
 
-  8.4.11
+  9.2.9
 
   \vspace{2em}
 
-  8.5.4
-
+  9.2.10
 
   \end{center}
 \end{frame}
