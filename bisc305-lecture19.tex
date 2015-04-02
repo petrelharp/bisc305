@@ -38,6 +38,121 @@
   \tableofcontents
 \end{frame}
 
+%%%%%%
+\begin{frame}{Another example}
+
+    By area, 
+    40\% is pavement,
+    30\% of a Santa Monica parking lot is shiny cars,
+    20\% is dull cars,
+    and 10\% is other.\\
+    \structure{Hypothesis:} birds don't notice what they are pooping on.
+    We counted the numbers of bird poops on each in a given day:
+    \begin{center}
+        \begin{tabular}{rr}
+            & observed counts \\
+            \hline 
+            pavement & 65 \\
+            shiny & 77 \\
+            dull & 35 \\
+            other & 18 \\
+            \hline
+            total & 195
+        \end{tabular}
+    \end{center}
+
+\end{frame}
+
+
+
+%%%%%%
+\begin{frame}{What do we conclude?}
+
+    The $\chi^2$ test is ``omnidirectional'' --
+    a small $P$-value does not tell us \alert{which part} of the table
+    is deviating significantly from the expectation.
+
+    \vspace{2em}
+
+    \structure{Exception:} a \alert{dichotomous} table does allow for directional tests.
+    (there's only one proportion)
+
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{Back to the example}
+    \begin{center}
+        \begin{tabular}{rrrr}
+            & observed counts & expected counts & difference \\
+            \hline 
+            pavement & 65 & 78 & -13 \\
+            shiny & 77 & 58.5 & 18.5 \\
+            dull & 35 & 39 & -4 \\
+            other & 18 & 19.5 & -1.5 \\
+            \hline
+            total & 195 & 195  & 0 \\
+        \end{tabular}
+    \end{center}
+
+    \vspace{2em}
+
+    Observations?
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{Back to the example}
+    Was pavement pooped on less?
+    \begin{center}
+        \begin{tabular}{rrrr}
+            & observed counts & expected counts & difference \\
+            \hline 
+            pavement & 65 & 78 & -13 \\
+            not pavement & 130 & 117 & 13 \\
+            \hline
+            total & 195 & 195  & 0 
+        \end{tabular}
+    \end{center}
+
+    \vspace{2em}
+    
+    \[ \chi^2_s = \frac{ 13^2 }{ 78 } + \frac{ 13^2 }{ 117 } = 3.611 \]
+    and $df=1$ so $.02<P<.05$.
+
+    \vspace{2em}
+
+    \structure{Conclusion:} probably yes.
+
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Back to the example}
+    Were shiny cars pooped on more?
+    \begin{center}
+        \begin{tabular}{rrrr}
+            & observed counts & expected counts & difference \\
+            \hline 
+            shiny & 77 & 58.5 & 18.5 \\
+            not shiny cars & 118 & 136.5 & -18.5 \\
+            \hline
+            total & 195 & 195  & 0 
+        \end{tabular}
+    \end{center}
+
+    \vspace{2em}
+    \[ \chi^2_s = \frac{ 18.5^2 }{ 58.5 } + \frac{ 18.5^2 }{ 136.5 } = 8.36 \]
+    and $df=1$ so $.001<P<.01$.
+
+    \vspace{2em}
+
+    \structure{Conclusion:} probably yes.
+
+\end{frame}
+
+
 
 \section{Multiple categorical samples}
 

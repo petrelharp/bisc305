@@ -310,12 +310,236 @@
 
     We want to do a poll to determine whether a state proposition 
     is ahead (above 50\%) or not,
-    with 99\% confidence,
+    with 95\% confidence,
     as long it is actually leading (or, behind) by at least 5\%.
     How many people should we poll?
     Assume everyone is decided.
+    \pause
+
+    \vspace{2em}
+
+    The 95\% CI is, at worst, $\wt p \pm 1/\sqrt{n+4}$.  \\
+    \hspace{3em} We want 0.5 to be \alert{outside} the CI.
+    \pause
+
+    \vspace{2em}
+
+    At worst, the true value is $p=0.525$ \\
+    \hspace{3em} and it lies at the upper end of the CI.
+    \pause
+
+    \vspace{2em}
+
+    So, we want
+    \[
+    0.525 - 2 \times \frac{1}{\sqrt{n+4}} > 0.5
+    \]
+    or
+    \[
+    (n+4) > (2/0.025)^2
+    \]
+    or $n+4 > 6400$.
 
 \end{frame}
+
+%%%%% %%%%%%% %%%%%%%%
+\section{Comparing proportions}
+
+\subsection{More categories}
+
+\begin{frame}{Next: more categories}
+
+  We have so far looked at proportions, i.e.\\
+  \structure{counts of a single, dichotomous, categorical variable}.
+
+  \vspace{2em}
+
+  \structure{Next:} more categories.
+  
+  \vspace{2em}
+
+  Comparing to known proportions, with a hypothesis test.
+
+\end{frame}
+
+\begin{frame}{Example: Hardy--Weinberg}
+
+    Red--green colorblindness is caused by recessive mutations in one of the opsin genes on the X chromosome.
+    The frequency in males (only one X) indicates that these mutations are at around $q=8.3\%$ in Europeans.
+    % This suggests the frequency in females should be $q^2= 0.69\%$.
+    We sample 1000 females and compare frequencies of nonmutants, carriers, and color-blindness to the expected proportions $(1-q)^2$, $2q(1-q)$, and $q^2$:
+    \begin{center}
+        \begin{tabular}{r|rr}
+            & observed counts & expected counts \\
+            \hline 
+            nonmutant & 850 & 840.9 \\ 
+            carrier &  146 & 152.2 \\ 
+            colorblind & 4 & 6.9  
+        \end{tabular}
+    \end{center}
+
+    \structure{Are these data consistent with our hypothesis based on the male data?}
+
+\end{frame}
+
+
+%%%%%% %%%%%%%% %%%%%%%
+\subsection{The $\chi^2$ test statistic}
+
+%%%%%%
+\begin{frame}{A measure of ``goodness-of-fit''}
+
+  The $\chi^2$ (``chi-squared'') statistic \\
+  measures deviations of observed proportions from expected \\
+  and hence \alert{goodness of fit}.
+
+    \begin{block}{The $\chi^2$ statistic}
+        \[ \chi^2_s = \sum_{i=1}^k \frac{(o_i - e_i)^2}{e_i} , \]
+        where $o_i$ is the observed \alert{number} of observations in category $i$,
+        and $e_i$ is the expected \alert{number} of observations in category $i$.
+    \end{block}
+
+
+    \vspace{2em}
+
+    This is:\\
+    \hspace{2em} \alert{``observed minus expected, squared, divided by expected''}.
+
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{Example}
+
+    Colorblindness in females:
+    \begin{center}
+        \begin{tabular}{r|rrr}
+            & observed counts & expected counts & difference\\
+            \hline 
+            nonmutant & 850 & 840.9 & 9.1 \\ 
+            carrier &  146 & 152.2 & -5.8 \\ 
+            colorblind & 4 & 6.9 & 2.9  \\
+        \end{tabular}
+    \end{center}
+
+    \vspace{2em}
+
+    \[
+        \chi^2_s = \frac{9.1^2}{840.9} + \frac{5.8^2}{152.2} + \frac{2.9^2}{6.9} .
+    \]
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{Intuition for the formula}
+
+    In the formula
+        \[ \chi^2_s = \sum_{i=1}^k \frac{(o_i - e_i)^2}{e_i} , \]
+    why do we divide by the expected number?
+
+    \vspace{2em} \pause
+
+    \begin{itemize}
+        \item In 500 samples, \\
+          seeing 170 when we expect 150 is \alert{less suprising} \\
+            than seeing 21 when we expect only 1.
+            \pause
+        \item \structure{Why not divide by $e_i^2$ instead?} \\
+          Recall that the standard deviation of the observed number of $p$-successes is $\sqrt{\alert{n p}(1-p) }$:\\
+          the $\chi^2$, roughly, sums over 
+          \[ \left( \frac{O-E}{\SE_{O-E}} \right)^2 \]
+
+    \end{itemize}
+
+\end{frame}
+
+\subsection{Hypothesis testing}
+
+\begin{frame}{Hypothesis testing proportions}
+
+  Suppose we want to test:
+  \begin{itemize}
+    \item[$H_0$:] The population proportions match the expected proportions.
+    \item[$H_A$:] The population proportions \alert{do not} match the expected proportions.
+  \end{itemize}
+
+  \vspace{2em}
+  \structure{Can we use} $\chi^2_s$ as a test statistic?
+  \pause
+
+  \vspace{1em}
+  \alert{Yes.} \uncover<3->{The distribution$^*$ of $\chi^2_s$ under $H_0$, with independent samples,
+  is known, and depends only on the \structure{degrees of freedom}, 
+  \[
+  \df = \text{(\# of categories)} - 1
+  \]
+  }
+  \pause
+  
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{fig9_4_4-chisq-histo}
+  \end{center}
+
+\end{frame}
+
+\begin{frame}{Back to the example}
+
+    Colorblindness in females:
+    \begin{center}
+        \begin{tabular}{r|rrr}
+            & observed counts & expected counts & difference\\
+            \hline 
+            nonmutant & 850 & 840.9 & 9.1 \\ 
+            carrier &  146 & 152.2 & -5.8 \\ 
+            colorblind & 4 & 6.9 & 2.9  \\
+        \end{tabular}
+    \end{center}
+
+    \vspace{2em}
+
+    \begin{itemize}
+      \item[$H_0$:] The prevalence of nonmutants, carriers, and colorblindness in European females is $(1-q)^2$, $2q(1-q)$, and $q^2$, with $q=0.083$.
+      \item[$H_A$:] The prevalences in European females do not match those proportions.
+    \end{itemize}
+
+    \vspace{1em}
+
+    \begin{align*}
+        \chi^2_s &= \frac{9.1^2}{840.9} + \frac{5.8^2}{152.2} + \frac{2.9^2}{6.9} = 1.54 \\
+        \df &= 3-1 = 2 .
+      \end{align*}
+      
+      \vspace{1em}
+
+      \alert{$P>0.2$.}
+
+\end{frame}
+
+
+
+%%%%%% %%%%%%
+\section{What you can conclude}
+
+
+%%%%%%
+\begin{frame}{What do we conclude?}
+
+    \begin{itemize}
+      \item[$H_0$:] The prevalence of nonmutants, carriers, and colorblindness in European females is $(1-q)^2$, $2q(1-q)$, and $q^2$, with $q=0.083$.
+      \item[$H_A$:] The prevalences in European females do not match those proportions.
+    \end{itemize}
+    \vspace{1em}
+
+    \structure{Conclusion:} We do not have good statistical evidence that the proportions of European females that are colorblind, 
+    or carry colorblindness alleles, differ from what we expect based on the male data ($P>0.2$, $\chi^2=1.54$, $\df=2$).
+
+
+
+\end{frame}
+
+
 
 
 % . . . 
@@ -332,6 +556,14 @@
       \item \ldots and confidence intervals for $\wt p$ are found using $z$ multipliers.
       \item Also: always think about what the results mean.
   \end{enumerate}
+  and
+  \begin{enumerate}
+      \item We now have a good test statistic ($\chi^2_s$) to compare observed proportions
+          to expected proportions in a sample.
+      \item This test statistic has good theoretical properties.
+      \item $\chi^2_s$ is equal to the sum of deviations of observed counts from expected counts, squared, and divided by the expected counts.
+      \item The null distribution has one parameter, degrees of freedom, equal to the number of counts minus one.
+  \end{enumerate}
 \end{frame}
 
 % homework
@@ -343,10 +575,13 @@
   \vspace{2em}
 
   9.2.9
+  % \vspace{2em}
+  % 9.2.10
 
   \vspace{2em}
 
-  9.2.10
+  9.4.1
+  % 9.4.6
 
   \end{center}
 \end{frame}

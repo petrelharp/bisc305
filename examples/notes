@@ -22,3 +22,72 @@ twins-exercise_* :
     * also no effect sizes
     * paired measurements
 
+cardio_depression_* :
+    * antidepressants reduced by 53% risk of death, stroke, heart disease
+    * http://www.clinicaladvisor.com/treating-depression-helps-reduce-cardiovascular-risk/article/402142/
+    * no paper
+
+coffee_health_* :
+    * fancy stats, adjusting for confounders
+    * "In this large sample of men and women apparently free of clinically evident cardiovascular disease, moderate coffee consumption was associated with a lower prevalence of subclinical coronary atherosclerosis."
+    * http://heart.bmj.com/content/early/2015/02/06/heartjnl-2014-306663
+    * http://www.cnn.com/2015/03/04/health/coffee-myth-fact/index.html
+
+luna_moths_* :
+    * "We pit luna moths against big brown bats (Eptesicus fuscus) and demonstrate a survival advantage of ∼47% for moths with tails versus those that had their tails removed. The benefit of hindwing tails is equivalent to the advantage conferred to moths by bat-detecting ears. Moth tails lured bat attacks to these wing regions during 55% of interactions between bats and intact luna moths."
+    * http://phenomena.nationalgeographic.com/2015/02/16/why-do-luna-moths-have-such-absurdly-long-tails/#.VObhpp8VTEg.mailto
+    * http://www.pnas.org/content/112/9/2812.full#sec-1
+
+menopause_orca_* :
+    * http://www.latimes.com/science/la-sci-sn-menopausal-whales-leadership-roles-20150306-story.html
+    * http://www.cell.com/current-biology/abstract/S0960-9822%2815%2900069-X
+    * "We found that adult females were more likely to lead group movement compared to adult males (permutation-based binomial regression on the number of times an adult whale was a leader in a given year relative to the number of times they were a follower, regression coefficient = −0.93, p < 0.0001."
+
+education_stats_* :
+    * http://www.sciencedirect.com/science/article/pii/S0304387812000855
+    * "Since 1950, the average years of schooling among the total popula- tion aged 15 years and above in developing countries increased sig- nificantly from 2.0 years to 7.2 years. In South Asia and Middle East/ North Africa regions, average years of schooling have more than doubled since the 1980s. In South Asia, for instance, average years of schooling among the total population aged 15 and over rose from 2.4 years in 1980 to 5.3 years in 2010."
+    * no p-values
+
+alzheimers_drug_* :
+    * http://www.sciencedaily.com/releases/2015/03/150311124200.htm
+    * "The subjects were given varying doses of the drug and also a placebo in a double-blind randomized trial. Researchers found low doses both improved memory performance and normalized the over-activity detected by functional magnetic resonance imaging that measures brain activity during a memory task. "
+    * http://www.sciencedirect.com/science/article/pii/S2213158215000273
+    * "We observed significant improvement in memory task performance under drug treatment relative to placebo in the aMCI cohorts at the 62.5 and 125 mg BID doses of levetiracetam."
+
+cancer_rates_* :
+    * http://dx.doi.org/10.3322/caac.21254
+    * "Table 1: Estimated New Cancer Cases and Deaths by Sex, United States, 2015"
+
+smoking_mortality_* :
+    * http://www.biomedcentral.com/1741-7015/13/38
+    * "Overall, 5,593 deaths accrued during follow-up (874,120 person-years; mean: 4.26 years); 7.7% of participants were current smokers and 34.1% past smokers at baseline. Compared to never-smokers, the adjusted RR (95% CI) of mortality was 2.96 (2.69–3.25) in current smokers and was similar in men (2.82 (2.49–3.19)) and women (3.08 (2.63–3.60)) and according to birth cohort. Mortality RRs increased with increasing smoking intensity, with around two- and four-fold increases in mortality in current smokers of ≤14 (mean 10/day) and ≥25 cigarettes/day, respectively, compared to never-smokers. Among past smokers, mortality diminished gradually with increasing time since cessation and did not differ significantly from never-smokers in those quitting prior to age 45. Current smokers are estimated to die an average of 10 years earlier than non-smokers"
+
+fake_memories_* :
+    * http://www.theguardian.com/science/neurophilosophy/2015/mar/09/false-memories-implanted-into-the-brains-of-sleeping-mice
+    * http://www.nature.com/neuro/journal/v18/n4/full/nn.3970.html
+
+professor_accent_* :
+    * http://www.npr.org/blogs/codeswitch/2015/03/05/390686619/study-at-rate-my-professor-a-foreign-accent-can-hurt-a-teachers-score
+    * http://journals.cambridge.org/action/displayAbstract?fromPage=online&aid=9531137&fulltextType=RA&fileId=S0047404514000736
+    * "I first tested whether RMP users rate instructors with US last names and those with Chinese or Korean last names differently. As mentioned earlier, I used nonparamet- ric Wilcoxon rank sum tests; this was due to the nonnormal distribution of the de- pendent variables as demonstrated by significant Shapiro-Wilk tests (for Clarity: W = 0.95, p , 0.01; for Helpfulness: W = 0.91, p , 0.01). Table 2 reports the results of these tests as well as group medians and confidence intervals."
+
+rat_swim_* :
+    * http://jpet.aspetjournals.org/content/305/1/323.full
+    * "Each of the standard psychotropic agents (DMI, FLX, CIT, and COC) reduced immobility in the FST, but effects on the occurrences of swimming and climbing behaviors differed among drugs (Table1). DMI (a tricyclic antidepressant) dose dependently decreased occurrences of immobility (F4,61 = 6.97, P < 0.01), did not affect occurrences of swimming, and increased occurrences of climbing (F4,61 = 6.78,P < 0.01). "
+
+dental_fracture_* :
+    * http://www.hindawi.com/journals/bmri/2015/591031/
+    * "For each root, the force at the time of fracture was recorded in Newtons.  The fracture values of three experimental and negative control groups were significantly higher than the positive control group. "
+
+thin_americans_* :
+    * http://articles.latimes.com/2014/jan/15/science/la-sci-sn-asian-americans-health-data-20140114
+    * "New data from the Centers for Disease Control and Prevention reveal that 38.6% of Asian American adults have a body mass index over 25, the threshold for being considered overweight. That’s far below the 66.7% rate among whites, 76.7% rate among blacks and 78.8% rate among Latinos."
+
+concussions_* :
+    * http://well.blogs.nytimes.com/2015/03/11/a-2-minute-test-to-detect-concussions/?ref=health&_r=1
+    * http://www.ncbi.nlm.nih.gov/pubmed/25742059
+    * "Among 243 youth (mean age 11 ± 3 years, range 5-17) and 89 collegiate athletes (age 20 ± 1 years, range 18-23), baseline time scores for the K-D test were lower (better) with increasing participant age (P < 0.001, linear regression models). Among 12 athletes who sustained concussions during their athletic season, K-D scores worsened from baseline by an average of 5.2 seconds; improvement by 6.4 seconds was noted for the nonconcussed controls (n = 14)."
+
+smot_poking_* :
+    * "The study also found that young adults with schizophrenia who abused cannabis as teens performed about 26 percent more poorly on memory tests than young adults with schizophrenia who never abused cannabis."
+    * http://www.eurekalert.org/pub_releases/2015-03/nu-tcu030915.php
