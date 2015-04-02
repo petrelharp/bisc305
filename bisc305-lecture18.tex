@@ -52,15 +52,15 @@
 
     \pause
 
-    We sample another 80 pigeons, and find \emph{none} with red-polka-dotted heads.\\
-    \structure{What do you think the true proportion of Los Angeles pigeons with red-polka-dotted heads is?}
+    We sample another 80 pigeons, and find \emph{none} with green-polka-dotted heads.\\
+    \structure{What do you think the true proportion of Los Angeles pigeons with green-polka-dotted heads is?}
 
     \vspace{2em}
 
     \pause
 
     We know some pigeons have white heads due to interbreeding with escaped domestic birds,
-    but \emph{none} the 100 pigeons we have so far have white heads.\\
+    but \emph{none} of the 100 pigeons we have so far have white heads.\\
     \structure{What do you think the true proportion of Los Angeles pigeons with white heads is?}
 
     \vspace{1em}
@@ -154,7 +154,7 @@
     \end{block}
 
     \vspace{1em}
-    \structure{Why?} Problems happen if $\wt p$ is near 0 or 1; Wilson moves the estimate away from these.
+    \structure{Why $+2$?} Problems happen if $\wt p$ is near 0 or 1; Wilson moves the estimate away from these.
 
 
 \end{frame}
@@ -246,7 +246,7 @@
     \vspace{2em}
 
     A \alert{95\% confidence interval} for this proportion is
-        \[ -0.039 \only<2->{ < 0 }< p < 0.305 \]
+    \[ -0.039 < \only<2->{ {\color{red} 0 <}} p < 0.305 \]
 
 
 \end{frame}
@@ -254,7 +254,7 @@
 %%%%%%
 \begin{frame}{One-sided confidence}
 
-    We might often want to simply \alert{upper bound} the population frequency,\\\
+    We might often want to \alert{upper bound} the population frequency,\\\
     i.e.\ construct a \structure{one-sided confidence interval}.
 
     \vspace{2em}
@@ -292,7 +292,7 @@
 
     Well,
         \[ 2 \SE_{\wt P} = 2 \sqrt{\frac{\wt p (1-\wt p)}{n+4} } ,\]
-        so it \alert<1>{depends on $p$}, \pause but \alert<2>{no matter what $p$ is,}\\
+        so it \alert<1>{depends on $p$}, \pause but \alert<2->{no matter what $p$ is,}\\
     $\sqrt{p (1-p)} \le 1/2$,
     so
     \[ 2 \SE_{\wt P} \le \sqrt{\frac{1}{(n+4)} } .\]
@@ -517,10 +517,6 @@
 
 \end{frame}
 
-
-
-%%%%%% %%%%%%
-\section{What you can conclude}
 
 
 %%%%%%
