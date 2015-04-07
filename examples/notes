@@ -11,9 +11,8 @@ sun-lifespan_* :
     * http://phys.org/news/2015-01-sun-lifespan-birth.html
     * http://rspb.royalsocietypublishing.org/content/282/1801/20142032
     * GLMM for various things
-    * "5 year difference" not described in the paper
+    * "5 year difference" is empirical mean
     * main signficant result is on prob of survival, p=0.87 for boys, p=0.12 for girls (for term in GLM)
-
 
 twins-exercise_* :
     * Physical activity, fitness, glucose homeostasis, and brain morphology in twins.

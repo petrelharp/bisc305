@@ -8,11 +8,11 @@
 % See the file doc/licenses/LICENSE for more details.
 
 
-\lecture[21]{Relationships in Categorical Data}{lecture-text}
+\lecture[19]{Relationships in Categorical Data}{lecture-text}
 
 \subtitle{$\chi^2$ between two samples}
 
-\date{14 November 2013}
+\date{7 April 2015}
 
 
 % 363-372, 385-389
@@ -423,13 +423,14 @@
     \vspace{2em}
 
     The test statistic is the \alert{same} as $\chi^2_s$:
-    \[
-        \chi^2_s = \frac{(9 - 8.64)^2}{8.64} + 
+    \begin{align*}
+        \chi^2_s &= \frac{(9 - 8.64)^2}{8.64} + 
             \frac{(8 - 8.36)^2}{8.36} + 
             \frac{(52 - 52.36)^2}{52.36} + 
-            \frac{(51 - 50.64)^2}{50.64} = 0.035
-    \]
-    and there is \alert{one} {degree of freedom}, and $P > 0.2$ \\
+            \frac{(51 - 50.64)^2}{50.64} \\
+          &= 0.035,
+      \end{align*}
+    there is \alert{one} {degree of freedom}, and $P > 0.2$ \\
     so there is no significant evidence that men and women get tested at different rates.
 
 
@@ -497,22 +498,25 @@
 \end{frame}
 
 
-%%%%%%
-\begin{frame}{Example: Hair and Eye Color}
+% %%%%%%
+% \begin{frame}{Example: Hair and Eye Color}
+% 
+%     In 6,800 German men, hair (columns) and eye (rows) color were:
+%         \begin{center}
+%             \begin{tabular}{l|cccc}
+%                 & brown & black & fair & red \\
+%                 \hline
+%                 brown & 438 & 288 & 115 & 16 \\
+%                 grey/green & 1387 & 746 & 946 & 53 \\
+%                 blue & 807 & 189 & 1768 & 47 \\
+%             \end{tabular}
+%         \end{center}
+% 
+%         \uncover<2->{How does this conclusion differ from the prairie dog example?}
+% \end{frame}
 
-    In 6,800 German men, hair (columns) and eye (rows) color were:
-        \begin{center}
-            \begin{tabular}{l|cccc}
-                & brown & black & fair & red \\
-                \hline
-                brown & 438 & 288 & 115 & 16 \\
-                grey/green & 1387 & 746 & 946 & 53 \\
-                blue & 807 & 189 & 1768 & 47 \\
-            \end{tabular}
-        \end{center}
 
-        \uncover<2->{How does this conclusion differ from the prairie dog example?}
-\end{frame}
+
 
 \section{Conditions}
 
@@ -539,7 +543,7 @@
 
 
 %%%%%%
-\begin{frame}{Example:}
+\begin{frame}{Example: owl diet}
 
     \begin{center}
     \includegraphicscopyright[width=\textwidth]{barn-owl-comparison}{Owl predation in Pennsylvania, Pearson \& Pearson 1947}
@@ -567,9 +571,10 @@
 \begin{frame}{Homework}
   \begin{center}
 
-  10.2.1
+    \alert{due 4/16}
 
-  \vspace{2em}
+    \vspace{2em}
+
 
   10.2.5
 
