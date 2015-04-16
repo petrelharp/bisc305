@@ -8,11 +8,11 @@
 % See the file doc/licenses/LICENSE for more details.
 
 
-\lecture[23]{The $F$ test}{lecture-text}
+\lecture[21]{The $F$ test}{lecture-text}
 
 \subtitle{and two-way ANOVA}
 
-\date{21 November 2013}
+\date{15 April 2015}
 
 % 427-436, 449-456
 
@@ -25,27 +25,29 @@
 
 
 \begin{frame}{Last time}
-  \begin{enumerate}
-      \item Goal: test for homogeneity in means among multiple ($>2$) groups of independent samples.
-      \item Tool: comparison of 
-      \item how much variation there is within groups (around the group means)
+  \begin{itemize}
+    \item \structure{Goal:} test for homogeneity in means among multiple ($>2$) groups of independent samples.
+    \item \structure{Tool:} comparison of 
+      \item how much variation there is within groups \\
+        (around the group means)
       \item and how much variation there is between group means;
       \item quantified by the decomposition of the total sum-of-squares into ``within'' and ``between'' components.
           \[ 
        \SS(\text{total})  = \SS(\text{within}) + \SS(\text{between})  
    \]
-  \end{enumerate}
+  \end{itemize}
 
   Equations:
     \begin{align*}
-        \SS(\text{total}) &= \sum_{ij} (y_{ij} - \bar {\bar y} )^2 \\
-      \df(\text{total}) &= n_\cdot - 1 \\
-      \SS(\text{within}) &= \sum_{i} (n_i-1) s_i^2 = \sum_{ij} (y_{ij}-\bar y_i)^2 \\
-      \df(\text{within}) &= n_\cdot - I \\
-      \SS(\text{between}) &= \sum_{i} n_i (\bar y_i - \bar{\bar y_i})^2 \\
-      \df(\text{between}) &= I - 1 \\
+        \SS(\text{total}) &= \sum_{ij} (y_{ij} - \bar {\bar y} )^2 
+    &  \df(\text{total}) &= n_\cdot - 1 \\
+      \SS(\text{within}) &= \sum_{i} (n_i-1) s_i^2 = \sum_{ij} (y_{ij}-\bar y_i)^2 
+   &   \df(\text{within}) &= n_\cdot - I \\
+      \SS(\text{between}) &= \sum_{i} n_i (\bar y_i - \bar{\bar y})^2 
+      & \df(\text{between}) &= I - 1 \\
     \end{align*}
     and $\MS = \SS / \df$.
+    
 \end{frame}
 
 
@@ -85,6 +87,27 @@
 
 \end{frame}
 
+\begin{frame}{The pooled variance}
+
+  $\MS(\text{within})$ has another name.
+
+  \vspace{2em}
+
+  To \alert{estimate} the standard deviation of this variation\\
+  (assumed the same in each group)\\
+  we can use the
+  \begin{block}{Pooled standard deviation}
+    \begin{align*} 
+      s_\text{pooled} &= \sqrt{ \frac{ \sum_{i=1}^I (n_i-1) s_i^2 }{ \sum_{i=1}^I (n_i-1) } }\\
+      &= \sqrt{ \MS(\text{within}) }
+    \end{align*}
+  \end{block}
+
+  \vspace{2em}
+  Notice that $s_\text{pooled}^2$ is a \emph{weighted average} of the $s_i^2$.
+
+\end{frame}
+
 \begin{frame}\frametitle<presentation>{Outline}
   \tableofcontents
 \end{frame}
@@ -117,15 +140,17 @@
 %%%%%%
 \begin{frame}{Relation to sum-of-squares}
     Write instead
-    \[
-        y_{ij} = \only<1>{\mu_i} \only<2>{\mu + (\mu_i - \mu)} \only<3->{\mu + \tau_i} + \epsilon_{ij} .
-    \]
+    \begin{align*}
+        y_{ij} &= \only<1>{\mu_i} \only<2>{\mu + (\mu_i - \mu)} \only<3->{\mu + \tau_i} + \epsilon_{ij} \\
+        \uncover<3->{ \tau_i &= \mu_i - \mu }
+    \end{align*}
+    \pause\pause\pause
     We might estimate the various terms like so:
     \begin{align*}
-        \hat \mu &= \bar{\bar y} \\
-        \hat \mu_i &= \bar y_i \\
-        \hat \tau_i &= \bar y_i - \bar{\bar y} \\
-        \hat \epsilon_{ij} &= y_{ij} - \bar y_i .
+      \hat \mu &= \bar{\bar y}  & \text{(the \alert{overall mean})} \\
+      \hat \mu_i &= \bar y_i  & \text{(the \alert{group mean})} \\
+      \hat \tau_i &= \bar y_i - \bar{\bar y}  & \text{(the \alert{group effect})} \\
+      \hat \epsilon_{ij} &= y_{ij} - \bar y_i & \text{(the alert{random error})} .
     \end{align*}
 
     \vspace{2em}
@@ -143,19 +168,47 @@
 %%%%%%
 \begin{frame}{The $F$ statistic}
 
-    The \structure{test statistic} we use is the ratio of mean squares between to mean squares within:
+  We'd like to test\\
+    \hspace{2em} $H_0$: the population means of all the groups are equal \\
+  against \\
+    \hspace{2em} $H_A$: the population means of the groups are not all equal, \\
+  i.e.\ \structure{Could the observed difference in group means be due to random noise?}
+
+  \vspace{2em}
+
+    The \alert{test statistic} we use \\
+    measures the amount of variation between groups (\structure{signal}), \\
+    relative to within groups (\structure{noise}):
     \[
         F_s = \frac{ \MS(\text{between}) }{ \MS(\text{within}) } .
     \]
 
+\end{frame}
+
+%%%%%%
+\begin{frame}{The $F$ test}
+    \[
+        F_s = \frac{ \MS(\text{between}) }{ \MS(\text{within}) } .
+    \]
+    \vspace{2em}
+
+    \structure{If} the null hypothesis\\
+    \hspace{3em} $H_0$: all group means are equal \\
+    and the conditions
+    \begin{itemize}
+      \item Each group is a random sample from some population,
+      \item that are also independent of each other.
+      \item The $I$ population distributions are approximately Normal\
+        with equal standard deviations.
+    \end{itemize}
+    are true, \structure{then}
 
     \vspace{2em}
 
-    The distribution of $F_s$ under the null hypothesis,  \\
-    assuming that the sampling distributions of the group means are Normal, \\
-    is called the \alert{$F$ distribution}, \\
-    and \structure{depends on} two parameters: \\
-    the degrees of freedom of the numerator and denominator.
+    The distribution of $F_s$ is known, and called 
+    the \alert{$F$ distribution}. \\
+    It \structure{depends on} two parameters: \\
+    the \emph{degrees of freedom} of the numerator and denominator.
 
 
 \end{frame}
@@ -180,6 +233,7 @@
     \begin{center}
         \begin{tabular}{cccc}
             & df & $\SS$ & $\MS$ \\
+            \hline
             between diets & 2 & 36 & 18 \\
             within diets & 9 & 210 & 23.33 \\
             \hline
@@ -198,12 +252,114 @@
     \vspace{2em}
 
     \pause
-    There is not good evidence that diet affects the weight gain of lambs.
+    This is not good evidence that diet affects the weight gain of lambs.
+
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Your turn}
+
+    Weight gain of lambs on three diets
+    \begin{center}
+        \begin{tabular}{cccc}
+            & diet 1 & diet 2 & diet 3 \\
+            \hline
+            $n_i$ & 30 & 50 & 40 \\
+            $\bar y_i$ & 11 & 15 & 12 \\
+            $s_i$ & 4.359 & 4.950 & 4.967 \\
+        \end{tabular}
+    \end{center}
+
+    \pause
+
+    \begin{center}
+        \begin{tabular}{cccc}
+            & df & $\SS$ & $\MS$ \\
+            \hline
+            between diets & 2 & 360 & 180 \\
+            within diets & 117 & 2715.5 & 23.2 \\
+            \hline
+            total & 119 & 3038 & \\
+        \end{tabular}
+    \end{center}
+
+
+    \vspace{2em}
+
+    With $df = (2,117)$ and
+    \[ F_s = \frac{ 180 }{ 23.2 } = 7.76 , \]
+    we find that $0.0001 < P < 0.001$.
+
+
+    \vspace{2em}
+
+    \pause
+    This \alert{is} good evidence that diet affects the weight gain of lambs.
 
 
 \end{frame}
 
 
+\begin{frame}{Why the difference?}
+    Weight gain of lambs on three diets
+
+    \begin{center}
+        \begin{tabular}{cccc}
+            & diet 1 & diet 2 & diet 3 \\
+            \hline
+            $n_i$ & 3 & 5 & 4 \\
+            $\bar y_i$ & 11 & 15 & 12 \\
+            $s_i$ & 4.359 & 4.950 & 4.967 \\
+        \end{tabular}
+    \end{center}
+
+    \hspace{4em}\alert{    $P>0.2$}
+
+    \vspace{3em}
+    \structure{versus}
+
+    \begin{center}
+        \begin{tabular}{cccc}
+            & diet 1 & diet 2 & diet 3 \\
+            \hline
+            $n_i$ & 30 & 50 & 40 \\
+            $\bar y_i$ & 11 & 15 & 12 \\
+            $s_i$ & 4.359 & 4.950 & 4.967 \\
+        \end{tabular}
+    \end{center}
+    \hspace{4em}\alert{$P<0.01$}
+
+    \pause
+
+
+
+  \end{frame}
+
+  \begin{frame}{What next?}
+
+    This gives us \emph{statistical significance},\\
+    what about \structure{real-world significance?}
+
+    \vspace{2em}
+
+    A good option is to construct \alert{confidence intervals},\\
+    using $s_\text{pooled}$.
+
+    \vspace{2em}
+
+    For instance, here
+    \[
+    s_\text{pooled} = \sqrt{\MS(\text{within})} = 4.8
+    \]
+    so that $\SE_{\bar Y_1 - \bar Y_2} \approx 4.8 / \sqrt{40} =0.75$\\
+    so a 95\% confidence interval for $\bar y_2 - \bar y_1$ is approximately\\
+    \[
+  3.33 \le \bar y_2 - \bar y_1 \le 6.27
+  \]
+
+
+  \end{frame}
 
 
 \section{Conditions for the $F$ test}
@@ -319,23 +475,17 @@
     &   a & a & b & b & c & c & d & d & e & e \\
     &   F & M & F & M & F & M & F & M & F & M \\
     \hline
-    & 10.10  &  10.66  & 11.86  &  14.67  &  10.07  & 12.95  &  11.51  &  14.60  &   12.74  & 14.33  \\
-    & 9.32   &  13.31  & 14.14  &  14.60  &  10.34  & 11.39  &  13.15  &  13.88  &   13.83  & 16.18  \\
-    & 8.42   &  11.88  & 10.72  &  13.97  &  8.42   & 10.86  &  12.93  &  12.48  &   12.91  & 16.42  \\
-    & 7.72   &  9.88   & 13.11  &  12.55  &  8.93   & 11.09  &  13.44  &  13.58  &   13.12  & \\
-    & 10.04  &  10.85  & 10.14  &  12.60  &  10.20  & 10.95  &  12.91  &  12.76  &          & \\
-    & 10.24  &  11.70  & 11.20  &         &   10.93  & 9.39   &  13.08  &  14.51  &          & \\
-    & 10.32  &  10.94  & 13.68  &         &   10.29  &        &   12.49  &  14.55  &          & \\
-    &        &   9.72   & 12.30  &         &   11.34  &        &   13.19  &  14.81  &          & \\
-    &        &   11.03  & 11.12  &         &          &         &   12.54  &  13.20  &          & \\
-    &        &   10.87  & 13.24  &         &          &         &   11.29  &  13.83  &          & \\
-    &        &   9.55   & 11.99  &         &          &         &   13.45  &  15.05  &          & \\
-    &        &          &  10.57  &         &          &         &   11.61  &         &           & \\
-    &        &          &         &          &          &         &   14.43  &         &           & \\
+    & 10.89 & 8.62 & 7.32 & 8.13 & 9.99 & 8.14 & 19.13 & 18.34 & 5.73 & 5.48 \\ 
+    & 10.44 & 9.13 & 9.77 & 7.87 & 9.73 & 8.30 & 18.50 & 17.57 & 5.89 & 6.61 \\ 
+    & 8.49 & 10.21 & 10.16 & 7.74 & 9.41 & 7.80 & 20.72 & 17.60 & 7.93 & 5.08 \\ 
+    & 10.60 & 9.36 & 8.97 & 8.61 & 8.71 & 7.08 & 20.21 & 16.72 & 8.34 & 4.93 \\ 
+    & 10.72 & 8.47 & 10.20 & 7.88 & 9.05 & 9.50 & 17.65 & 17.63 & 6.56 & 5.55 \\ 
+    & 11.41 & 9.09 & 8.12 & 7.67 & 7.43 & 7.96 & 19.54 & 18.26 & 8.03 & 6.97 \\ 
+    & 11.19 & 9.27 & 9.26 & 7.27 & 8.39 & 8.67 & 20.04 & 18.34 & 6.78 & 6.74 \\ 
    \hline
-$n_i$  &  7     &  11     &  12     &  5      &  8      &  6      &  13     &  11     &  4      &  3      \\
-mean   &  9.45  &  10.94  &  12.00  &  13.67  &  10.06  &  11.10  &  12.76  &  13.93  &  13.14  &  15.64  \\
-SD     &  1.01  &  1.08   &  1.30   &  1.04   &  0.96   &  1.14   &  0.88   &  0.85   &  0.48   &  1.14   \\
+$n_i$  &  8     &  8     &  8     &  8      &  8      &  8      &  8     &  8     &  8      &  8      \\
+  mean & 10.23 & 9.33 & 9.02 & 7.90 & 8.90 & 8.17 & 19.46 & 17.92 & 7.04 & 6.30 \\ 
+  SD   & 1.24 & 0.71 & 1.03 & 0.39 & 0.83 & 0.70 & 1.00 & 0.67 & 0.99 & 1.36 \\ 
 \end{tabular}
 }
 \end{frame}
@@ -356,10 +506,10 @@ SD     &  1.01  &  1.08   &  1.30   &  1.04   &  0.96   &  1.14   &  0.88   &  0
   \begin{tabular}{c|ccccc|c}
     means & a & b & c & d & e &  \\
     \hline
- F & 9.45 & 12.00 & 10.06 & 12.76 & 13.14  & 11.57 \\
- M & 10.94 & 13.67 & 11.10 & 13.93 & 15.64 & 12.65 \\
- \hline 
-& 10.36 & 12.49 & 10.51 & 13.30 & 14.21 & 12.06 \\
+  F & 10.23 & 9.02 & 8.90 & 19.46 & 7.04 & 10.93 \\ 
+M & 9.33 & 7.90 & 8.17 & 17.92 & 6.30 & 9.92 \\ 
+  \hline
+  & 9.78 & 8.46 & 8.54 & 18.69 & 6.67 & 10.43 \\ 
   \end{tabular}
 \end{center}
 }
@@ -370,10 +520,10 @@ SD     &  1.01  &  1.08   &  1.30   &  1.04   &  0.96   &  1.14   &  0.88   &  0
   \begin{tabular}{c|ccccc|c}
     means & a & b & c & d & e &  \\
     \hline
- F & -2.60 & -0.05 & -1.99 & 0.70 & 1.08  & -0.48  \\
- M & -1.11 & 1.61 & -0.95 & 1.87 & 3.57 & 0.59 \\
- \hline 
- & -1.69 & 0.43 & -1.55 & 1.24 & 2.15 & \alert{12.06} \\
+M & -1.09 & -2.53 & -2.25 & 7.49 & -4.12 & -0.50 \\ 
+  F & -0.20 & -1.41 & -1.53 & 9.03 & -3.38 & 0.50 \\ 
+  \hline
+  & -0.65 & -1.97 & -1.89 & 8.26 & -3.75 & \alert{10.43} \\ 
   \end{tabular}
 \end{center}
 }
@@ -384,10 +534,10 @@ SD     &  1.01  &  1.08   &  1.30   &  1.04   &  0.96   &  1.14   &  0.88   &  0
   \begin{tabular}{c|ccccc|c}
     means & a & b & c & d & e &  \\
     \hline
-    F & -0.42 & 1.04 & -1.94 & -0.32 & 3.12 & \alert{-0.48} \\
-    M & -0.15 & 0.86 & -2.79 & 0.20 & 0.83 & \alert{0.59} \\
- \hline 
- & \alert{-1.69} & \alert{0.43} & \alert{-1.55} & \alert{1.24} & \alert{2.15} & \alert{12.06} \\
+    M & 0.06 & -0.06 & 0.14 & -0.27 & 0.13 & \alert{-0.50} \\ 
+    F & -0.06 & 0.06 & -0.14 & 0.27 & -0.13 & \alert{0.50} \\ 
+    \hline
+ & \alert{-0.64} & \alert{-1.96} & \alert{-1.89} & \alert{8.26} & \alert{-3.75} & \alert{10.43} \\
   \end{tabular}
 \end{center}
 }
@@ -443,7 +593,8 @@ SD     &  1.01  &  1.08   &  1.30   &  1.04   &  0.96   &  1.14   &  0.88   &  0
     and $n_{ij}$ the number of observations in $(i,j)$; 
     $n_{i\cdot} = \sum_j n_{ij}$, and 
     $n_{\cdot j} = \sum_i n_{ij}$.
-  We can still partition the sum of squares:
+    \alert{If} all the $n_{ij}$ are the same (``balanced''),\\
+    We can still partition the sum of squares:
   \begin{align*}
     \SS(\text{between $i$}) &= \sum_{i} n_{i\cdot} \hat \tau_{i}^2 & \df(\text{between $i$}) &= I-1 \\
     \SS(\text{between $j$}) &= \sum_{j} n_{\cdot j} \hat \beta_{j}^2 & \df(\text{between $j$}) &= J-1 \\

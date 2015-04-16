@@ -25,11 +25,13 @@ with(xy, xtable(rbind(tapply(x,group,length),tapply(x,group,mean),tapply(x,group
 
 
 if (FALSE) {
-xy <- data.frame(
-        x=rnorm(80),
-        sex=sample(c("M","F"),80,replace=TRUE),
-        island=sample(letters[1:5],80,replace=TRUE)
-        )
+xy <- cbind( data.frame(
+        x=rnorm(80) ),
+    expand.grid(
+            sex=c("M","F"),
+            island=letters[1:5]
+        )[rep(1:10,each=8),]
+    ) 
 sexeffect <- c(0,1)
 islandeffect <- rpois( nlevels(xy$island), 10 )
 xy$x <- with(xy, x + sexeffect[sex] + islandeffect[island] )
@@ -95,6 +97,11 @@ with(xy, {
         } )
 dev.off()
 
+xtable::xtable(rbind(do.call(cbind,tapply(xy$x,xy$group,c)),mean=tapply(xy$x,xy$group,mean),sd=tapply(xy$x,xy$group,sd)))
+
+xtable::xtable(addmargins(with(xy, tapply( x, list(sex,island), mean ) ), FUN=mean) )
+xtable::xtable(addmargins(with(xy, tapply( x-mean(x), list(sex,island), mean ) ), FUN=mean) )
+xtable::xtable(addmargins(with(xy, tapply( x, list(sex,island), mean ) + mean(x) - outer( tapply(x,sex,mean), tapply(x,island,mean), "+" )), FUN=mean) )
 
 with(xy, tapply( x, paste(sex,island), mean ) )
 with(xy, tapply(x,sex,mean) )
