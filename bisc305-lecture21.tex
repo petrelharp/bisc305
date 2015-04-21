@@ -444,13 +444,14 @@
 %%%%%%
 \begin{frame}{``Factorial'' design}
 
-    Often experiments want to examine the combined effects of several ``factors''\\
+    Often experiments want to examine the combined effects \\
+    of several \alert{factors} \\
     in all their possible combinations. \\
 
     \vspace{2em}
 
-    We can then ask how each factor affects the outcome on its own,\\
-    and whether the effect of one factor depends on the other factor.
+    How does each factor affect the outcome? \\
+    Does the \alert{effect} of one factor depend on the other factor?
 
     \vspace{2em}
 
@@ -458,7 +459,9 @@
     \structure{Examples:}
     \begin{itemize}
         \item (blood pressure) :  (blood pressure medication) $\times$ (age)
+          \pause
         \item (beak size) : (sex) $\times$ (island)
+          \pause
         \item (plant growth rate) : (water) $\times$ (sunlight)
     \end{itemize}
 
@@ -468,7 +471,11 @@
 %%%%%%
 \begin{frame}{Example: beak size}
 
-    Beak size of finches in different islands:
+    Beak size of finches in different islands: 
+    \vspace{2em}
+
+    (equal sample sizes : a \structure{balanced} design)
+    \vspace{2em}
 
     { \tiny
 \begin{tabular}{c|cccccccccc}
@@ -493,8 +500,12 @@ $n_i$  &  8     &  8     &  8     &  8      &  8      &  8      &  8     &  8   
 %%%%%%
 \begin{frame}{Example: beak size}
 
-    Question: does mean beak size differ between islands? \\
-    between sexes?  \\
+  \alert{Questions:} \\
+    \vspace{1em}
+    Does mean beak size differ between islands? \\
+    \vspace{1em}
+    Between sexes?  \\
+    \vspace{1em}
     Is the size of the sex difference larger in some islands than others?
 
 
@@ -520,8 +531,8 @@ M & 9.33 & 7.90 & 8.17 & 17.92 & 6.30 & 9.92 \\
   \begin{tabular}{c|ccccc|c}
     means & a & b & c & d & e &  \\
     \hline
-M & -1.09 & -2.53 & -2.25 & 7.49 & -4.12 & -0.50 \\ 
   F & -0.20 & -1.41 & -1.53 & 9.03 & -3.38 & 0.50 \\ 
+  M & -1.09 & -2.53 & -2.25 & 7.49 & -4.12 & -0.50 \\ 
   \hline
   & -0.65 & -1.97 & -1.89 & 8.26 & -3.75 & \alert{10.43} \\ 
   \end{tabular}
@@ -534,8 +545,8 @@ M & -1.09 & -2.53 & -2.25 & 7.49 & -4.12 & -0.50 \\
   \begin{tabular}{c|ccccc|c}
     means & a & b & c & d & e &  \\
     \hline
-    M & 0.06 & -0.06 & 0.14 & -0.27 & 0.13 & \alert{-0.50} \\ 
     F & -0.06 & 0.06 & -0.14 & 0.27 & -0.13 & \alert{0.50} \\ 
+    M & 0.06 & -0.06 & 0.14 & -0.27 & 0.13 & \alert{-0.50} \\ 
     \hline
  & \alert{-0.64} & \alert{-1.96} & \alert{-1.89} & \alert{8.26} & \alert{-3.75} & \alert{10.43} \\
   \end{tabular}
@@ -546,10 +557,12 @@ M & -1.09 & -2.53 & -2.25 & 7.49 & -4.12 & -0.50 \\
 
 %%%%%%
 \begin{frame}{Example: beak size}
-    Beak size of finches in different islands
+    Beak size of finches in different islands\\
+    \alert{
     \only<2>{with male/female means subtracted off:}
     \only<3>{with island means subtracted off:}
     \only<4>{with both subtracted off:}
+    }
     \begin{center}
         \includegraphics<1>{ex23-beaks.pdf}
         \includegraphics<2>{ex23-beaks-nosex.pdf}
@@ -593,8 +606,8 @@ M & -1.09 & -2.53 & -2.25 & 7.49 & -4.12 & -0.50 \\
     and $n_{ij}$ the number of observations in $(i,j)$; 
     $n_{i\cdot} = \sum_j n_{ij}$, and 
     $n_{\cdot j} = \sum_i n_{ij}$.
-    \alert{If} all the $n_{ij}$ are the same (``balanced''),\\
-    We can still partition the sum of squares:
+    \structure{If all the $n_{ij}$ are the same} (``balanced''),\\
+    we can still partition the sum of squares:
   \begin{align*}
     \SS(\text{between $i$}) &= \sum_{i} n_{i\cdot} \hat \tau_{i}^2 & \df(\text{between $i$}) &= I-1 \\
     \SS(\text{between $j$}) &= \sum_{j} n_{\cdot j} \hat \beta_{j}^2 & \df(\text{between $j$}) &= J-1 \\
@@ -623,15 +636,15 @@ M & -1.09 & -2.53 & -2.25 & 7.49 & -4.12 & -0.50 \\
 \begin{frame}{$F$-tests, beak sizes:}
 
     \[
-    y_{\text{island},\text{sex},k} =  \mu +  \tau_\text{island}, +  \beta_\text{sex}, +  \eta_{\text{island},\text{sex},} +  \epsilon_{\text{island},\text{sex},k} 
+    y_{\text{island},\text{sex},k} =  \mu +  \tau_\text{island} +  \beta_\text{sex} +  \eta_{\text{island},\text{sex}} +  \epsilon_{\text{island},\text{sex},k} 
     \]
 
 
     \only<1>{
-  Are there sex differences in mean beak size that are of different sizes on different islands?
+    Are there \alert{sex differences} in mean beak size that are of \structure{different sizes on different islands}?
   (or, Are mean beak size effects of sex and island \emph{not} additive?)
   \begin{align*} 
-    H_0 &: \quad \eta_{11} = \eta_{12} = \cdots = \eta_{I-1,J} = \eta_{IJ} \\
+    H_0 &: \quad \eta_{11} = \eta_{12} = \cdots = \eta_{I-1,J} = \eta_{IJ} = 0 \\
     F_s &= \frac{ \MS(\text{interaction}) }{ \MS(\text{within}) } = \frac{0.776}{1.060} = 0.7318\\
     df &= (4,70)
   \end{align*} 
@@ -639,18 +652,18 @@ M & -1.09 & -2.53 & -2.25 & 7.49 & -4.12 & -0.50 \\
   
 
   \only<2>{
-  Are there differences in mean beak size between islands (consistent across both sexes)?
+  Are there differences in mean beak size \structure{between islands} (consistent across both sexes)?
   \begin{align*} 
-    H_0 &: \quad \tau_1 = \cdots = \tau_I \\
+    H_0 &: \quad \tau_1 = \cdots = \tau_I = 0 \\
     F_s &= \frac{ \MS(\text{between islands}) }{ \MS(\text{within}) } = \frac{43.478}{1.060} = 41.0228 \\
     df &= (4,70)
   \end{align*} 
   }
 
   \only<3>{
-  Are there differences in mean beak size between sexes (consistent across all islands)?
+  Are there differences in mean beak size \structure{between sexes} (consistent across all islands)?
   \begin{align*} 
-    H_0 &: \quad \beta_1 = \cdots = \beta_J \\
+    H_0 &: \quad \beta_1 = \cdots = \beta_J = 0 \\
     F_s &= \frac{ \MS(\text{between sexes}) }{ \MS(\text{within}) } = \frac{23.032}{1.060} = 21.7317 \\
     df &= (1,70)
   \end{align*} 

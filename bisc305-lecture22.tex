@@ -127,7 +127,8 @@ Italy        &  32.60  &  52.60   &  & & \\
 \begin{frame}{What does it mean?}
   \begin{itemize}
     \item $r$ is between -1 and 1
-    \item $r=0$ means no \alert{linear} relationship
+    \item $|r|=1$ means perfect \alert{linear} relationship
+    \item $r=0$ means no linear relationship
     \item larger $|r|$ means stronger linear relationship
     \item $r<0$ means inverse relationship
   \end{itemize}
@@ -165,8 +166,8 @@ Italy        &  32.60  &  52.60   &  & & \\
 
   \structure{Examples:} ($\bar y$)
   \begin{enumerate}
-    \item The average height of 50 people at my family reunion was 5'8".
-    \item The average height of 50 USC undergraduates chosen randomly by lottery was 5'8".
+    \item The average height of the 50 people at my family reunion was 5'8". \alert{\it (summary statistic)}
+    \item The average height of a random sample of 50 USC undergraduates was 5'8". \alert{\it (parameter estimate)}
   \end{enumerate}
 
 \end{frame}
@@ -188,7 +189,7 @@ Italy        &  32.60  &  52.60   &  & & \\
 
     In the second case noise might be inherent randomness in the response
     (the \alert{mean response} is a linear function of $X$) \\
-    or the result of noisy measurement of $Y$ (true relationship is linar; noise is unbiased)
+    or the result of noisy measurement of $Y$ (true relationship is linear; noise is unbiased)
 
 \end{frame}
 
@@ -205,7 +206,9 @@ Italy        &  32.60  &  52.60   &  & & \\
     \vspace{2em}
 
     \structure{Examples:}\\
+    \vspace{1em}
     $H_0$: There is no linear relationship between Toxoplasma prevalence and neuroticism.\\
+    \vspace{1em}
     $H_0$: Son's height is not correlated with father's height.
 
 \end{frame}
@@ -214,7 +217,7 @@ Italy        &  32.60  &  52.60   &  & & \\
 \begin{frame}{A null distribution}
 
   Under the null hypothesis of no correlation 
-  {\small (and Normal sampling distributions, independent observations, etc)}
+  {\small (and Normal sampling distributions, independent paired observations)}
   the distribution of $r$ is related to $t$:
   \[
     t_s = r \sqrt{\frac{n-2}{1-r^2}}
@@ -232,6 +235,12 @@ Italy        &  32.60  &  52.60   &  & & \\
     \includegraphicscopyright[width=\textwidth]{table-12-2-2.png}{SWS, Table 12.2.2}
   \end{center}
 
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    \includegraphics[width=\textwidth]{snakes-cor-ex}
+  \end{center}
 \end{frame}
 
 \section{Interpreting correlations}
@@ -285,18 +294,18 @@ Italy        &  32.60  &  52.60   &  & & \\
 \end{frame}
 
 
-%%%%%%
-\begin{frame}{Example: rats on drugs}
-
-  Amount of food consumed by 24 rats, randomly given one of three amounts of amphetamine:
-  \begin{center}
-    \only<1>{ \includegraphicscopyright[width=.8\textwidth]{fig-12-1-1.png}{figure 12.1.1} }
-    \only<2>{ \includegraphicscopyright[width=.8\textwidth]{table-12-1-1.png}{table 12.1.1} }
-  \end{center}
-
-
-\end{frame}
-% . . . 
+% %%%%%%
+% \begin{frame}{Example: rats on drugs}
+% 
+%   Amount of food consumed by 24 rats, randomly given one of three amounts of amphetamine:
+%   \begin{center}
+%     \only<1>{ \includegraphicscopyright[width=.8\textwidth]{fig-12-1-1.png}{figure 12.1.1} }
+%     \only<2>{ \includegraphicscopyright[width=.8\textwidth]{table-12-1-1.png}{table 12.1.1} }
+%   \end{center}
+% 
+% 
+% \end{frame}
+% % . . . 
 
 
 \section<article>{Summary}
