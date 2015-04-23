@@ -26,6 +26,8 @@ usc$MNTM <- usc$MNTM /10
 usc$month <- format.Date(usc$DATE,"%m")
 usc$year <- as.numeric(format.Date(usc$DATE,"%Y"))
 
+usc <- subset(usc,year<1998)  # station was moved in 1998
+
 usc$temp <- usc$MNTM - with(subset(usc,year<1920), tapply( MNTM, month, mean, na.rm=TRUE ))[usc$month]
 usc$year[ usc$year<1920 ] <- NA
 
