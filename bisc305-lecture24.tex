@@ -118,6 +118,12 @@
 %%%%%%
 \begin{frame}{Parameter estimates}
 
+  \begin{align*}
+    Y = \beta_0 + \beta_1 X + \epsilon \\
+    \epsilon \; \text{independent, with SD $\sigma_\epsilon$} .
+  \end{align*}
+  \vspace{2em}
+
   If the random subsampling model holds, then
   \begin{enumerate}
     \item[$b_0$] is an estimate of $\beta_0$ (the intercept)
@@ -127,26 +133,54 @@
 
 \end{frame}
 
-\section{Prediction}
 
 %%%%%%
-\begin{frame}{Example:}
+\begin{frame}{Example: Galton 1885}
 
-  Son's height ($Y$) and ``midparent'' height (average of: father's and 1.08 $\times$ mother's heights)
-  (Galton 1885):
+  Son's height ($Y$) and ``midparent'' height, in inches \\
+  (average of: father's and 1.08 $\times$ mother's heights)
   \begin{center}
     \includegraphics<1>{galton.pdf}
-    \includegraphics<2>{galton-mean.pdf}
-    \includegraphics<3>{galton-pred.pdf}
-
-  \only<2>{\structure{Error} size $\approx \sigma_Y$}
-  \only<3>{\structure{Error} size $\approx \sigma_\epsilon < \sigma_Y$}
   \begin{align*}
-    \mu_X &= 68.09 & \sigma_X &= 2.52 \\
-    \mu_Y &= 68.31 & \sigma_Y &= 1.79 \\
-    r &= 0.459 & s_e &= 2.24 
+    \hat \mu_X &= 68.09 & s_X &= 2.52 & r &= 0.459 \\
+    \hat \mu_Y &= 68.31 & s_Y &= 1.79 & s_e &= 2.24 
   \end{align*}
+  \begin{align*} 
+    \text{(son's height)} &= 68.31 + 0.459 \times \frac{1.79}{2.52} \times \left( \text{(midparent height)} - 68.09 \right) + \epsilon  \\
+    &= 24 + 0.64 \times \text{(midparent height)}  + \epsilon
+  \end{align*}
+
   \end{center}
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{align*} 
+      Y &= \beta_0 + \beta_1 X + \epsilon \\
+      \text{(son's height)} &= 24 + 0.64 \times \text{(midparent height)}  + \epsilon\\
+      s_e &= 2.24
+    \end{align*}
+  \end{center}
+  \begin{enumerate}
+    \item How tall is the average offspring of parents with midparent height 70"?
+      \pause
+      \[  24 + 0.64 \times 70  = 68.8 \]
+      \pause
+    \item \ldots for midparent height 66"?
+      \pause
+      \[  24 + 0.64 \times 66  = 66.2 \]
+      \pause
+    \item Is a child 62" tall with midparent height 66" suprising?
+      \pause
+      \[  z = \frac{62 - (24+0.64\times 66)}{2.24} = 1.89 \]
+      \pause
+    \item \ldots how about a child 73" tall?
+      \pause
+      \[  z = \frac{73 - (24+0.64\times 66)}{2.24} = 3.02 \]
+  \end{enumerate}
 
 \end{frame}
 
@@ -156,7 +190,6 @@
 %%%%%%
 \begin{frame}{The standard error of the slope}
 
-  Recall that $b_1$ is our \structure{estimate} for the slope $\beta_1$.
 
   \begin{block}{Standard Error for $b_1$}
       \[
@@ -173,7 +206,7 @@
     }
     \pause
 
-    This quantifies the intuition that
+    Intuitively,
     we will be more certain about the relationship with
     \begin{itemize}
         \item less noise in the relationship ($s_e$)
@@ -183,7 +216,7 @@
 
     \vspace{2em}
 
-    A 95\% confidence interval for the slope is then
+    A \alert{95\% confidence interval} for the slope is:
     \[
         b_1 \pm t_{n-2,0.025} \SE_{b_1} .
     \]
@@ -194,11 +227,13 @@
 %%%%%%
 \begin{frame}{Hypothesis testing}
 
-    We can do as usual with $\SE_{b_1}$:
-    under a null hypothesis of no relationship
+    As usual with $\SE_{b_1}$: \\
+    Under a null hypothesis of no relationship,
     \[
-        H_0: \; \beta_1 = 0
+        H_0: \; \beta_1 = 0 ,
     \]
+    the independent subsampling model, \\
+    and normally distributed deviations with equal variance, \\
     the test statistic 
     \[
         t_s = \frac{b_1 - 0}{\SE_{b_1}}
@@ -211,9 +246,83 @@
 
 \end{frame}
 
+%%%%%%%
+
+\begin{frame}{Conditions}
+
+  Statistical \alert{inference} using linear regression
+  requires:
+  \begin{enumerate}
+    \item Independent pairs $(X,Y$) from either:
+      \begin{itemize}
+        \item random subsampling (of $Y$ given $X$), \structure{or}
+        \item bivariate random sampling (of pairs $(X,Y)$)
+      \end{itemize}
+    \item Under the \structure{linear model},
+      \begin{align*}
+        \mu_{Y \given X} &= \beta_0 + \beta_1 X \\
+        \sigma_{Y \given X} &\; \text{does not depend on $X$}.
+      \end{align*}
+    \item To use the $t$ distribution for $b_1$, \\
+      the conditional population distribution of $Y$ given $X$ \\
+      must be normally distributed.
+  \end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Example: growth of Loblolly pines}
+
+  Heights and ages of 84 Loblolly pines, \alert{$r=0.99$}:
+  \begin{center}
+    \includegraphics<1>{loblolly-age-height}
+  \end{center}
+
+    \begin{center}
+        \begin{tabular}{r|rr}
+          & mean & SD \\
+          \hline
+          age & 13.0 & 7.9 \\
+          height & 32.4 & 20.6 \\
+        \end{tabular}
+    \end{center}
+
+    \pause
+  \begin{align*}
+    \text{(height)} &= 32.4 + 0.99 \times \frac{20.6}{7.9} (\text{(age)}-13) + \epsilon \\
+        &= -1.3 + 2.6 \times \text{(age)} \\
+        s_e &= 2.95 \\
+  \end{align*}
+  \pause
+  \begin{align*}
+        \SE_{b_1} &= \frac{2.95}{7.9\sqrt{84-1}} = 0.041 \\
+        t_s &= \frac{2.6 - 0}{0.041} = 63.3
+  \end{align*}
+
+\end{frame}
+
 
 %%%% %%%%%%% %%%%%%%
 \section{Interpretation}
+
+
+%%%%%%
+\begin{frame}{Residuals}
+
+  \ldots are what's left over, $e_i$:
+  \begin{align*}
+    \hat y_i &= b_0 + b_1 x_i \\
+    e_i &= y_i - \hat y_i
+  \end{align*}
+
+  \begin{center}
+    \includegraphics<1>{loblolly-age-height}
+    \includegraphics<2>{loblolly-resids}
+  \end{center}
+
+  \vspace{1em}
+  \alert{What does this mean?}
+
+\end{frame}
 
 
 %%%%%%
@@ -224,15 +333,98 @@
     \includegraphics<2>{nonlinear2.pdf}
     \end{center}
 
-    If the true relationship isn't linear, then linear regression might not be the right tool.
+    If the true relationship isn't linear, \\
+    then linear regression might not be the right tool.
+    \pause
+
+    \alert{But it might be a good first pass.}
 
 
 \end{frame}
 
+
+
+
+\section{Diagnostic plots}
+
+
+%%%%%%
+\begin{frame}{Residuals versus predicted}
+    Checks for nonlinearity; \uncover<3->{heteroskedasticity (different variances)}
+    \begin{center}
+        \includegraphics<1>{nonlinear2-resids.pdf}
+        \includegraphics<2>[width=\textwidth]{usc-temps-fit-resid.pdf}
+        \includegraphics<3>{hetersked-resids.pdf}
+    \end{center}
+
+    \structure{The hope} is to see \alert{no structure} in the residual plot.
+
+\end{frame}
+
+
+% 
 % %%%%%%
-% \begin{frame}{Transformation example}
+% \begin{frame}{What can go wrong?}
+% 
+%     \begin{center}
+%         \includegraphics[width=\textwidth]<1>{many-regressions-1.pdf}
+%         \includegraphics[width=\textwidth]<2>{many-regressions-2.pdf}
+%         \includegraphics[width=\textwidth]<3>{many-regressions-3.pdf}
+%     \end{center}
 % 
 % \end{frame}
+
+
+
+\begin{frame}{Common errors: nonindependence}
+
+
+  \alert{ Observations are dependent: } \\
+
+  20 measurements of serum cholesterol ($X$) and glucose ($Y$) \ldots \\
+  10 from each patient.
+  \vspace{2em}
+
+      \structure{Example:} 
+      \begin{center}
+        \includegraphics<1>[width=\textwidth]{nonindep-0}
+        \includegraphics<2>[width=\textwidth]{nonindep}
+      \end{center}
+
+\end{frame}
+
+
+\begin{frame}{Common errors: misinterpretation}
+    
+  $r$ estimates the \alert{population correlation} $\rho$ \\
+  \structure{only}
+  under the bivariate random sampling model.
+
+  \vspace{2em}
+
+
+      \structure{Example:} 
+      \begin{center}
+        \includegraphics[width=\textwidth]{r-interp}
+      \end{center}
+
+
+\end{frame}
+
+\begin{frame}{Example: Loblolly}
+  Heights and ages of 84 Loblolly pines, \alert{$r=0.99$}:
+  \begin{center}
+    \includegraphics{loblolly-age-height}
+  \end{center}
+
+  \vspace{1em}
+  
+  What's wrong with this:
+
+  ``Tree age explains 98\% of the variance of Loblolly pine height in the forest.''
+
+\end{frame}
+
 
 
 %%%%%%
@@ -251,7 +443,7 @@
 
     \vspace{2em}
 
-    \structure{What to do:} investigate, use robust statistics, stay skeptical.
+    \structure{What to do:} investigate, use robust statistics.
 
 \end{frame}
 
@@ -274,7 +466,7 @@
 
     \vspace{1em}
 
-    \structure{What to do:} investigate, stay skeptical.
+    \structure{What to do:} investigate.
 
 \end{frame}
 
@@ -290,56 +482,9 @@
 
     \vspace{2em}
 
-    \structure{What to do:} investigate, stay skeptical.
+    \structure{What to do:} investigate.
 
 \end{frame}
-
-
-%%%%%%
-\begin{frame}{Nonindependence}
-
-    Twenty measurements of serum cholesterol ($X$) and serum glucose ($Y$)
-    in two humans (ten each):
-    \begin{center}
-        \includegraphics[width=3in]{fig-12-6-5.png}
-    \end{center}
-
-    Is the correlation significant? \\
-    (How many data points are there?)
-
-\end{frame}
-
-
-\section{Diagnostic plots}
-
-
-%%%%%%
-\begin{frame}{Residuals versus predicted}
-    Checks for nonlinearity; \uncover<3->{heteroskedasticity (different variances)}
-    \begin{center}
-        \includegraphics<1>{nonlinear2-resids.pdf}
-        \includegraphics<2>[width=\textwidth]{usc-temps-fit-resid.pdf}
-        \includegraphics<3>{hetersked-resids.pdf}
-    \end{center}
-
-    \structure{The hope} is to see \alert{no structure} in the residual plot.
-
-\end{frame}
-
-
-
-%%%%%%
-\begin{frame}{What can go wrong?}
-
-    \begin{center}
-        \includegraphics[width=\textwidth]<1>{many-regressions-1.pdf}
-        \includegraphics[width=\textwidth]<2>{many-regressions-2.pdf}
-        \includegraphics[width=\textwidth]<3>{many-regressions-3.pdf}
-    \end{center}
-
-\end{frame}
-
-
 
 
 \section<article>{Summary}
