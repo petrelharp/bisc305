@@ -10,10 +10,15 @@
 
 \lecture[review]{Sum-up and review}{lecture-body}
 
-\date{5 December 2013}
+\date{29 April 2015}
 
 
 \begin{document}
+
+\begin{frame}
+  \maketitle
+\end{frame}
+
 
 \begin{frame}\frametitle<presentation>{Outline}
   \tableofcontents
@@ -176,7 +181,11 @@
 
     Explain, concretely, what the $P$-value means for a two-sample $t$ test
     for a difference in means.
+    \vfill
 
+    Explain, concretely, what the $P$-value means for a paired-sample sign test.
+    \vfill
+    
 \end{frame}
 
 \begin{frame}{Conclusion of a hypothesis test:}
@@ -224,7 +233,7 @@
     considering:
     \begin{itemize}
         \item the strengths and limitations of the test
-        \item the limitations of the data (confounders, observation/experiment)
+        \item the limitations of the data (confounders, observation/experiment, power)
     \end{itemize}
 
 
@@ -245,29 +254,76 @@
 
 \begin{frame}{Practice:}
 
+    \alert{Does infection by malaria increase red blood cell count in western fence lizards?}
+    \vfill
 
+    Of \alert{27 field-caught lizards} (15 with malaria, 12 without),
+    uninfected lizards had an average count of 130 cells fewer than infected lizards,
+    \ldots
+    
+    \vspace{1em}
 
-    one-sample $z$ test, experiment, significant
+    with a standard error of 95 cells ($t_s=1.37$, $\df=24$, $P>0.1$).
+    \vspace{1em}
 
-    one-sample $z$ test, observational, significant
+    with a standard error of 42 cells ($t_s=3.10$, $\df=24$, $P<0.01$).
+    \vfill
 
+    Of \alert{27 experimental lizards} (randomly assigned: 15 with malaria, 12 without),
+    uninfected lizards had an average count of 130 cells fewer than infected lizards,
+    \ldots
+    \vspace{1em}
 
-    one-sample $z$ test, experiment, not significant
+    with a standard error of 95 cells ($t_s=1.37$, $\df=24$, $P>0.1$).
+    \vspace{1em}
 
-    one-sample $z$ test, observational, not significant
+    with a standard error of 42 cells ($t_s=3.10$, $\df=24$, $P<0.01$).
+    \vfill
 
 \end{frame}
 
 \begin{frame}{Practice:}
 
-    linear regression, experiment, significant
+    \structure{Does coffee consumption improve mood?}
+    \vspace{1em}
 
-    linear regression, observational, significant
+    Of 100 randomly sampled students,
+    coffee consumption the previous week
+    \ldots
+    \vspace{1em}
+
+    showed significant linear correlation 
+    with happiness index ($r=0.54$, $P<0.05$).
+    \vspace{1em}
+
+    \alert{did not} show significant linear correlation 
+    with happiness index ($r=0.14$, $P>0.1$).
+    \vfill
 
 
-    linear regression, experiment, not significant
+    One hundred students were assigned randomly
+    to either zero, one, two, or three cups of coffee per day
+    for one week;
+    coffee consumption 
+    \ldots
+    \vspace{1em}
 
-    linear regression, observational, not significant
+    showed significant linear correlation 
+    with happiness index ($r=0.54$, $P<0.05$).
+    \vspace{1em}
+
+    \alert{did not} show significant linear correlation 
+    with happiness index ($r=0.14$, $P>0.1$).
+    \vfill
+
+\end{frame}
+
+\begin{frame}{Experimental?}
+    \structure{How could this be better done?}
+
+    One hundred students were assigned randomly
+    to either zero, one, two, or three cups of coffee per day
+    for one week;
 
 \end{frame}
 
@@ -323,13 +379,18 @@
 
 
 \begin{frame}{Practice:}
-    Given a \alert{fair coin}, a \alert{deck of cards}, a \alert{random number generator}, and a lot of free time, how would you:
+    Given a \alert{fair coin}, a \alert{deck of cards}, a \alert{random number generator}, and a lot of free time, how would you test:
+    \vfill
 
-    test for uniformity of location choices on a ruler, given mean value
+    If fouls in soccer tend to occur closer to the goals (as opposed to uniformly on the field),
+    given that the mean distance to the goal for 100 fouls was 15 meters.
+    \vfill
 
-    test whether taller people come earlier in alphabetical order, given correlation between alphabetical position and height
+    If people with names earlier in the alphabet tend to be taller, given the correlation coefficient between alphabetical position and height for 26 people?
+    \vfill
 
-    test if right-handers are more common than left-handers in the class
+    If right-handers are more common than left-handers, given that 16 out of a sample of 20 are right-handed?
+    \vfill
 
 \end{frame}
 
@@ -351,7 +412,14 @@
 
 \begin{frame}{Practice}
 
+    \structure{Employees who biked to work had significantly lower blood pressure than those who drove.}
+    \vfill
+
+    Can we conclude that biking reduces blood pressure?
+    \vfill
+
     How to turn this into an experiment?
+    \vfill
 
 \end{frame}
 
@@ -372,7 +440,8 @@
 
 \end{frame}
 
-%\end{document}
+\end{document}
+
 
 %%%%%%
 \begin{frame}{Example}
