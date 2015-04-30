@@ -16,32 +16,262 @@
 \begin{document}
 
 \begin{frame}\frametitle<presentation>{Outline}
-  \begin{enumerate}
-    \item General principles
-    \item Test
-    \item What you should know for each test
-    \item Other concepts
-  \end{enumerate}
+  \tableofcontents
 \end{frame}
 
+\section{General principles}
 
 %%%%%%
 \begin{frame}{General Principles}
 
   \begin{itemize}
-    \item always look at, and think about, the data
-    \item correlation is not causation (consider confounding factors)
-    \item  sample size is like a magnifying glass, it lets you see smaller effect sizes
+    \item Always look at, and think about, the data.
+    \item Correlation is not causation (consider confounding factors).
+    \item Sample size is like a magnifying glass, it lets you see smaller effect sizes,
     \item  ... but statistical significance does not imply real-world importance
-    \item  statistical (hypothesis) tests have two pieces: a test statistic, and a null model
-    \item  the P-value is the probability of seeing a test statistic at least as extreme under the null model
-    \item  nonindependent observations can drastically mislead you
-    \item  if the sampling distribution is not close to Normal, use a distribution-free test
+    \item Nonindependent observations can drastically mislead you.
+    \item If the sampling distribution is not close to Normal, use a distribution-free test.
   \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Descriptive statistics}
+    Simple \alert{summaries} of the data:
+    \begin{itemize}
+        \item \structure{location:} mean, median
+        \item \structure{spread:} SD, IQR
+        \item proportion of variance explained by group
+        \item correlation coefficient ($r$)
+        \item \ldots etcetera.
+    \end{itemize}
+
+    \vspace{2em}
+
+    Often, we think of these as \structure{estimates} of some unobserved \structure{parameter}.
+\end{frame}
+
+
+\begin{frame}{Parameters, and their estimates}
+    There are two basic ways to think about the ``parameters'' we estimate:
+    \begin{description}
+        \item[real:] properties of some large population we are sampling from.
+            \pause
+        \item[imaginary:] properties of a statistical model we are using to describe the data.
+    \end{description}
+    \vspace{2em}
+    \pause
+
+    \begin{quote}
+            All models are wrong but some are useful.\\
+            \hfill \textit{--George Box}
+    \end{quote}
+    \pause
+
+
+    \begin{quote}
+        \small
+               \ldots it does not seem helpful just to say that all models are wrong. 
+               The very word \emph{model} implies simplification and idealization. 
+               The idea that complex physical, biological or sociological systems 
+               can be exactly described by a few formulae is patently absurd. 
+               The construction of idealized representations that capture important stable aspects of such systems is, 
+               however, a vital part of general scientific analysis and statistical models, 
+               especially substantive ones, do not seem essentially different from other kinds of model. 
+               \\
+               \hfill \textit{--David Cox}
+    \end{quote}
+\end{frame}
+
+\section{Hypothesis testing}
+
+\begin{frame}{Confidence intervals}
+    Statistical results should be accompanied by \alert{context}:\\
+    What is the margin of error for the parameter estimate?
+    \pause
+
+    \vspace{2em}
+
+    A 95\% \alert{confidence interval} is constructed so that \\
+    if you do many experiments,\\
+    and for each construct a confidence interval,\\
+    the true parameter will fall in the confidence interval \\
+    95\% of the time.
+    \pause
+
+    \vspace{2em}
+
+    In this framework, the true parameter \\
+    \alert{either is, or isn't} in the CI -- \\
+    we \structure{cannot say} that the probability \\
+    the true parameter is in a \alert{given} CI is 95\%.
+    \pause
+
+    \vspace{2em}
+
+    \structure{How?} Related to the $\alpha$ of hypothesis testing.
+\end{frame}
+
+\begin{frame}{Example:}
+
+    In a random sample of 100 eggs from a chicken farm,
+    the average eggshell thickness is $\bar y= 0.35$mm,
+    with standard deviation $s=0.03$mm.  
+    Find a 95\% CI for the population mean thickness $\mu$.
+
+    \vfill
+
+    In a random sample of 96 eggs from a chicken farm,
+    there are $y=8$ brown eggs.
+    Find a 95\% CI for the population proportion of brown eggs, $p$.
+
+    \vfill
+    
+\end{frame}
+
+\begin{frame}{Necessary sample size}
+    In a random sample of 100 eggs from a chicken farm,
+    the average eggshell thickness is $\bar y= 0.35$mm,
+    with standard deviation $s=0.03$mm.  
+    About how big a sample would we need
+    to estimate the population mean thickness $\mu$
+    to within 0.001mm, with 95\% confidence?
+
+    \vfill
+
+    In a random sample of 96 eggs from a chicken farm,
+    there are $y=8$ brown eggs.
+    About how big a sample would we need
+    to estimate the population proportion $p$
+    to within 5\%, with 95\% confidence?
+
+    \vfill
+    
+\end{frame}
+
+\begin{frame}{Hypothesis testing}
+    \alert{``How reasonable is it that these results are just due to noise?''}
+
+    \begin{description}
+        \item[these results:] A (descriptive) test statistic.  
+        \item[due to noise:] A null hypothesis, and an alternative hypothesis.
+        \item[how reasonable:] The distribution of the test statistic if the null hypothesis is true. 
+    \end{description}
+
+    \vspace{2em}
+    \pause
+
+    The \structure{$P$-value} is the probability \\
+    of obtaining a test statistic \\
+    at least as extreme as the one that was observed\\
+    under the null model.
+
+    \vspace{2em}
+    \pause
+
+    It \structure{is not} ``the probability of the data''.
+
+\end{frame}
+
+\begin{frame}{Example}
+
+    Explain, concretely, what the $P$-value means for a two-sample $t$ test
+    for a difference in means.
+
+\end{frame}
+
+\begin{frame}{Conclusion of a hypothesis test:}
+    \begin{itemize}
+        \item[$H_0$:] There observed result is just due to (this specific model of) random chance.
+        \item[$H_A$:] Something else (interesting) must be going on.
+    \end{itemize}
+    \pause
+
+    Pick a \alert{significance level}, $\alpha$.  If
+    \begin{description}
+        \item[$P > \alpha$] We do not have good evidence that $H_0$ is not true\\
+            (``fail to reject the null'')
+        \item[$P \le \alpha$] We have good statistical evidence \\
+            that $H_0$ is not true,
+            (``reject the null'')\\
+            supporting the idea that $H_A$ is true
+    \end{description}
+    at the $1-\alpha$ significance level.
+    \pause
+    \vspace{1em}
+
+    \structure{Note:} if $P$ is \emph{very} small,
+    can modify to, e.g.\\
+    ``We have very good statistical evidence that $H_0$ is not true.''\\
+    \pause
+    ``You'd be crazy to think that $H_0$ is true, based on these data.''
+
+\end{frame}
+
+\begin{frame}{``What do you conclude?''}
+
+    A dialogue:
+    \begin{itemize}
+        \item[] ``What did you learn from your experiment?''
+            \pause
+        \item[] ``That our data were unlikely under our null hypothesis.''
+            \pause
+        \item[] ``What the \@\#\$*\@\# does that mean?''
+    \end{itemize}
+    \pause
+    \vspace{2em}
+
+    \alert{Translate} into the context of the problem,\\
+    considering:
+    \begin{itemize}
+        \item the strengths and limitations of the test
+        \item the limitations of the data (confounders, observation/experiment)
+    \end{itemize}
 
 
 \end{frame}
 
+
+\begin{frame}{A common mistake}
+    \structure{Rule of thumb:}
+    on a statistics test, if you are saying something definitively,
+    you're probably wrong.
+
+    \begin{center}
+        \includegraphics[height=0.7\textwidth]{never-certain}
+    \end{center}
+
+    \alert{but} don't go too far the other way \ldots
+\end{frame}
+
+\begin{frame}{Practice:}
+
+
+
+    one-sample $z$ test, experiment, significant
+
+    one-sample $z$ test, observational, significant
+
+
+    one-sample $z$ test, experiment, not significant
+
+    one-sample $z$ test, observational, not significant
+
+\end{frame}
+
+\begin{frame}{Practice:}
+
+    linear regression, experiment, significant
+
+    linear regression, observational, significant
+
+
+    linear regression, experiment, not significant
+
+    linear regression, observational, not significant
+
+\end{frame}
+
+\section{Tests we have learned}
 
 %%%%%%
 \begin{frame}{Tests}
@@ -65,15 +295,63 @@
 %%%%%%
 \begin{frame}{What you should know for each test}
 
-  \begin{itemize}
+  \begin{enumerate}
     \item what sort of data the test applies to
     \item what conditions the test needs to be appropriate
     \item how to check the conditions are satisfied
     \item how to formulate the null \& alternative hypotheses
     \item what the test statistic is and how to compute it
+    \item what its distribution is under the null hypothesis
     \item how to interpret the result, statistically, and in real-world terms
-  \end{itemize}
+  \end{enumerate}
 
+\end{frame}
+
+\section{Other notes}
+
+\begin{frame}{A note on randomization}
+
+    Today, you can \structure{almost always} obtain a $P$-value by \alert{simulation}
+    \vspace{2em}
+
+    This means: \emph{estimating} the probability rather than looking it up in a table.
+    \vspace{2em}
+    
+    Sometimes, that's the \alert{only way}.
+
+\end{frame}
+
+
+\begin{frame}{Practice:}
+    Given a \alert{fair coin}, a \alert{deck of cards}, a \alert{random number generator}, and a lot of free time, how would you:
+
+    test for uniformity of location choices on a ruler, given mean value
+
+    test whether taller people come earlier in alphabetical order, given correlation between alphabetical position and height
+
+    test if right-handers are more common than left-handers in the class
+
+\end{frame}
+
+\begin{frame}{Experimental design}
+
+    An \structure{experiment} differs from an \alert{observational study} \\
+    in that the experimenter determines the assignment into groups\\
+    (ideally at random).
+
+    \vspace{2em}
+
+    The aim is to remove possible \structure{confounding factors},\\
+    which are associated with both $X$ and $Y$, \\
+    causing a \structure{spurious association}.
+
+    \vspace{2em}
+
+\end{frame}
+
+\begin{frame}{Practice}
+
+    How to turn this into an experiment?
 
 \end{frame}
 
@@ -87,14 +365,14 @@
     \item back-calculation of necessary sample size to have power to see a certain effect (e.g. for differences in proportion)
     \item the two-way ANOVA model: group means, interaction means, plus noise/variability
     \item correlation: proportion of variance explained
-    \item the linear (regression) model: linear conditional men plus noise/variability
+    \item the linear (regression) model: linear conditional mean plus noise/variability
     \item regression: residuals, leverage, influence
   \end{itemize}
 
 
 \end{frame}
 
-\end{document}
+%\end{document}
 
 %%%%%%
 \begin{frame}{Example}
@@ -550,3 +828,4 @@ Italy        &  32.60  &  52.60   &  & & \\
 
 
 
+\end{document}
