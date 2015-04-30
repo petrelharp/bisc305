@@ -158,7 +158,7 @@
 
     \begin{description}
         \item[these results:] A (descriptive) test statistic.  
-        \item[due to noise:] A null hypothesis, and an alternative hypothesis.
+        \item[due to noise:] A null hypothesis.
         \item[how reasonable:] The distribution of the test statistic if the null hypothesis is true. 
     \end{description}
 
@@ -172,12 +172,12 @@
 
     \vspace{2em}
     \pause
-
-    It \structure{is not} ``the probability of the data''.
+    (The alternative hypothesis informs the choice of test statistic,\\
+    and how we use its distribution to find a $P$-value.)
 
 \end{frame}
 
-\begin{frame}{Example}
+\begin{frame}{Practice}
 
     Explain, concretely, what the $P$-value means for a two-sample $t$ test
     for a difference in means.
@@ -185,15 +185,19 @@
 
     Explain, concretely, what the $P$-value means for a paired-sample sign test.
     \vfill
+
+    Critique this statement: ``The $P$-value is the probability of the data.''
+    \vfill
     
 \end{frame}
-
+    
 \begin{frame}{Conclusion of a hypothesis test:}
     \begin{itemize}
         \item[$H_0$:] There observed result is just due to (this specific model of) random chance.
         \item[$H_A$:] Something else (interesting) must be going on.
     \end{itemize}
     \pause
+    \vfill
 
     Pick a \alert{significance level}, $\alpha$.  If
     \begin{description}
@@ -206,7 +210,7 @@
     \end{description}
     at the $1-\alpha$ significance level.
     \pause
-    \vspace{1em}
+    \vfill
 
     \structure{Note:} if $P$ is \emph{very} small,
     can modify to, e.g.\\
@@ -229,7 +233,8 @@
     \pause
     \vspace{2em}
 
-    \alert{Translate} into the context of the problem,\\
+    To answer \structure{``What do you conclude?''},\\
+    \alert{translate} results into the context of the problem,\\
     considering:
     \begin{itemize}
         \item the strengths and limitations of the test
@@ -263,10 +268,10 @@
     
     \vspace{1em}
 
-    with a standard error of 95 cells ($t_s=1.37$, $\df=24$, $P>0.1$).
+    with a standard error of 95 cells ($t_s=1.37$, $\df=24$, \structure{$P>0.1$}).
     \vspace{1em}
 
-    with a standard error of 42 cells ($t_s=3.10$, $\df=24$, $P<0.01$).
+    with a standard error of 42 cells ($t_s=3.10$, $\df=24$, \structure{$P<0.01$}).
     \vfill
 
     Of \alert{27 experimental lizards} (randomly assigned: 15 with malaria, 12 without),
@@ -274,10 +279,10 @@
     \ldots
     \vspace{1em}
 
-    with a standard error of 95 cells ($t_s=1.37$, $\df=24$, $P>0.1$).
+    with a standard error of 95 cells ($t_s=1.37$, $\df=24$, \structure{$P>0.1$}).
     \vspace{1em}
 
-    with a standard error of 42 cells ($t_s=3.10$, $\df=24$, $P<0.01$).
+    with a standard error of 42 cells ($t_s=3.10$, $\df=24$, \structure{$P<0.01$}).
     \vfill
 
 \end{frame}
@@ -287,7 +292,7 @@
     \structure{Does coffee consumption improve mood?}
     \vspace{1em}
 
-    Of 100 randomly sampled students,
+    Of one hundred randomly sampled students,
     coffee consumption the previous week
     \ldots
     \vspace{1em}
@@ -318,32 +323,26 @@
 
 \end{frame}
 
-\begin{frame}{Experimental?}
-    \structure{How could this be better done?}
-
-    One hundred students were assigned randomly
-    to either zero, one, two, or three cups of coffee per day
-    for one week;
-
-\end{frame}
 
 \section{Tests we have learned}
 
 %%%%%%
-\begin{frame}{Tests}
+\begin{frame}{Tests and CIs}
 
   \begin{itemize}
-    \item two-sample t-test
+    \item two-sample $t$-test
+    \item CI for difference in mean
     \item Wilcoxon-Mann-Whitney
-    \item paired-sample t
+    \item paired-sample $t$
     \item paired-sample sign
-    \item Wilcoxon sign-rank
+    \item Wilcoxon signed-rank
     \item CI for estimated proportion
     \item chi-squared for single-sample proportions
     \item two-sample chi-squared
-    \item F-test for one-way ANOVA
-    \item F-test for two-way ANOVA
-    \item t-test for no linear correlation
+    \item $F$-test for one-way ANOVA
+    \item $F$-test for two-way ANOVA
+    \item $t$-test for no linear correlation
+    \item CI for slope $b_1$
   \end{itemize}
 
 \end{frame}
@@ -438,6 +437,31 @@
   \end{itemize}
 
 
+\end{frame}
+
+\begin{frame}
+    \vfill
+    \centering
+    {\Large
+    Thank you!
+    }
+    \vfill
+\end{frame}
+
+\begin{frame}{Final}
+  \begin{center}
+
+      Final: 5/12, 11am-1pm, in this room.
+
+    \vspace{2em}
+
+      Two 8.5"$\times$11" pages, two-sided, of handwritten notes.
+
+    \vspace{2em}
+
+    Bring a calculator (besides your phone).
+
+  \end{center}
 \end{frame}
 
 \end{document}
