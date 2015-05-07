@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{fancyhdr,lastpage}
 \usepackage{amsmath,amssymb}
+\usepackage{color}
 
 % some formatting from http://www.tedpavlic.com/post_homework_tex_example.php:
 % In case you need to adjust margins:
@@ -28,10 +29,10 @@
 
 
 \newif{\ifanswers}
-% \answerstrue
-\answersfalse
+\answerstrue
+% \answersfalse
 
-\newcommand{\answer}[1]{{\ifanswers \textsf{#1} \else {} \fi}}
+\newcommand{\answer}[1]{{\ifanswers {\color{red}\textsf{#1}} \else {} \fi}}
 
 \begin{document}
 
@@ -61,7 +62,7 @@ for instance ``Wilcoxon--Mann--Whitney test'' or ``chi-squared for goodness of f
         and determined if they had a hospital visit in the last year.
         Does this differ between cities?
         
-        \answer{two-sample chi-squared}
+        \answer{chi-squared test for a $2 \times 2$ contingency table}
       \ifanswers \else \vspace{3\baselineskip} \fi
 
 
@@ -108,17 +109,19 @@ mean & 4.41 & 5.04 & 4.73 & 5.52 \\
   \item Construct the ANOVA table and test the null hypothesis.
 
     \answer{
+        \emph{Note: I will not make you calculate the $\SS(\text{between})$, as we do below, on the test.}
     \begin{align*}
       \bar{\bar y} &= \frac{ 12 \times 4.41 +  10 \times 5.04 + 20 \times 4.73 + 9 \times 5.52 }{ 51 } = 4.854902 \\
       \SS(\text{within}) &= 11 \times 0.84^2 + 9 \times 0.71^2 + 19 \times0.90^2 + 8 \times 0.87^2 = 27.80723 \\
       \df(\text{within}) &= 47 \\
       \MS(\text{within}) &= 0.5916432 \\
-      \SS(\text{between}) &= 12 \times 0.444902^2 + 10 \times 0.185098^2 20 \times + 0.124902^2 + 9 \times 0.665098^2 \\
+      \SS(\text{between}) &= 12 \times (4.41-4.85)^2 + 10 \times (5.04-4.85)^2 + 20 \times (4.73-4.85)^2 + 9 \times (5.52-4.85)^2 \\
+            &= 0.6901548 \\
       \df(\text{between}) &= 3 \\
       \MS(\text{between}) &= 0.2300516
     \end{align*}
     $F_s = 0.2300516/0.5916432 = 0.388835$, so $P>.2$.
-    Fail to reject the $H_0$.
+    Fail to reject $H_0$.
     }
     % \vspace{7\baselineskip}
 
@@ -148,9 +151,9 @@ mean & 4.41 & 5.04 & 4.73 & 5.52 \\
 % formulate hypothesis
 % do linear regression
 % test for significant effect
-\begin{wrapfigure}{r}{2.5in}
+\begin{wrapfigure}[8]{r}{2.5in}
   \includegraphics{sunflowers.pdf}
-  \vspace{-2in}
+  \vspace{4in}
 \end{wrapfigure}
 
 It is hypothesized that flowers with more petals also produce more pollen.
@@ -161,7 +164,9 @@ The mean number of petals is 39.62, with an SD of 6.18;
 the mean weight of pollen is 64.05, with an SD of 1.29;
 and the correlation between them is $r=0.49$.
 
-\vspace{.85in}
+\vspace{1.4in}
+
+{\color{white}a}
 
 \begin{enumerate}
         \renewcommand{\theenumi}{\textbf{\Alph{enumi}}}
@@ -171,7 +176,7 @@ and the correlation between them is $r=0.49$.
       \answer{
       Slope is $b_1 = .49 \times 1.29 / 6.18 = 0.1022816$; intercept is $b_0 = 64.05-0.1022816\times39.62 = 59.9976$.
       \[
-      \text{(pollen weight)} = 0.1022816 \text{(petal number)} + 59.9976 .
+      \text{(pollen weight)} = 0.10 \times \text{(petal number)} + 60.0 .
       \]
       }
     % \vspace{6\baselineskip}

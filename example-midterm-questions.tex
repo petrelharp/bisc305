@@ -3,6 +3,8 @@
 \usepackage{wrapfig}
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{tabu}  % for colored rows
 
 \newcommand{\probnumber}[1]{\vspace{2em}\noindent\textbf{(#1)}}
 
@@ -17,10 +19,10 @@
 
 
 \newif{\ifanswers}
-% \answerstrue
-\answersfalse
+\answerstrue
+% \answersfalse
 
-\newcommand{\answer}[1]{{\ifanswers \textsf{#1} \else {} \fi}}
+\newcommand{\answer}[1]{{\ifanswers {\color{red}\textsf{#1}} \else {} \fi}}
 
 \begin{document}
 
@@ -77,19 +79,27 @@ and the importance of the results?
 
 \item ``We pit luna moths against big brown bats [...].  Moth tails lured bat attacks to these wing regions during 55\% of interactions between bats and intact luna moths.''
 
-\answer{sample size, p-value?}
+\answer{
+    We know the result (55\%), but there is no estimate of uncertainty: a confidence interval for the result or at least a sample size would be important.
+}
 
 \item ``We observed significant improvement in memory task performance under drug treatment relative to placebo in the aMCI cohorts at the 62.5 and 125 mg BID doses of levetiracetam.''
 
-\answer{how big was the effect?}
+\answer{
+    We know the improvement is ``signficant'' -- but, that probably means ``statistically significant'', so: I'd like to know how big was the improvement, in interpretable real-world terms (percent improvement, or an effect size).
+}
 
 \item ``For each root, the force at the time of fracture was recorded in Newtons.  The fracture values of three experimental and negative control groups were significantly higher than the positive control group.''
 
-\answer{how big was the effect?}
+\answer{
+    Again, ``significantly higher'' means ``statistically'' -- how much higher was the force, on average?
+}
 
 \item ``The study also found that young adults with schizophrenia who abused cannabis as teens performed about 26 percent more poorly on memory tests than young adults with schizophrenia who never abused cannabis.''
 
-\answer{$P$-value? sample size?}
+\answer{
+    Two issues here: First, what is the level of certainty about that 26\% -- we need a confidence interval or $P$-value.  Second, how did they control for confounding factors, if at all?
+}
 
 
 \end{itemize}
@@ -130,8 +140,8 @@ The data are shown on the right.
 
     \answer{
     \begin{align*}
-      H_0 : \mu_{\text{lizards}} = \mu_{\text{snakes}}; \quad \text{population mean load is the same for each} \\
-      H_A : \mu_{\text{lizards}} \neq \mu_{\text{snakes}}; \quad \text{population mean load differs}
+        H_0 &: \mu_{\text{lizards}} = \mu_{\text{snakes}}; \quad \text{population mean load is the same for each} \\
+        H_A &: \mu_{\text{lizards}} \neq \mu_{\text{snakes}}; \quad \text{population mean load differs}
     \end{align*}
     }
       % \vspace{5\baselineskip}
@@ -151,9 +161,12 @@ The data are shown on the right.
   \item What can we conclude about whether the parasite prefers snakes or lizards?
 
     \answer{
-       We have weak evidence that there is a difference in parasite load,
+          We have weak evidence that there is a difference in parasite load,
           but would need a larger sample size to find out more confidently.
-          }
+          If the difference is real, then based on these data it is probably fairly substantial 
+          (snakes have about 10\% more parasites than lizards, effect size of 0.7);
+          but it is an observational study, so the difference might be due to factors other than parasite preference.
+      }
 
 
 \end{enumerate}
@@ -189,8 +202,10 @@ and 14 reported having a better mood on  Friday.
   \item Test the null hypothesis using a sign test, and briefly state your conclusion.
 
     \answer{
-      $D = 12$, $n_d=40$, $.0005 < P < .006$.
-      We have strong evidence students are more likely to be in a better mood on Mondays (but, we don't know why).
+      $N_+=26$, $N_-=14$, $B_s=26$, $n_d=40$; 
+      since this is beyond Table 7 in the book, we need to use a computer to get: $P=0.04034523$.
+      \emph{Note: on the final I wouldn't make you do this outside the table for such a large number.)}
+      We have fairly good statistical evidence students are more likely to be in a better mood on Mondays (but, we don't know why).
     }
     % \vspace{8\baselineskip}
 
@@ -202,7 +217,14 @@ and 14 reported having a better mood on  Friday.
     \tilde p &= 28/44 = 0.6363636, \\
     \SE_{\tilde P} &= \sqrt{ 0.6363636(1-0.6363636) / 44 } = 0.07252037 \\
     \end{align*}
-    so a 95\% CI is $0.6363636 \pm 1.96 \times 0.07252037 = (0.4942237, 0.7785035)$.
+    so a 95\% CI is $0.6363636 \pm 1.96 \times 0.07252037 = (0.4942237, 0.7785035)$,
+    i.e. from 49.4\% to 77.9\%.\\
+    \emph{Note: since this overlaps 50\%, barely, this contradicts part B,
+        that found $P<0.05$ against a null of 50\%.
+        This difference is because B computes the $P$-value exactly, using the Binomial distribution,
+        but the CI here uses the normal approximation.
+        On a real test, I would (hopefully!) avoid contradictions like this.
+    }
     }
     % \vspace{7\baselineskip}
 
@@ -225,12 +247,17 @@ and 14 reported having a better mood on  Friday.
 
 Suppose we have incomes (in dollars per year) from ten randomly sampled wife-husband pairs of LA residents:
 \begin{center}
-\begin{tabular}{r|rrrrrrrrrr}
+\begin{tabu}{r|rrrrrrrrrr}
   \hline
-    wife     &  14000  &  17000  &  15000  &  35000  &  84000  &      0  &  19000  &  48000  &   23000  &  11000  \\
-    husband  &  24000  &  17000  &  35000  &      0  &  98000  &  15000  &  12000  &  20000  &  196000  &  21000  \\
+               wife     &  14000  &  17000  &  15000  &  35000  &  84000  &      0  &  19000  &  48000  &   23000  &  11000  \\
+               husband  &  24000  &  17000  &  35000  &      0  &  98000  &  15000  &  12000  &  20000  &  196000  &  21000  \\
   \hline
-\end{tabular}
+  \ifanswers \rowfont{\color{red}\textsf}
+             difference & -10000  &      0  & -20000  &  35000  &  -6000  & -15000  &   7000  &  28000  & -173000  & -10000  \\
+  \rowfont{\color{red}\textsf}
+          signed rank   &   -3.5  & (omit)  &     -6  &     +8  &     -1  &     -5  &     +2  &     +7  &      -9  &   -3.5  \\
+\fi
+\end{tabu}
 \end{center}
 We would like to know if, in married heterosexual couples in LA, whether one gender tends to earn more money than the other.
 
@@ -238,13 +265,32 @@ We would like to know if, in married heterosexual couples in LA, whether one gen
 
     \item Give two reasons why the Wilcoxon Signed-Rank test is a good choice for these data.
 
-        \answer{paired samples; very skewed data.}
+        \answer{We have paired samples; and the Wilcoxon test is better than a paired-sample $t$-test because the distribution of the values is very skewed (non-normal).}
 
     \item State the null and alternative hypotheses appropriate for carrying out a Wilcoxon Signed-Rank test.
 
+        \answer{
+            \begin{align*}
+                H_0 &: \text{The distribution of differences in income between husband and wife among LA couples is symmetric.}\\
+                H_A &: \text{Either husbands, or wives, amongst LA couples, tend to make have higher incomes than the other.}
+            \end{align*}
+        }
+
     \item Carry out the Wilcoxon Signed-Rank test.
 
+        \answer{
+            From the signed ranks above, $W_+=8+2+7=17$ and $W_-=3.5+6+1+5+9+3.5=28$, so $W_s=28$, and $n_D=9$.
+            (As a quick check, $W_++W_-=45=9\times(9-1)/2$.)
+            The table gives $P>0.2$.
+        }
+
     \item What can we conclude about whether LA wives or husbands tend to have larger incomes?
+
+        \answer{
+            We have no strong statistical evidence that either wives or husbands tend to have higher incomes in LA,
+            but our sample size was quite small,
+            so there could still be a large effect that we did not detect.
+        }
 
 \end{enumerate}
 
