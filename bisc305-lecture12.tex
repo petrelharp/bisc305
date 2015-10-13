@@ -13,7 +13,7 @@
 
 \subtitle{hypothesis testing, and one-sided tests}
 
-\date{5 March 2015}
+\date{13 October 2015}
 
 % pp. 218-(242?)
 
@@ -47,78 +47,11 @@
 \end{frame}
 
 
-%%%%% %%%%%
-\section{Confidence intervals and $P$-values}
-
-
-%%%%%
-\begin{frame}{Confidence intervals and $P$-values}
-
-    Recall that
-  for the $t$-test,
-  \[  \text{reject $H_0$ at the $\alpha$ significance level} \]
-  is \structure{equivalent to}
-  \[  \text{ 0 is not in the $(1-\alpha)$-confidence interval for $\mu_1-\mu_2$ }. \]
-
-  \vspace{2em}
-
-  This is because of \alert{symmetry}: \\
-  the distribution of the $t$-statistic always \structure{looks the same},
-  no matter the true value of $\mu_1 - \mu_2$,
-  just \structure{shifted}.
-
-\end{frame}
-
-%%%%%
-\begin{frame}{Example: }
-
-    Noreprenephrin (NE) concentration (ng/gm) in rat brains:
-    \begin{center}
-      \begin{tabular}{c|rr}
-            & Toluene & Control \\
-          \hline
-          $n$ & 6 & 5 \\
-          $\bar y$ & 541.8 & 444.2 \\
-          $s$  & 66.1 & 69.6 \\
-          $\SE$ & 27 & 31 \\
-     \end{tabular}
-   \end{center}
-
-
-     \begin{align*}
-         \SE_{\bar Y_1 - \bar Y_2} &= 41.195 \\
-         t_s &= 2.34  \\
-         \df &= 8.47 
-     \end{align*}
-     $P$-value: 0.0454 .
-
-
-  \vspace{2em}
-
-  Here $t_{0.025} = 2.28$, so an $1-\alpha=0.95$ confidence interval is
-  \[  (541.8-444.2) \pm 2.28 \times 41.195 = (3.68,191.52) . \]
-
-\end{frame}
-
-%%%%%
-\begin{frame}{$P$-value or CI?}
-
-  Which is ``better''?
-
-  \pause
-  \begin{itemize}
-      \item They use the same information.
-      \item Not all tests have a confidence interval.
-      \item But, when we do, it tells us the \emph{range} of reasonable values.
-      \item \emph{strength of evidence} \structure{versus} \emph{size of effect}
-  \end{itemize}
-
-\end{frame}
-
-
 
 \section{Hypothesis testing}
 
+
+\subsection{False positive rates}
 %%%%%
 \begin{frame}{Interpretation of $\alpha$}
 
@@ -167,9 +100,19 @@
         \item 2.5\% would find statistically significant evidence that Mozart is better
         \item 2.5\% would find statistically significant evidence that Bach is better
     \end{itemize}
-    \ldots leading to \alert{controversy!}
 
 \end{frame}
+
+%%%%%
+\begin{frame}{Why do we need $\alpha$?}
+
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{p_values}
+        \figcaption{xkcd:1478}
+    \end{center}
+
+\end{frame}
+
 
 
 %%%%%
@@ -201,6 +144,14 @@
 
 \end{frame}
 
+%%%%%%%
+\begin{frame}{Wait, why aren't 90\% of studies false?}
+        \begin{quote}
+    When doctors say that, for example, iron supplements help anaemia, it's not because they hit iron on their Big Chart O' Human Metabolic Pathways, then ran a single study, got $p = .05$, and rushed off to publish a medical textbook. It's because they knew hemoglobin had iron in it, there are at least 21 randomized controlled studies, probably some had p-values closer to .001 than to .05 even though I don't have any of them in front of me to check, and eventually some really really smart statisticians at the Cochrane Collaboration gave it their seal of approval. 
+    \end{quote}
+    \figcaption{http://slatestarcodex.com/2013/02/17/90-of-all-claims-about-the-problems-with-medical-studies-are-wrong/}
+
+\end{frame}
 %%%%% %%%%%
 \section{Type I and Type II Errors}
 
@@ -291,26 +242,6 @@
 \end{frame}
 
 
-%%%%%
-\begin{frame}{Type I and II and tradeoffs}
-
-    A hierarchy of medical studies:
-    \begin{itemize}
-        \item Case reports or high-volume scans
-        \item Exploratory scans or surveys
-        \item Case-control studies
-        \item Randomized controlled trials
-    \end{itemize}
-
-
-    \vspace{2em}
-
-    Consider risks and benefits.
-
-
-\end{frame}
-
-
 
 %%%%
 \section{One--sided $t$-tests}
@@ -327,10 +258,17 @@
         \flushright \tiny {Samuels, Witmer \& Schaffner}
     \end{center}
     
-    Maybe we had a \structure{strong directional hypothesis}:\\
-    we are throwing away half our power!
+    If we have an obviously \structure{directional hypothesis}:\\
+    we are throwing away power!
 
     \vspace{2em}
+
+    \structure{The point:} We want to calibrate our test
+    to have \alert{false positive rate} $\alpha=0.05$,
+    \ldots but there are many such tests.
+
+    \vspace{2em}
+    \pause
 
     \structure{Example:}
     Measure infection loads in subjects with ($\bar y_1$) and without ($\bar y_2$) a new antibiotic. 
@@ -340,14 +278,15 @@
     \structure{$H_0$:} antibiotic doesn't affect infection load, $\mu_1 = \mu_2$ \\
     \structure{$H_A$:} antibiotic decreases infection load, $\mu_1< \mu_2$ .
 
-    \vspace{2em}
-    \pause
-
-    \alert{What if} infection load turns out to be \emph{larger} in samples with antibiotics? ($\bar y_1 > \bar y_2$)
-
-
 \end{frame}
 
+%%%%%%%
+\begin{frame}{}
+
+    \centering
+    (simulation demonstration)
+
+\end{frame}
 %
 \begin{frame}{One or two sides?}
 

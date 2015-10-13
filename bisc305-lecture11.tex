@@ -12,7 +12,7 @@
 
 \subtitle{hypothesis testing, and the $t$ statistic}
 
-\date{2 March 2015}
+\date{8 October 2015}
 
 % pp. 218-(242?)
 
@@ -333,16 +333,6 @@
 
 \end{frame}
 
-%%%%%
-\begin{frame}{Why do we need $\alpha$?}
-
-    \begin{center}
-        \includegraphics[width=0.6\textwidth]{p_values}
-        \figcaption{xkcd:1478}
-    \end{center}
-
-\end{frame}
-
 
 %%%%%
 \begin{frame}{Tests and confidence intervals}
@@ -396,6 +386,75 @@
   \[  (541.8-444.2) \pm 2.28 \times 41.195 = (3.68,191.52) . \]
 
 \end{frame}
+
+%%%%% %%%%%
+\section{Confidence intervals and $P$-values}
+
+
+%%%%%
+\begin{frame}{Confidence intervals and $P$-values}
+
+    Recall that
+  for the $t$-test,
+  \[  \text{reject $H_0$ at the $\alpha$ significance level} \]
+  is \structure{equivalent to}
+  \[  \text{ 0 is not in the $(1-\alpha)$-confidence interval for $\mu_1-\mu_2$ }. \]
+
+  \vspace{2em}
+
+  This is because of \alert{symmetry}: \\
+  the distribution of the $t$-statistic always \structure{looks the same},
+  no matter the true value of $\mu_1 - \mu_2$,
+  just \structure{shifted}.
+
+\end{frame}
+
+%%%%%
+\begin{frame}{Example: }
+
+    Noreprenephrin (NE) concentration (ng/gm) in rat brains:
+    \begin{center}
+      \begin{tabular}{c|rr}
+            & Toluene & Control \\
+          \hline
+          $n$ & 6 & 5 \\
+          $\bar y$ & 541.8 & 444.2 \\
+          $s$  & 66.1 & 69.6 \\
+          $\SE$ & 27 & 31 \\
+     \end{tabular}
+   \end{center}
+
+
+     \begin{align*}
+         \SE_{\bar Y_1 - \bar Y_2} &= 41.195 \\
+         t_s &= 2.34  \\
+         \df &= 8.47 
+     \end{align*}
+     $P$-value: 0.0454 .
+
+
+  \vspace{2em}
+
+  Here $t_{0.025} = 2.28$, so an $1-\alpha=0.95$ confidence interval is
+  \[  (541.8-444.2) \pm 2.28 \times 41.195 = (3.68,191.52) . \]
+
+\end{frame}
+
+%%%%%
+\begin{frame}{$P$-value or CI?}
+
+  Which is ``better''?
+
+  \pause
+  \begin{itemize}
+      \item They use the same information.
+      \item Not all tests have a confidence interval.
+      \item But, when we do, it tells us the \emph{range} of reasonable values.
+      \item \emph{strength of evidence} \structure{versus} \emph{size of effect}
+  \end{itemize}
+
+\end{frame}
+
 
 
 \section<article>{Summary}
