@@ -1,25 +1,26 @@
-lectures = $(patsubst bisc305-lecture%.tex,lecture%,$(wildcard bisc305-lecture*.tex))
+slides = $(patsubst bisc305-lecture%.tex,bisc305-lecture%-slides.pdf,$(wildcard bisc305-lecture*.tex))
+prints = $(patsubst bisc305-lecture%.tex,bisc305-lecture%-print.pdf,$(wildcard bisc305-lecture*.tex))
 
 .PHONY : clean
 
 .SECONDARY : 
 
-all : bisc305-lecture3-slides.pdf bisc305-lecture4-slides.pdf bisc305-lecture11-slides.pdf bisc305-lecture12-slides.pdf bisc305-lecture13-slides.pdf bisc305-lecture14-slides.pdf bisc305-lecture15-slides.pdf bisc305-lecture16-slides.pdf bisc305-lecture17-slides.pdf bisc305-lecture18-slides.pdf bisc305-lecture19-slides.pdf bisc305-lecture20-slides.pdf bisc305-lecture21-slides.pdf bisc305-lecture22-slides.pdf bisc305-lecture23-slides.pdf bisc305-lecture24-slides.pdf bisc305-lecture25-slides.pdf bisc305-lecture26-slides.pdf  bisc305-lecture99-slides.pdf 
+bisc305-lecture-all.pdf : $(slides)
 	pdfjoin --outfile bisc305-lecture-all.pdf bisc305-lecture*-slides.pdf
 
 lecture.% : bisc305-lecture%-slides.pdf bisc305-lecture%-print.pdf
 	echo "making " $@
 
-%-slides.pdf : %.tex bisc305-lecture-style.tex
+%-slides.pdf : %.tex resources/bisc305-lecture-style.tex
 	rm -f texput.*
-	(cat bisc305-lecture-slides-header.tex; echo '\input{$<}') | pdflatex
-	(cat bisc305-lecture-slides-header.tex; echo '\input{$<}') | pdflatex
+	(cat resources/bisc305-lecture-slides-header.tex; echo '\input{$<}') | pdflatex
+	(cat resources/bisc305-lecture-slides-header.tex; echo '\input{$<}') | pdflatex
 	mv texput.pdf $@
 
-%-print.pdf : %.tex bisc305-lecture-style.tex
+%-print.pdf : %.tex resources/bisc305-lecture-style.tex
 	rm -f texput.*
-	(cat bisc305-lecture-print-header.tex; echo '\input{$<}') | pdflatex
-	(cat bisc305-lecture-print-header.tex; echo '\input{$<}') | pdflatex
+	(cat resources/bisc305-lecture-print-header.tex; echo '\input{$<}') | pdflatex
+	(cat resources/bisc305-lecture-print-header.tex; echo '\input{$<}') | pdflatex
 	mv texput.pdf $@
 
 clean : 
