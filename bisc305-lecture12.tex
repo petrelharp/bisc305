@@ -55,7 +55,7 @@
 %%%%%
 \begin{frame}{Interpretation of $\alpha$}
 
-  What the heck is (the significance level) $\alpha$ again?
+    Wait, what is $\alpha$?
 
   \vspace{2em}
   \pause
@@ -71,6 +71,10 @@
     \structure{and there was no real effect} ($H_0$ is true)\\
     how often would we \alert{wrongly} conclude there is an effect?
   \end{block}
+
+  \pause
+    \vspace{2em}
+    \structure{Only applies} if there is \alert{no} real effect.
 
 \end{frame}
 
@@ -104,7 +108,7 @@
 \end{frame}
 
 %%%%%
-\begin{frame}{Why do we need $\alpha$?}
+\begin{frame}{Why is $\alpha$ always 5\%?}
 
     \begin{center}
         \includegraphics[width=0.6\textwidth]{p_values}
@@ -263,12 +267,23 @@
 
     \vspace{2em}
 
-    \structure{The point:} We want to calibrate our test
+    \structure{The point:} \\
+    We want to calibrate our test
     to have \alert{false positive rate} $\alpha=0.05$,
-    \ldots but there are many such tests.
+    \ldots but we can still choose such a test to have maximal power \\
+    \structure{against our alternative hypothesis}.
+\end{frame}
 
-    \vspace{2em}
-    \pause
+%%%%%%%
+\begin{frame}{}
+
+    \centering
+    (simulation demonstration)
+
+\end{frame}
+
+%%%%%%%
+\begin{frame}{}
 
     \structure{Example:}
     Measure infection loads in subjects with ($\bar y_1$) and without ($\bar y_2$) a new antibiotic. 
@@ -280,13 +295,7 @@
 
 \end{frame}
 
-%%%%%%%
-\begin{frame}{}
 
-    \centering
-    (simulation demonstration)
-
-\end{frame}
 %
 \begin{frame}{One or two sides?}
 

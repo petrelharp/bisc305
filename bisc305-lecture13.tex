@@ -2,7 +2,7 @@
 
 \subtitle{and statistical significance}
 
-\date{10 March 2013}
+\date{14 October 2015}
 
 
 \begin{document}
@@ -19,9 +19,9 @@
                 \item[(I)] \alert{no} real difference, but we are misled by noise
                 \item[(II)] \alert{real} difference, but we can't tell, because of noise
             \end{itemize}
-        \item ``Significance level'' is a false positive rate 
-        \item ``Statistical power'' is the probability of finding a real pattern.
-        \item One-sided tests.
+        \item \structure{Significance level} is a false positive rate 
+        \item \structure{Statistical power} is the probability of finding a real pattern.
+        \item Doing an \alert{one-sided} test can increase your power.
     \end{itemize}
 
 \end{frame}
@@ -64,6 +64,7 @@
 \begin{frame}{Example: hematocrit}
 
     \alert{Hematocrit} measures concentration of red blood cells in blood.
+    Are sex differences caused by androstenedione?
 
     \vspace{2em}
 
@@ -397,10 +398,18 @@ then the association is \alert{spurious}.
 %%%%%%
 \begin{frame}{Interpret:}
 
-  \begin{quote}
-    ``Among 9 independent species pairs for which both pelvic bones and rib bones could be analyzed, pelvic bone shape was positively correlated with mating ecology ($t_s=2.7$, $P=0.008$), a pattern not observed for ribs ($t_s=0.2$, $P=0.40$).''
-  \end{quote}
-  \flushright { \small Dines et al 2014 }
+    \begin{quote}
+        The subjects were given varying doses of the drug and also a placebo in a double-blind randomized trial. Researchers found low doses [...] improved memory performance[.]
+    \end{quote}
+    \figcaption{\textit{Drug restores brain function and memory in early Alzheimer's disease}, \url{http://www.sciencedaily.com/releases/2015/03/150311124200.htm}}
+
+    \vfill
+    \pause
+
+    \begin{quote}
+        We observed significant improvement in memory task performance under drug treatment relative to placebo in the aMCI cohorts at the 62.5 and 125 mg BID doses of levetiracetam.
+    \end{quote}
+    \figcaption{\url{http://www.sciencedirect.com/science/article/pii/S2213158215000273}}
 
 \end{frame}
 
@@ -409,6 +418,23 @@ then the association is \alert{spurious}.
 %%%%%% %%%%%% %%%%%% %%%%%%
 \section{Describing real-world importance}
 
+%%%%%%%
+\begin{frame}{Significant or important?}
+    \vfill
+
+    So you have a \alert{tiny $P$-value}.
+
+    \vfill
+
+    How big is the effect?
+
+    \vfill
+    \pause
+
+    \structure{Or,} I believe your result is not noise,
+    but how much \alert{do I care?}
+
+\end{frame}
 
 %%%%%%
 \begin{frame}{It's significant, but is it important?}
@@ -424,6 +450,9 @@ then the association is \alert{spurious}.
     \vspace{2em}
 
     \structure{Ask yourself:} What do we want to know?\\
+
+    \vspace{2em}
+
     How important is the observed difference?
 
 
@@ -434,7 +463,7 @@ then the association is \alert{spurious}.
 \subsection{The effect size}
 
 %%%%%%
-\begin{frame}{Effect size}
+\begin{frame}{}
 
     \begin{block}<1->{the $t$-statistic}
         \begin{align*}
@@ -457,16 +486,36 @@ then the association is \alert{spurious}.
 
 %%%%%%
 \begin{frame}{Examples}
+    In each, 
+    what are the $t$-statistics
+    and the effect sizes?
+    What do they tell us?
 
-  The \alert{effect size} is a good descriptive statistic.
+  \vfill
 
-  \vspace{2em}
+  Lactate dehydrogenase levels:
+  \begin{center}
+    \begin{tabular}{crr}
+       & Males & Females \\
+       \hline
+       $n$ & 270 & 264 \\
+       $\bar y$ & 60 & 57 \\
+       $s$ & 11 & 10
+     \end{tabular}
+  \end{center}
+  
+  \vfill
 
-  Examples:
-  \begin{itemize}
-    \item Lactate dehydrogenase levels:
-    \item Body weight:
-  \end{itemize}
+  Body weight (lb):
+  \begin{center}
+    \begin{tabular}{crr}
+       & Males & Females \\
+       \hline
+       $n$ & 2 & 2 \\
+       $\bar y$ & 175 & 143 \\
+       $s$ & 35 & 34
+     \end{tabular}
+ \end{center}
 
 \end{frame}
 
