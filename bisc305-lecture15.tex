@@ -12,7 +12,7 @@
 
 \subtitle{and nonparametric testing}
 
-\date{24 March 2015}
+\date{22 October 2015}
 
 % pp. 282-293
 
@@ -26,6 +26,47 @@
 
 \section*{Overview}
 
+%%%%%%%
+\begin{frame}{Last time:}
+
+  \begin{enumerate}
+      \item Statistical significance does not imply real-world significance; and
+      \item lack of statistical significance does not imply real-world insignificance.
+      \item Correlation is not causation: a confounding factor could cause a spurious association.
+  \end{enumerate}
+
+  \vspace{2em}
+
+  Drawing conclusions, you probably want to say:
+    \begin{enumerate}
+        \item What was the result?
+        \item How strong was the statistical support?
+        \item What are the real-world implications?
+    \end{enumerate}
+
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Reminder: $P$-values}
+
+    \begin{block}{}
+      The \alert<1>{$P$-value} is the probability of seeing a \alert<2>{result} \alert<3>{as extreme} as what we saw in the data, \alert<4>{if $H_0$ is true}.
+    \end{block}
+
+    \vspace{2em}
+          \pause
+
+    \begin{itemizew}{4em}
+        \item[``result'':] the test statistic (ex: $\bar y_1 - \bar y_2$)
+          \pause
+        \item[``as extreme'':] chosen based on $H_A$ (ex: $\bar y_1 - \bar y_2 > C$)
+          \pause
+        \item[``if $H_0$ is true'':] how to compute the probability.
+    \end{itemizew}
+
+\end{frame}
+
 \begin{frame}{So far, we know}
   \begin{enumerate}
     \item How to use the $t$-test to compare means of two populations,
@@ -34,6 +75,7 @@
     \item The null hypothesis describes the model to use to calculate the $P$-value.
   \end{enumerate}
 \end{frame}
+
 
 \begin{frame}\frametitle<presentation>{Outline}
   \tableofcontents
@@ -117,6 +159,22 @@
 
 \end{frame}
 
+%%%%%%%
+\begin{frame}{Your turn}
+
+    Total ventilation (breathing) rates:
+
+  \begin{center}
+  \begin{tabular}{l|p{5in}}
+    hypnotized & 5.32 \hspace{.25em} 5.6 \hspace{.25em} 5.74 \hspace{.25em} 6.06 \hspace{.25em} 6.32 \hspace{.25em} 6.34 \hspace{.25em} 6.79 \hspace{.25em} 7.18 \hspace{.25em} \\
+    \hline
+    control & 4.5 \hspace{.25em} 4.78 \hspace{.25em} 4.79 \hspace{.25em} 4.86 \hspace{.25em} 5.41 \hspace{.25em} 5.7 \hspace{.25em} 6.08 \hspace{.25em} 6.21 \hspace{.25em} \\
+  \end{tabular}
+  \end{center}
+  
+
+\end{frame}
+
 %%%%%% %%%%%%%
 \subsection{Testing equality of distributions}
 
@@ -186,7 +244,7 @@
 
     \structure{Directional test:}
     \begin{itemize}
-      \item If the comparison against the direction of the hypothesis, $P>1/2$.
+      \item If the comparison is against the direction of the hypothesis, $P>1/2$.
       \item Otherwise, divide the $P$ value by two.
     \end{itemize}
 
@@ -288,31 +346,6 @@
 
 \end{frame}
 
-%%%%%%
-\begin{frame}{Another thought experiment}
-
-  Now, suppose we visit two other islands:
-  \begin{itemize}
-    \item on one, half the birds are big (10cm), and half are small (1cm);
-    \item on the other, half are 5cm and half are 6cm.
-  \end{itemize}
-
-  \vspace{2em}
-
-  Again, we take random samples from the two islands,
-  and compare the sizes on the two islands with a Wilcoxon--Mann--Whitney test.
-  \begin{itemize}
-    \item If we get a significant $P$-value, is that an error or not?
-    \item Is the test appropriate?
-    \item Are we likely to get a significant $P$-value?
-  \end{itemize}
-
-  \vspace{2em}
-  \pause
-
-  (Investigation by simulation.)
-
-\end{frame}
 
 %%%%%%
 \begin{frame}{The alternative hypothesis}
