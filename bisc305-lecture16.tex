@@ -10,7 +10,7 @@
 
 \lecture[16]{the Paired sample $t$}{lecture-text}
 
-\subtitle{and confidence intervals}
+\subtitle{and the sign test}
 
 \date{27 October 2015}
 
@@ -40,7 +40,7 @@
 \end{frame}
 
 %%%%%% %%%%%%% %%%%%%%%
-\section{Paired sample tests}
+\section{Paired sample $t$ test}
 
 %%%%%% %%%%%%% 
 \subsection{Paired samples}
@@ -323,6 +323,232 @@ Studies of the effects of fetal and infant growth on later health in twins have 
 \end{frame}
 
 
+\section{The sign test}
+
+\subsection{A test without measurements}
+
+%%%%%%%
+\begin{frame}{}
+
+    \vfill
+
+    That's the $t$-test.
+
+    \vfill
+
+    What about a \alert{distribution-free} test for paired-sample data?
+
+    \vfill
+
+\end{frame}
+
+\begin{frame}{Example}
+
+  \structure{Hypothesis:} writing makes your fingers longer by stretching out your ligaments.
+
+    \vspace{2em}
+  
+  Class survey: how many have
+  \begin{enumerate}
+    \item middle finger longer on your writing hand?
+    \item middle finger shorter on your writing hand?
+  \end{enumerate}
+
+    \vspace{2em}
+
+    Supplemental survey: flip a fair coin.  How many got:
+  \begin{enumerate}
+    \item heads?
+    \item tails?
+  \end{enumerate}
+
+    \vspace{2em}
+
+    \alert{Test statistic} for the sign test: number of people with longer finger on the writing hand.
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{Example: HLA compatibility}
+
+  Does skin graft success depend on HLA compatibility?
+  Pairs of grafts on 11 patients; one from a HLA compatible donor; one less compatible;
+  recorded survival times:
+
+    \vspace{1em}
+
+    \noindent
+    \structure{$H_0$:} graft survival time doesn't depend on compatibility. \\
+    \structure{$H_A$:} compatible grafts tend to survive longer than incompatible ones.
+
+    \vspace{1em}
+
+
+    \only<1>{
+  \begin{center}
+  \begin{tabular}{rrrl}
+    \hline
+  patient & compatible & incompatible & sign \\ 
+    \hline
+    1 &   37 &   29 & + \\ 
+    2 &   19 &   13 & + \\ 
+    3 &   {}>57 &  15 & + \\ 
+    4 &   93 &   26 & + \\ 
+    5 &   16 &   11 & + \\ 
+    6 &   23 &   18 & + \\ 
+    7 &   20 &   26 & - \\ 
+    8 &   63 &   43 & + \\ 
+    9 &   29 &   18 & + \\ 
+    10 &  {}>60 &  42 & + \\ 
+    11 &  18 &   19 & - \\ 
+     \hline
+  \end{tabular}
+  \end{center}
+  }
+
+  \only<2>{
+      \begin{center}
+      \begin{tabular}{rrrr}
+        \hline
+        & compatible & incompatible & total\\ 
+        \hline
+        \# longer surviving  &   9 &   2 & 11 \\ 
+         \hline
+      \end{tabular}
+      \end{center}
+
+    \vspace{2em}
+
+    $N_+=9$ is number of differences with $D>0$\\
+    $N_-=2$ is number with $D<0$\\
+    \alert{test statistic} $B_s=9$ just $N_+$.
+
+        \vspace{1em}
+
+        \begin{align*}
+            P&= \text{probability that in 11 coin tosses, at least 9 heads.} \\
+             &= 0.0327
+        \end{align*}
+    }
+
+
+\end{frame}
+
+%%%%%% %%%%%%%%%
+\subsection{The binomial distribution}
+
+%%%%%%
+\begin{frame}{$P$-values from the binomial}
+
+  The null hypothesis is \\
+  \hspace{2em} \structure{$H_0$:} difference between the observations is equally likely to be positive or negative.
+
+    \vspace{2em}
+
+    so the $P$-value of the last example \\
+    (at least 9 out of 11 $D>0$, calculated with $H_0$) \\
+    is:
+    \begin{align*} 
+      P &= \mbox{Prob}( \; \text{at least 9 heads out of 11 coin flips}\; ) \\
+       &= 
+         \ch{11}{11} \; 0.5^{11} + 
+         \ch{11}{10} \; 0.5^{11} + 
+         \ch{11}{9} \; 0.5^{11} \\
+       &= 
+       0.000488 + 0.00537 + 0.0269  \\
+       &= 0.0327
+     \end{align*}
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{Reminder: binomial probabilities}
+
+  \begin{align*}
+    &\mbox{Prob}( k \; \text{heads in} \; n \; \text{coin flips} ) \\
+    \qquad \qquad &= \ch{n}{k} \; 0.5^k \; 0.5^{n-k} \\
+    \qquad \qquad &= \text{(\# ways to get $k$ heads)} \text{(prob of each possibility)}
+  \end{align*}
+
+  \vspace{2em}
+  and
+  \[
+  \ch{n}{k} = \frac{ n \times (n-1) \times \cdots \times 2 \times 1 }{ ( (n-k) \times (n-k-1) \times \cdots \times 2 \times 1) \times ( k \times (k-1) \times \cdots \times 2 \times 1) }
+  \]
+
+
+\end{frame}
+
+%%%%%%
+\begin{frame}{What about ties?}
+
+  Again, the null hypothesis is \\
+  \hspace{2em} \structure{$H_0$:} difference between the observations is equally likely to be positive or negative.
+
+    \vspace{2em}
+
+    \structure{So:} got some ties?  (i.e.\ $D=0$) \\
+    \alert{Ignore them;} compute the $P$-value as if they weren't there.
+
+    \vspace{2em}
+
+    \structure{Because:} we test the hypothesis that \alert{if the paired observations are different}, $Y_1>Y_2$ is just as likely as $Y_2>Y_1$.  
+
+    \vspace{1em}
+
+    (and so, chance of $Y_1>Y_2$, given $Y_1 \neq Y_2$, is 1/2).
+
+\end{frame}
+
+
+%%%%%%
+\begin{frame}{Example}
+
+        Number of mutations with treatment A versus B:
+  \begin{center}
+  \begin{tabular}{rrrl}
+    \hline
+  cell line & A & B & sign \\ 
+    \hline
+    1 &   1 &   5 & + \\ 
+    2 &   0 &   0 & 0 \\ 
+    3 &   1 &   2 & + \\ 
+    4 &   0 &   1 & + \\ 
+    5 &   2 &   2 & 0 \\ 
+    6 &   0 &   5 & + \\ 
+    7 &   5 &   2 & - \\ 
+    8 &   2 &   2 & + \\ 
+    9 &   1 &   3 & + \\ 
+    10 &   1 &   2 & + \\ 
+     \hline
+  \end{tabular}
+  \end{center}
+
+\end{frame}
+
+
+% %%%%%% %%%%%%
+% \subsection{Extending the idea}
+% 
+% %%%%%%
+% \begin{frame}{Using the binomial formula}
+% 
+%   Yeast ({\it Saccaromyces cerevisiae}) can be either haploid (one copy of each chromosome per cell) or diploid (two copies, like us).
+%   (\structure{$H_A$}:) Do haploid yeast accumulate mutations more quickly than diploid yeast (per chromosome)?
+%   We grow pairs of otherwise identical haploid and diploid yeasts for one generation,
+%   and counted mutations on each chromosome.
+% 
+%     \vspace{2em}
+% 
+%     In 6 of the 10 pairs, the haploid chromosome had more mutations than both of the diploid chromosomes.
+%     Is this strong support for $H_A$? {\small (\alert{hint:} this is like the sign test, but the coin is not fair.) }
+%     % 1-pbinom(q=6,size=10,prob=1/3)
+% 
+% 
+% \end{frame}
+
+
 %%% exercise
 
 \section<article>{Summary}
@@ -333,6 +559,9 @@ Studies of the effects of fetal and infant growth on later health in twins have 
     \item Paired samples can control for confounding variables and other sources of variability.
     \item Pairs should be \alert{independent} of each other.
     \item When analyzing paired samples, treat the differences as a single sample from a population.
+    \item The \alert{paired-sample $t$} is just the $t$-test applied to differences;
+    \item and the \alert{sign test} is very flexible, and doesn't even require numeric measurements
+    \item \ldots count how many pairs have $A>B$.
   \end{enumerate}
 \end{frame}
 
