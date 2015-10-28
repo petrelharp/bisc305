@@ -19,12 +19,20 @@
   \maketitle
 \end{frame}
 
+%%%%%%%%
+\begin{frame}{Paired samples, so far}
 
-\begin{frame}{We know how to}
-  \begin{enumerate}
-    \item Do distribution-free single-sample and two-sample tests.
-    \item Use the $t$-test to analyze paired-sample data.
-  \end{enumerate}
+    \begin{itemize}
+        \item Comparing values between matched pairs 
+            can help control for confounding factors.
+        \item We can apply the $t$-test to the \alert{differences}.
+        \item The \alert{sign test} is a distribution-free alternative
+            that only requires comparisons,
+        \item and works by checking if the comparisons more often go in the same direction,
+        \item as compared to the Binomial distribution (coin flips).
+        \item But, the sign test ignores relative sizes of the differences.
+    \end{itemize}
+
 \end{frame}
 
 \begin{frame}\frametitle<presentation>{Outline}
@@ -202,7 +210,42 @@
 
   \vspace{1em}
 
-  \pause Not unless sample sizes were large.
+  \pause Probably not (unless sample sizes were large).
+
+\end{frame}
+
+%%%%%%%%
+\begin{frame}{What did they do?}
+    \begin{quote}
+        Fifty-six of 96 tumor specimens showed altered p53 expression.  The patients with altered p53 expression survived for a significantly shorter period after surgery than those without p53 expression, (P = 0.02, [...] Wilcoxon test). 
+    \end{quote}
+    \figcaption{Fujino et al 1995, \textit{Prognostic significance of p53 and ras p21 expression in nonsmall cell lung cancer}}
+
+    \pause
+
+    Recorded survival times for 56 patients with altered p53 expression and 40 patients without;
+    did a Wilcoxon-Mann-Whitney test comparing the two groups.
+
+\end{frame}
+
+%%%%%%%%
+\begin{frame}{What did they do?}
+
+    \emph{DNA methylation profiling in breast cancer discordant identical twins identifies DOK7 as novel epigenetic biomarker}, Heyn et al 2013
+
+    \vspace{1em}
+
+    \begin{quote}
+        DNA methylation level is [a property of sites in the genome, and is] displayed as beta-values ranging from 0--1. 
+        To identify consistently differentially methylated CpG sites [in the genome] Wilcoxon rank sum paired test was performed for normalized beta-values of paired twins. 
+    \end{quote}
+
+\end{frame}
+
+%%%%%%%%
+\begin{frame}{}
+
+    \includegraphics[width=\textwidth]{caffeine-twin-study}
 
 \end{frame}
 
