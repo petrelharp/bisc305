@@ -150,7 +150,7 @@
       \hat \mu &= \bar{\bar y}  & \text{(the \alert{overall mean})} \\
       \hat \mu_i &= \bar y_i  & \text{(the \alert{group mean})} \\
       \hat \tau_i &= \bar y_i - \bar{\bar y}  & \text{(the \alert{group effect})} \\
-      \hat \epsilon_{ij} &= y_{ij} - \bar y_i & \text{(the alert{random error})} .
+      \hat \epsilon_{ij} &= y_{ij} - \bar y_i & \text{(the \alert{random error})} 
     \end{align*}
 
     \vspace{2em}
@@ -172,7 +172,7 @@
     \hspace{2em} $H_0$: the population means of all the groups are equal \\
   against \\
     \hspace{2em} $H_A$: the population means of the groups are not all equal, \\
-  i.e.\ \structure{Could the observed difference in group means be due to random noise?}
+  i.e.\ \structure{could the observed differences in group means be due to random noise?}
 
   \vspace{2em}
 
@@ -193,7 +193,7 @@
     \vspace{2em}
 
     \structure{If} the null hypothesis\\
-    \hspace{3em} $H_0$: all group means are equal \\
+    \hspace{3em} $H_0$: all population means are equal \\
     and the conditions
     \begin{itemize}
       \item Each group is a random sample from some population,
@@ -341,8 +341,8 @@
 
   \begin{frame}{What next?}
 
-    This gives us \emph{statistical significance},\\
-    what about \structure{real-world significance?}
+      The $F$-test tells us some of the means differ from the others. \\
+      \alert{Which ones, by how much?}
 
     \vspace{2em}
 
@@ -656,7 +656,8 @@ M & 9.33 & 7.90 & 8.17 & 17.92 & 6.30 & 9.92 \\
   \begin{align*} 
     H_0 &: \quad \eta_{11} = \eta_{12} = \cdots = \eta_{I-1,J} = \eta_{IJ} = 0 \\
     F_s &= \frac{ \MS(\text{interaction}) }{ \MS(\text{within}) } = \frac{0.776}{1.060} = 0.7318\\
-    df &= (4,70)
+    df &= (4,70)\\
+      P &> 0.20
   \end{align*} 
   }
   
@@ -666,7 +667,8 @@ M & 9.33 & 7.90 & 8.17 & 17.92 & 6.30 & 9.92 \\
   \begin{align*} 
     H_0 &: \quad \tau_1 = \cdots = \tau_I = 0 \\
     F_s &= \frac{ \MS(\text{between islands}) }{ \MS(\text{within}) } = \frac{43.478}{1.060} = 41.0228 \\
-    df &= (4,70)
+    df &= (4,70) \\
+      P &< 0.0001
   \end{align*} 
   }
 
@@ -675,7 +677,8 @@ M & 9.33 & 7.90 & 8.17 & 17.92 & 6.30 & 9.92 \\
   \begin{align*} 
     H_0 &: \quad \beta_1 = \cdots = \beta_J = 0 \\
     F_s &= \frac{ \MS(\text{between sexes}) }{ \MS(\text{within}) } = \frac{23.032}{1.060} = 21.7317 \\
-    df &= (1,70)
+    df &= (1,70) \\
+      P &< 0.0001
   \end{align*} 
   }
 
