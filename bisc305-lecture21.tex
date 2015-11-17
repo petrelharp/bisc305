@@ -12,7 +12,7 @@
 
 \subtitle{and two-way ANOVA}
 
-\date{15 April 2015}
+\date{16 November 2015}
 
 % 427-436, 449-456
 
@@ -46,7 +46,7 @@
       \SS(\text{between}) &= \sum_{i} n_i (\bar y_i - \bar{\bar y})^2 
       & \df(\text{between}) &= I - 1 \\
     \end{align*}
-    and $\MS = \SS / \df$.
+    and the ``mean square'' is $\MS = \SS / \df$.
     
 \end{frame}
 
@@ -331,7 +331,10 @@
     \hspace{4em}\alert{$P<0.01$}
 
     \pause
+    \vspace{2em}
 
+    $F_s = \MS(\text{between})/\MS(\text{within})$, \\
+    and larger sample sizes \alert{increasd $\MS(\text{between})$}.
 
 
   \end{frame}
@@ -348,12 +351,19 @@
 
     \vspace{2em}
 
-    For instance, here
+    For instance, here $n_1=30$ and $n_2=50$ and
     \[
     s_\text{pooled} = \sqrt{\MS(\text{within})} = 4.8
     \]
-    so that $\SE_{\bar Y_1 - \bar Y_2} \approx 4.8 / \sqrt{40} =0.75$\\
-    so a 95\% confidence interval for $\bar y_2 - \bar y_1$ is approximately\\
+    so that $\SE_{\bar Y_1 - \bar Y_2} \approx 4.8 / \sqrt{40} =0.76$
+
+    \vspace{1em}
+
+    and $\bar y_2 - \bar y_1 = 4$,
+
+    \vspace{1em}
+
+    so a 95\% confidence interval for $\bar y_2 - \bar y_1$ is approximately
     \[
   3.33 \le \bar y_2 - \bar y_1 \le 6.27
   \]
