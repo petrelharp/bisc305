@@ -254,7 +254,7 @@ eye color & grey/green   & 0.44 & 0.24 & 0.30 & 0.02  & 1.0 \\
 
   \begin{itemize}
     \item[$y_{ij}$:] the $j^\mathrm{th}$ observation in group $i$
-    \item[$I$:] number of groups
+    \item[$\mathcal{I}$:] number of groups
     \item[$n_i$:] number of obs. in $i^\mathrm{th}$ group
     \item[$\bar y_i$:] (sample) mean of the $i^\mathrm{th}$ group
     \item[$s_i$:] (sample) SD for the $i^\mathrm{th}$ group
@@ -291,7 +291,7 @@ eye color & grey/green   & 0.44 & 0.24 & 0.30 & 0.02  & 1.0 \\
     The ``\alert{Mean Square Within Groups}'' is analogous, across all groups:
     \begin{align*}
       \SS(\text{within}) &= \sum_{i} (n_i-1) s_i^2 = \sum_{ij} (y_{ij}-\bar y_i)^2 \\
-      \df(\text{within}) &= n_\cdot - I \\
+        \df(\text{within}) &= n_\cdot - \mathcal{I} \\
       \MS(\text{within}) &= \frac{\SS(\text{within})}{\df(\text{within})}
     \end{align*}
 
@@ -306,7 +306,7 @@ eye color & grey/green   & 0.44 & 0.24 & 0.30 & 0.02  & 1.0 \\
   as the variance, after replacing all observations by their group mean:
   \begin{align*}
     \SS(\text{between}) &= \sum_{i} n_i (\bar y_i - \bar{\bar y})^2 \\
-      \df(\text{between}) &= I - 1 \\
+      \df(\text{between}) &= \mathcal{I} - 1 \\
       \MS(\text{between}) &= \frac{\SS(\text{between})}{\df(\text{between})}
   \end{align*}
 
@@ -360,8 +360,8 @@ eye color & grey/green   & 0.44 & 0.24 & 0.30 & 0.02  & 1.0 \\
     \begin{tabular}{lrrr}
       source & df & SS & MS \\
       \hline
-      between groups & $I-1$ & $\sum_i n_i (\bar y_i - \bar{\bar y})^2$  & $\SS/\df$ \\
-      within groups & $n_\cdot -I$ & $\sum_i (n_i -1 )s_i^2$ & $\SS/\df$ \\
+      between groups & $\mathcal{I}-1$ & $\sum_i n_i (\bar y_i - \bar{\bar y})^2$  & $\SS/\df$ \\
+      within groups & $n_\cdot -\mathcal{I}$ & $\sum_i (n_i -1 )s_i^2$ & $\SS/\df$ \\
       \hline
       Total & $n_\cdot -1$  & $\sum_{ij} (y_{ij}-\bar{\bar y})^2$  & \\
     \end{tabular}

@@ -42,9 +42,9 @@
         \SS(\text{total}) &= \sum_{ij} (y_{ij} - \bar {\bar y} )^2 
     &  \df(\text{total}) &= n_\cdot - 1 \\
       \SS(\text{within}) &= \sum_{i} (n_i-1) s_i^2 = \sum_{ij} (y_{ij}-\bar y_i)^2 
-   &   \df(\text{within}) &= n_\cdot - I \\
+        &   \df(\text{within}) &= n_\cdot - \mathcal{I} \\
       \SS(\text{between}) &= \sum_{i} n_i (\bar y_i - \bar{\bar y})^2 
-      & \df(\text{between}) &= I - 1 \\
+        & \df(\text{between}) &= \mathcal{I} - 1 \\
     \end{align*}
     and the ``mean square'' is $\MS = \SS / \df$.
     
@@ -98,7 +98,7 @@
   we can use the
   \begin{block}{Pooled standard deviation}
     \begin{align*} 
-      s_\text{pooled} &= \sqrt{ \frac{ \sum_{i=1}^I (n_i-1) s_i^2 }{ \sum_{i=1}^I (n_i-1) } }\\
+        s_\text{pooled} &= \sqrt{ \frac{ \sum_{i=1}^\mathcal{I} (n_i-1) s_i^2 }{ \sum_{i=1}^\mathcal{I} (n_i-1) } }\\
       &= \sqrt{ \MS(\text{within}) }
     \end{align*}
   \end{block}
@@ -127,7 +127,7 @@
     \vspace{2em}
 
     The \structure{null hypothesis} is that
-    \[ \mu_1 = \mu_2 = \cdots = \mu_I .\]
+    \[ \mu_1 = \mu_2 = \cdots = \mu_\mathcal{I} .\]
 
 
     \vspace{2em}
@@ -198,7 +198,7 @@
     \begin{itemize}
       \item Each group is a random sample from some population,
       \item that are also independent of each other.
-      \item The $I$ population distributions are approximately Normal\
+      \item The $\mathcal{I}$ population distributions are approximately Normal\
         with equal standard deviations.
     \end{itemize}
     are true, \structure{then}
@@ -619,10 +619,10 @@ M & 9.33 & 7.90 & 8.17 & 17.92 & 6.30 & 9.92 \\
     \structure{If all the $n_{ij}$ are the same} (``balanced''),\\
     we can still partition the sum of squares:
   \begin{align*}
-    \SS(\text{between $i$}) &= \sum_{i} n_{i\cdot} \hat \tau_{i}^2 & \df(\text{between $i$}) &= I-1 \\
+      \SS(\text{between $i$}) &= \sum_{i} n_{i\cdot} \hat \tau_{i}^2 & \df(\text{between $i$}) &= \mathcal{I}-1 \\
     \SS(\text{between $j$}) &= \sum_{j} n_{\cdot j} \hat \beta_{j}^2 & \df(\text{between $j$}) &= J-1 \\
-    \SS(\text{interactions}) &= \sum_{ij} n_{ij} \hat \eta_{ij}^2  & \df(\text{interactions}) &= (I-1)(J-1) \\
-    \SS(\text{within}) &= \sum_{ijk} \hat \epsilon_{ijk}^2  & \df(\text{within}) &= n_{\cdot} - IJ\\
+      \SS(\text{interactions}) &= \sum_{ij} n_{ij} \hat \eta_{ij}^2  & \df(\text{interactions}) &= (\mathcal{I}-1)(J-1) \\
+      \SS(\text{within}) &= \sum_{ijk} \hat \epsilon_{ijk}^2  & \df(\text{within}) &= n_{\cdot} - \mathcal{I}J\\
     \SS(\text{total}) &= \sum_{ijk} (y_{ijk}-\hat \mu)^2 & \df(\text{total}) &= n_\cdot - 1  
   \end{align*}
 
@@ -654,7 +654,7 @@ M & 9.33 & 7.90 & 8.17 & 17.92 & 6.30 & 9.92 \\
     Are there \alert{sex differences} in mean beak size that are of \structure{different sizes on different islands}?
   (or, Are mean beak size effects of sex and island \emph{not} additive?)
   \begin{align*} 
-    H_0 &: \quad \eta_{11} = \eta_{12} = \cdots = \eta_{I-1,J} = \eta_{IJ} = 0 \\
+      H_0 &: \quad \eta_{11} = \eta_{12} = \cdots = \eta_{\mathcal{I}-1,J} = \eta_{\mathcal{I}J} = 0 \\
     F_s &= \frac{ \MS(\text{interaction}) }{ \MS(\text{within}) } = \frac{0.776}{1.060} = 0.7318\\
     df &= (4,70)\\
       P &> 0.20
@@ -665,7 +665,7 @@ M & 9.33 & 7.90 & 8.17 & 17.92 & 6.30 & 9.92 \\
   \only<2>{
   Are there differences in mean beak size \structure{between islands} (consistent across both sexes)?
   \begin{align*} 
-    H_0 &: \quad \tau_1 = \cdots = \tau_I = 0 \\
+      H_0 &: \quad \tau_1 = \cdots = \tau_\mathcal{I} = 0 \\
     F_s &= \frac{ \MS(\text{between islands}) }{ \MS(\text{within}) } = \frac{43.478}{1.060} = 41.0228 \\
     df &= (4,70) \\
       P &< 0.0001
